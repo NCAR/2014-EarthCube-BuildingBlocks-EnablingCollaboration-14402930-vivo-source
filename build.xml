@@ -90,8 +90,7 @@
                         <include name="test/**/*" />
                         <include name="themes/**/*" />
                         <include name="languages/**/*" />
-                        <include name="config/*.properties" />
-                        <include name="config/*.txt" />
+                        <include name="config/*" />
                         <include name="config/jarlist/*.txt" />
                         <include name="config/solr/*" />
                         <include name="context.xml" />
@@ -128,7 +127,7 @@
 	<target name="revisionInfo"
 	        depends="vitroCore.revisionInfo"
 	        description="--> Store revision info in build">
-		<addRevisionInfoLine productName="nihvivo" productCheckoutDir="${nihvivo.dir}" />
+	<!-- =====		<addRevisionInfoLine productName="nihvivo" productCheckoutDir="${nihvivo.dir}" /> ====== -->
 		<addRevisionInfoLine productName="${ant.project.name}" productCheckoutDir="${basedir}" />
 	</target>
 
