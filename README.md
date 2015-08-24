@@ -7,6 +7,39 @@ instructions](https://wiki.duraspace.org/display/VIVO/Installing+VIVO+release+1.
 
 Building VIVO from this template will add UNAVCO-specific customizations. The build script template is a (slightly) modified version of the template provided by Ted Lawless (https://github.com/lawlesst/vivo-project-template).
 
+##UNAVCO-specific notes
+UNAVCO uses an expanded ontology to capture geodesy-related concepts. As of now, the ontology is not included, pending a namespace. One extension is the 'Station' concept. Here is RDF for the station concept:
+
+    @prefix ec:    <http://vivo.unavco.org/vivo/ontology/vlocal#> .
+    @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix obo:   <http://purl.obolibrary.org/obo/> .
+    @prefix owl:   <http://www.w3.org/2002/07/owl#> .
+    @prefix wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+    @prefix vitro: <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
+    
+    ec:Station  a                     owl:Class ;
+        rdfs:label                    "Station"@en-US ;
+        rdfs:subClassOf               obo:BFO_0000029 , wgs84:SpatialThing ;
+        vitro:hiddenFromDisplayBelowRoleLevelAnnot
+                <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+        vitro:hiddenFromPublishBelowRoleLevelAnnot
+                <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+        vitro:inClassGroup            <http://vivoweb.org/ontology#vitroClassGrouplocations> ;
+        vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+                <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+
+
+and a little more RDF to tell VIVO to use a custom template that adds a map to the station's page:
+
+    @prefix ec:    <http://vivo.unavco.org/vivo/ontology/vlocal#> .
+    @prefix vitro:   <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
+    @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+     
+    ec:Station
+      vitro:customDisplayViewAnnot
+              "individual--ec-station.ftl"^^xsd:string .
+
+Instructions on where to put that RDF are at https://wiki.duraspace.org/display/VIVO/Class-specific+templates+for+profile+pages. The map will only show up if a station has wgs84:lat and wgs84:long attributes. 
 
 ##Checking out the project and building VIVO in three tiers
 
