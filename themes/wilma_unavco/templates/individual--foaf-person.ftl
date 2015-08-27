@@ -102,7 +102,11 @@
         <#include "individual-overview.ftl">
         
         <!-- Research Areas -->
-        <#include "individual-researchAreas.ftl">
+        <#include "individual-researchAreas.ftl"> 
+        
+        <!-- Expertise -->
+        <#include "individual-expertise.ftl">    
+        
 
         <!-- Geographic Focus -->
         <#include "individual-geographicFocus.ftl">
