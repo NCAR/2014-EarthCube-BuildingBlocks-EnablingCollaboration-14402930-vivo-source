@@ -10,7 +10,7 @@
  
 # individual map datagetter
 
-<freemarker:individual--ec-station.ftl> display:hasDataGetter display:individualLatLongDataGetter .
+<http://vivo.unavco.org/vivo/ontology/vlocal#Station> display:hasDataGetter display:individualLatLongDataGetter .
 
 display:individualLatLongDataGetter
     a <java:edu.cornell.mannlib.vitro.webapp.utils.dataGetter.SparqlQueryDataGetter> ;
