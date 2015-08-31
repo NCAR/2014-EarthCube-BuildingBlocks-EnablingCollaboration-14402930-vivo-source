@@ -1,6 +1,15 @@
 /* $This file is distributed under the terms of the license in /doc/license.txt$ */
 
 /* styles for geographic focus maps on individual pages */
+div#map-wrapper {
+  border: 2px solid #ebebeb;
+  width:907px;
+}
+div#map-wrapper.mapWithThumb {
+  width:703px;
+  float: right;
+}
+
 div#mapControls {
     margin: -26px 26px 0 0 ;
     float: right;
@@ -16,9 +25,9 @@ div#researcherTotal {
     margin: 12px 0 -2px 34px;
 }
 .mapArea {
-    height:150px;
-    width:900px;
-    margin: 2px 0 16px 16px;
+    height:170px;
+    width:100%;
+/*    margin: 2px 0 16px 16px; */
 }
 .divIconCount {
     border: none;
