@@ -73,7 +73,7 @@
                         </#if>
                           <#if !group.uri?contains("equipment") && !group.uri?contains("course") && !group.uri?contains("activities")>
                             <li>
-                                <a href="${urls.base}/browse">
+                                <a href="${urls.base}/${group.displayName}">
                                     <p  class="stats-count">
                                         <#if (group.individualCount > 10000) >
                                             <#assign overTen = group.individualCount/1000>
