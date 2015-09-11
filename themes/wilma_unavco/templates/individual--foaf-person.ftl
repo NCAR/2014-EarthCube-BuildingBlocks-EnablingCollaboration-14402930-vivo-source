@@ -7,6 +7,7 @@
  
 <#include "individual-setup.ftl">
 <#import "lib-vivo-properties.ftl" as vp>
+<#include "individual-lightboxscripts.ftl">
 <#--Number of labels present-->
  <#if !labelCount??>
      <#assign labelCount = 0 >
