@@ -5,7 +5,7 @@
 <#include "individual-setup.ftl">
 
 <script>
-
+var urlsBase = "${urls.base}";
 <#if latlongDG?has_content>
   var latitude = ${latlongDG?first.lat}
   var longitude = ${latlongDG?first.long}

@@ -9,3 +9,4 @@
 <script src="${urls.base}/js/leaflet/dist/leaflet.js"></script>
 <#--<script type="text/javascript" src="${urls.base}/js/latLongJson.js?version=1"></script> -->
 <script type="text/javascript" src="${urls.base}/js/indivMaps.js?version=x"></script>
+<script src="${urls.base}/js/indivMaps_button.js"></script>
