@@ -1,7 +1,7 @@
 /* $This file is distributed under the terms of the license in /doc/license.txt$ */
 
 $(document).ready(function(){
-    var legendIsVisible = false;
+  var legendIsVisible = false;
     
   buildSmallMap();    
 
@@ -19,37 +19,16 @@ $(document).ready(function(){
             doubleClickZoom: false,
           	accessToken: 'pk.eyJ1IjoibWJncm9zcyIsImEiOiJjaWVrNWx5bHAwMTBzc3JtMTlsbXp4N25lIn0.dFF6rXQ_LHVC5IkT4MYRhg'
           });
-  
-          labels = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.{ext}', {
-          	type: 'hyb',
-          	ext: 'png',
-          	attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-          	subdomains: '1234',
-          	opacity: 0.9
-          });
-
-          
+            
       var mapSmall = L.map('mapSmall').setView([latitude, longitude], 2);
             mapSmall.touchZoom.disable();
             mapSmall.doubleClickZoom.disable();
             mapSmall.scrollWheelZoom.disable();
             mapSmall.boxZoom.disable();
             mapSmall.keyboard.disable();
-            layers: [satellite, labels]
             var marker = L.marker([latitude, longitude]).addTo(mapSmall);
-            var baseMaps = {
-              "Satellite": satellite,
-              "Streets": streets
-            };
-            var overlayMaps = {
-              "Labels": labels
-            };
             satellite.addTo(mapSmall);
-            //L.control.layers(baseMaps, null,{position: 'topleft'}).addTo(mapSmall);
-            mapSmall.zoomControl.setPosition('topright');
-            smallMapBuilt = true;
-            $('div#timeIndicatorGeo').hide();
-            
+            mapSmall.zoomControl.setPosition('topright');            
             
       var layerToggleOptions = {
             'text': '',  // string
@@ -61,7 +40,11 @@ $(document).ready(function(){
             'toggleStatus': false  // bool
       }   
 
-      var layerToggle = new L.Control.Button(layerToggleOptions).addTo(mapSmall);
+      var layerToggle = new L.Control.Button(layerToggleOptions).addTo(mapSmall); // see indivMaps_button.js
+      
+      smallMapBuilt = true;
+      $('div#timeIndicatorGeo').hide();
+      
       
       function layer_toggle_onClick() {
           if (mapSmall.hasLayer(satellite)) {
