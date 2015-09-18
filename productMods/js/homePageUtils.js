@@ -158,7 +158,7 @@ $(document).ready(function(){
             html += "</ul><ul style='list-style:none'>"
                     + "<li style='font-size:0.9em;text-align:right;padding: 6px 16px 0 0'><a href='" 
                     + urlsBase 
-                    + "/organizations#http://vivoweb.org/ontology/core#AcademicDepartment' alt='" 
+                    + "/display/org253530#Membership' alt='" 
                     + i18nStrings.viewAllDepartments + "'>" 
                     + i18nStrings.viewAllString + "</a></li></ul>";
         }
@@ -207,7 +207,7 @@ $(document).ready(function(){
             memhtml += "</ul><ul style='list-style:none'>"
                     + "<li style='font-size:0.9em;text-align:right;padding: 6px 16px 0 0'><a href='"
                     + urlsBase
-                    + "/organizations#http://vivoweb.org/ontology/core#AcademicDepartment' alt='"
+                    + "/display/org253530#Membership' alt='"
                     + i18nStrings.viewAllDepartments + "'>"
                     + i18nStrings.viewAllString + "</a></li></ul>";
         }
