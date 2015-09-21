@@ -1,7 +1,5 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$  -->
 
-<@widget name="login" include="assets" />
-
 <#-- 
         With release 1.6, the home page no longer uses the "browse by" class group/classes display. 
         If you prefer to use the "browse by" display, replace the import statement below with the
@@ -62,8 +60,6 @@
             </section> <!-- #search-home -->
         
         </section> <!-- #intro -->
-        
-        <@widget name="login" />
         
         <!-- List of research classes: e.g., articles, books, collections, conference papers -->
         <@lh.researchClasses />
