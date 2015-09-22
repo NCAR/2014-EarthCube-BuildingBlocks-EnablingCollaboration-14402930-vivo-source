@@ -576,11 +576,11 @@ ul#main-nav {
 /* INTRO-BLURB ------>  */
 #intro {
     float: left;
-    width: 98%;
+    width: 60%;
     padding-bottom: 50px;
 }
 body.loggedIn #intro {
-    width: 98%;
+    width: 60%;
 }
 #intro h2 {
     padding: 35px 0 12px 24px;
@@ -1830,4 +1830,24 @@ span.subclassExpandMinus {
 .collapseArrow {
     background:url(../images/green_minus_sign.gif) right center no-repeat;
     min-height:18px;
+}
+
+/* ------------------------------------------------->  */
+/* Home Page Featured Image------>  */    
+/* ------------------------------------------------->  */      
+#home-featured-image {
+    float: right;
+    width: 35%;
+    margin-right: 25px;
+    padding-left: 7px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+#home-featured-image p {
+    font-size: 16px;
+    color: #5f6464;
+    line-height: 1.3em;
+    padding: 10px 0 0 0;
 }
