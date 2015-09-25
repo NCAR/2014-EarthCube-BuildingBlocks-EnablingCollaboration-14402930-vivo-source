@@ -411,7 +411,7 @@ Frederick, Frederic, Fredrick, Fredric, Fred, Freddie, Freddy, Rick, Ricky
 Fred, Freddie
 Gabriel, Gabe, Gabby
 Garrett, Garret, Gary, Garry
-Geoffrey, Jeffrey, Jeff
+Geoffrey, Jeffrey, Jeff, Geoff
 George, Georgie, Geordie
 Gerald, Gerard, Gerry, Jerry
 Gilbert, Gil, Bert
@@ -435,7 +435,7 @@ Jacob, Jake
 James, Jim, Jimmy, Jimmie, Jamie, Jem
 Jason, Jay
 Jasper, Jay
-Jeffrey, Jeffery, Geoffrey, Jeff
+Jeffrey, Jeffery, Geoff, Geoffrey, Jeff
 Jeremy, Jeremiah, Jerry
 Jerome, Jerry
 Jesse, Jess, Jessie, Jessy
