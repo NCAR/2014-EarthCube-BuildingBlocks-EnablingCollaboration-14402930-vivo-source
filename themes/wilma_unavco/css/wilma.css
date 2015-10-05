@@ -447,15 +447,15 @@ hr.formDivider {
 #branding {
     position: relative;
     width: 970px;
-    height: 114px;
+    height: 100px;
     margin: 0 auto;
 }
 /* BRANDING ------>  */
 h1.vivo-logo {
     position: absolute;
-    width: 442px;
-    height: 59px;
-    top: 28px;
+    width: 670px;
+    height: 100px;
+    top: 8px;
     left: 0;
     background: url(../images/VIVO-logo.png) 0 0 no-repeat;
 }
@@ -497,14 +497,14 @@ ul#header-nav a.log-out {
 /* SEARCH ------>  */
 #search {
     position: absolute;
-    width: 396px;
+    width: 265px;
     height: 38px;
     top: 40px;
     right: 10px;
     padding-top: 5px;
 }
 #search-field {
-    width: 396px;
+    width: 286px;
     height: 38px;
     background: url(../images/search-interior-pages.png) 0 0 no-repeat;
 }
@@ -520,12 +520,12 @@ ul#header-nav a.log-out {
 }
 input.search-vivo {
     float: left;
-    width: 290px;
+    width: 180px;
     height: 25px;
     border: 0;
     font-size: 16px;
     color: #5e6363;
-    margin-left: 10px;
+    margin-left: 5px;
     margin-top: 5px;
     padding: 0;
 }
