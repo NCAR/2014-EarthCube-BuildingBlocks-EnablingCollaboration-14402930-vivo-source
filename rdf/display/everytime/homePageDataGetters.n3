@@ -26,7 +26,7 @@ display:academicDeptsDataGetter
     {
           ?theURI obo:RO_0000053 ?memberRole .
           ?memberRole rdf:type vivo:MemberRole .
-          ?memberRole vivo:roleContributesTo <http://vivo.unavco.org/vivo/individual/org253530> .
+          ?memberRole vivo:roleContributesTo <http://connect.unavco.org/individual/org253530> .
           ?theURI rdfs:label ?label
     }
     
@@ -51,7 +51,7 @@ display:assocMembersDataGetter
     {
           ?theURI obo:RO_0000053 ?memberRole .
           ?memberRole rdf:type vlocal:associateMemberRole .
-          ?memberRole vivo:roleContributesTo <http://vivo.unavco.org/vivo/individual/org253530> .
+          ?memberRole vivo:roleContributesTo <http://connect.unavco.org/individual/org253530> .
           ?theURI rdfs:label ?label
     }
 
