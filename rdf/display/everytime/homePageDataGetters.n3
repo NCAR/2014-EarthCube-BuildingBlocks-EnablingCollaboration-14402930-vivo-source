@@ -44,7 +44,7 @@ display:assocMembersDataGetter
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX vivo: <http://vivoweb.org/ontology/core#>
     PREFIX obo: <http://purl.obolibrary.org/obo/>
-    PREFIX vlocal: <http://vivo.unavco.org/vivo/ontology/vlocal#>
+    PREFIX vlocal: <http://connect.unavco.org/ontology/vlocal#>
 
     SELECT DISTINCT ?theURI (str(?label) as ?name)
     WHERE

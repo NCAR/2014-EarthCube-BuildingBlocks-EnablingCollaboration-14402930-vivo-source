@@ -31,7 +31,7 @@
 @prefix vitro: <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
 @prefix vitro-public: <http://vitro.mannlib.cornell.edu/ns/vitro/public#> .
 @prefix core:  <http://vivoweb.org/ontology/core#> .
-@prefix vlocal: <http://vivo.unavco.org/vivo/ontology/vlocal#> .
+@prefix vlocal: <http://connect.unavco.org/ontology/vlocal#> .
 @prefix acti:  <http://vivoweb.org/ontology/activity-insight#> .
 @prefix socsci: <http://vivo.library.cornell.edu/ns/vivo/socsci/0.1#> .
 @prefix ns:    <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -73,7 +73,7 @@ vlocal:datasetType  a    owl:Class ;
         vitro:prohibitedFromUpdateBelowRoleLevelAnnot
                 <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
-<http://vivo.unavco.org/vivo/ontology/vlocal>
+<http://connect.unavco.org/ontology/vlocal>
         a                          owl:Ontology ;
         rdfs:label                 "vlocal"@en-US ;
         vitro:ontologyPrefixAnnot  "vlocal"^^xsd:string .

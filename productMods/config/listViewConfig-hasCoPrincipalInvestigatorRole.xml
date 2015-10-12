@@ -48,7 +48,7 @@
             
             OPTIONAL {
                ?role &lt;http://vivoweb.org/ontology/core#relatedBy&gt; ?activity .
-               ?activity &lt;http://vivo.unavco.org/vivo/ontology/vlocal#has4CharID&gt; ?localId . 
+               ?activity &lt;http://connect.unavco.org/ontology/vlocal#has4CharID&gt; ?localId . 
             }
                       
             OPTIONAL { ?role &lt;http://vivoweb.org/ontology/core#relatedBy&gt; ?activity .
@@ -253,14 +253,14 @@
             ?subject ?property ?role .
             ?role a core:CoPrincipalInvestigatorRole .  
             ?role &lt;http://vivoweb.org/ontology/core#relatedBy&gt; ?activity .
-            ?activity &lt;http://vivo.unavco.org/vivo/ontology/vlocal#has4CharID&gt; ?localId . 
+            ?activity &lt;http://connect.unavco.org/ontology/vlocal#has4CharID&gt; ?localId . 
   
         } WHERE {
             ?subject ?property ?role .  
             ?role a core:CoPrincipalInvestigatorRole .
             ?role &lt;http://vivoweb.org/ontology/core#relatedBy&gt; ?activity .
-            ?activity a &lt;http://vivo.unavco.org/vivo/ontology/vlocal#Station&gt; .
-            ?activity &lt;http://vivo.unavco.org/vivo/ontology/vlocal#has4CharID&gt; ?localId  
+            ?activity a &lt;http://connect.unavco.org/ontology/vlocal#Station&gt; .
+            ?activity &lt;http://connect.unavco.org/ontology/vlocal#has4CharID&gt; ?localId  
         } 
     </query-construct>
 

@@ -1,7 +1,7 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
 <#-- List of expertise for the individual -->
-<#assign expertise = propertyGroups.pullProperty("http://vivo.unavco.org/vivo/ontology/vlocal#hasExpertise")!> 
+<#assign expertise = propertyGroups.pullProperty("http://connect.unavco.org/ontology/vlocal#hasExpertise")!> 
 <#if expertiseDG?has_content>
     <h2 id="expertise" class="mainPropGroup" style="clear:left" title>
         Expertise
