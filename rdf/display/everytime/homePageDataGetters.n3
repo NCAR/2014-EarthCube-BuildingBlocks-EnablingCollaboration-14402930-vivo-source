@@ -50,7 +50,7 @@ display:assocMembersDataGetter
     WHERE
     {
           ?theURI obo:RO_0000053 ?memberRole .
-          ?memberRole rdf:type vlocal:associateMemberRole .
+          ?memberRole rdf:type vlocal:AssociateMemberRole .
           ?memberRole vivo:roleContributesTo <http://connect.unavco.org/individual/org253530> .
           ?theURI rdfs:label ?label
     }
