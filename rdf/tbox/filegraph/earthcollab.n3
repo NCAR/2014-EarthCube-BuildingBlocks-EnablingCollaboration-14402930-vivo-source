@@ -123,6 +123,31 @@ vlocal:has4CharID  a                  owl:FunctionalProperty , owl:DatatypePrope
                 <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
         vitro:publicDescriptionAnnot  "4-character ID: four printable ASCII characters (usually case-insensitive alphanumeric plus underscore) which traditionally have been used to designate a monument or site, so with a-z, 0-9, and _ (underscore) there are 37^4 = 1874161 unique 4-character IDs possible."^^xsd:string .
 
+vlocal:hasExpertise  a                 owl:ObjectProperty ;
+        rdfs:label                     "expertise"@en-US ;
+        rdfs:subPropertyOf             owl:topObjectProperty , core:hasAssociatedConcept ;
+        vitro:customEntryFormAnnot     "edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.generators.AddAssociatedConceptGenerator"^^xsd:string ;
+        vitro:displayLimitAnnot        "5"^^xsd:int ;
+        vitro:displayRankAnnot         "10"^^xsd:int ;
+        vitro:hiddenFromDisplayBelowRoleLevelAnnot
+                <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+        vitro:hiddenFromPublishBelowRoleLevelAnnot
+                <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+        vitro:inPropertyGroupAnnot     <http://vivoweb.org/ontology#vitroPropertyGroupresearch> ;
+        vitro:offerCreateNewOptionAnnot
+                true ;
+        vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+                <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+        vitro:selectFromExistingAnnot  true ;
+        owl:inverseOf                  vlocal:expertiseOf .
+
+vlocal:expertiseOf  a            owl:ObjectProperty ;
+        rdfs:label               "expertise of"@en-US ;
+        rdfs:subPropertyOf       core:conceptAssociatedWith , core:hasAssociatedConcept ;
+        vitro:displayLimitAnnot  "5"^^xsd:int ;
+        vitro:displayRankAnnot   "10"^^xsd:int ;
+        owl:inverseOf            vlocal:hasExpertise .
+        
 vlocal:isni  a                        owl:FunctionalProperty , owl:DatatypeProperty ;
         rdfs:domain                   foaf:Organization ;
         rdfs:label                    "International Standard Name Identifier"@en-US ;
