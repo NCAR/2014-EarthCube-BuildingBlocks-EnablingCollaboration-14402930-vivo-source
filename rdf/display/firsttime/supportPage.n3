@@ -1,0 +1,58 @@
+# $This file is distributed under the terms of the license in /doc/license.txt$ 
+
+@prefix support: <http://vitro.mannlib.cornell.edu/ns/default/support#> .
+
+support:SUPPORTDG
+    a   <java:edu.cornell.mannlib.vitro.webapp.utils.dataGetter.FixedHTMLDataGetter> ;
+    <http://vitro.mannlib.cornell.edu/ontologies/display/1.1#htmlValue>
+        """<h2>Frequently Asked Questions</h2>        
+          <div class=\"pageGroupBody\" id=\"faq\">
+            <ul>
+            <li><a href=\"#howcaniupdate\">How can I update my profile?</a></li>
+            <li><a href=\"#wheredoesthe\">Where does the information in Connect UNAVCO come from?</a></li>
+            <li><a href=\"#myprofilepage\">My profile page only lists some of my publications. What's up?</a></li>
+            <li><a href=\"#whyareonly\">Why are only some names linked on grants, datasets, and publications?</a></li>
+            <li><a href=\"#howisconnect\">How is Connect UNAVCO different than (insert social networking website)?</a></li>
+            <li><a href=\"#isunavco\">Is UNAVCO an acronym?</a></li>
+
+            <h3 id=\"howcaniupdate\">How can I update my profile?</h3>
+            <p>If the information you want to update is captured in your ORCID profile, you may update it at <a href=\"http://orcid.org\">ORCID</a>. The update should appear on Connect UNAVCO within 24 hours. If your ORCID is not connected to Connect UNAVCO, <a href=\"/contact\">contact us</a>. For skills and research areas, please fill out <a href=\"https://www.surveymonkey.com/r/unavco_vivo_expertise\">this form</a>. For all other inquiries please <a href=\"/contact\">contact us</a>.</p>
+
+            <h3 id=\"wheredoesthe\">Where does the information in Connect UNAVCO come from?</h3>
+            <p>For the initial rollout, data came from a variety of databases held at UNAVCO. When possible, additional information was added from services like Crossref and the NSF's grant API. Data ingest automation is still under development. Subsequent updates will be populated from:
+            <li>UNAVCO's employee database</li>
+            <li>ORCID</li>
+            <li>nsf.gov</li>
+            <li>CrossRef</li>
+            <li>Datacite</li>
+            </p>
+
+            <h3 id=\"myprofilepage\">My profile page only lists some of my publications. What's up?</h3>
+            <p>Connect UNAVCO only contains publications that acknowledge UNAVCO. Possible reasons publications may be omitted include: the publication was not indexed by the search service, the publication does not have a DOI, the publication was published recently, or the publication did not reference UNAVCO.
+
+            Additional publications otherwise unrelated to UNAVCO may be included for UNAVCO employees if they are listed on their ORCID profile. 
+
+            <h3 id=\"whyareonly\">Why are only some names linked on grants, datasets, and publications?</h3>
+            <p>Unlinked names are stubs, meaning that the database only contains a name and uri for that author. If you are listed as a stub and would like to activate a full profile page, please <a href=\"/contact\">contact us</a>.
+            </p>
+
+            <h3 id=\"howisconnect\">How is Connect UNAVCO different than (insert social networking website)?</h3>
+            <p>Connect UNAVCO is an aggregation of geodesy-related information populated from a wide range of source. All data is semantically linked, meaning objects are described by controlled vocabularies and relationships to other objects are explicitly defined.
+            </p><p>Additionally, the software is designed to serve machine-readable linked open data. Connect UNAVCO currently makes 1.25 million triples freely available. Clicking the green link icon near the top of any page will provide a link to the page in RDF format.</p>
+
+            <h3 id=\"isunavco\">Is UNAVCO an acronym?</h3>
+            <p>Not anymore!
+            </p>
+
+            </div>
+        """@en ;
+        <http://vitro.mannlib.cornell.edu/ontologies/display/1.1#saveToVar>
+                "supportPage" .
+support:SUPPORTPAGE
+    a   <http://vitro.mannlib.cornell.edu/ontologies/display/1.1#Page> ;
+    <http://vitro.mannlib.cornell.edu/ontologies/display/1.1#hasDataGetter>
+        about:SUPPORTDG ;
+    <http://vitro.mannlib.cornell.edu/ontologies/display/1.1#title>
+        "Support" ;
+    <http://vitro.mannlib.cornell.edu/ontologies/display/1.1#urlMapping>
+        "/support" .
