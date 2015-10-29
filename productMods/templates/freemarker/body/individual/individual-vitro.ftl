@@ -57,7 +57,7 @@
                     <#if latlongDG?has_content>
                     <#assign localID = "${latlongDG?first.localID}">
                       <#if localID??>
-                        <span class="display-link"><a href="http://www.unavco.org/data/gps-gnss/data-access-methods/dai2/app/dai2.html#4Char=${localID};scope=Station" target="blank">Data Archive Interface</a> <img src="${urls.images}/externallink.png" class="middle" alt="external link icon"/></span>
+                        <span class="display-link"><a href="http://www.unavco.org/data/gps-gnss/data-access-methods/dai2/app/dai2.html#4Char=${localID};scope=Station" target="_blank">Data Archive Interface</a> <img src="${urls.images}/externallink.png" class="middle" alt="external link icon"/></span>
                       </#if>
                     
                     
