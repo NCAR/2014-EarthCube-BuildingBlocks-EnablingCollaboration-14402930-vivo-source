@@ -9,7 +9,7 @@ var urlsBase = "${urls.base}";
 <#if latlongDG?has_content>
   var latitude = ${latlongDG?first.lat}
   var longitude = ${latlongDG?first.long}
-  
+
   
   <#assign classSpecificExtension>
     <section id="individual-intro" role="region">
@@ -29,12 +29,13 @@ var urlsBase = "${urls.base}";
       <#assign mapWrapperClass = 'class="mapWithThumb"'/>
     </#if>
     
-    <div id="map-wrapper" ${mapWrapperClass!}>
+    <div id="map-wrapper" style="margin-bottom:20px;" ${mapWrapperClass!}>
         <#include "individual-map.ftl">      
     </div>    
     
     </section> <!-- #right-hand-column -->
   </#assign>
+  
   
 </#if>
 

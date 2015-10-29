@@ -16,13 +16,15 @@ display:individualLatLongDataGetter
     a <java:edu.cornell.mannlib.vitro.webapp.utils.dataGetter.SparqlQueryDataGetter> ;
     display:saveToVar "latlongDG" ;
     display:query """
+    PREFIX vlocal:    <http://connect.unavco.org/ontology/vlocal#>
     PREFIX wgs84:    <http://www.w3.org/2003/01/geo/wgs84_pos#>
 
-    SELECT ?lat ?long
+    SELECT ?lat ?long ?localID
     WHERE
     {
       ?individualURI wgs84:lat ?lat .
       ?individualURI wgs84:long ?long .
+      OPTIONAL{?individualURI vlocal:has4CharID ?localID}
     }
     LIMIT 1
     

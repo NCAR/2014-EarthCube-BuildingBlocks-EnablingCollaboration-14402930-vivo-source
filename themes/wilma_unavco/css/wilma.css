@@ -1485,6 +1485,15 @@ h1.fn .display-title {
     color: #5e6363;
     border-left: 1px solid #a6b1b0;
 }
+
+#individual-intro span.display-link,
+h1.fn .display-link {
+    float: right;
+    font-size: .75em;
+    color: #5e6363;
+    list-style: url(../../../images/individual/arrow-green.gif);
+}
+
 ul#individual-tools {
     color: #8AA149;
 }

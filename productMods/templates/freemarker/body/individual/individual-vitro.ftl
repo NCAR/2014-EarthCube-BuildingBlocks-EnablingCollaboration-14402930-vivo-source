@@ -19,10 +19,11 @@
 <section id="individual-intro" class="vcard" role="region" <@mf.sectionSchema individual/>>
     <section id="share-contact" role="region">
       
-      
-    <#if !individual.mostSpecificTypes?seq_contains("Station")>
+      <#-- Don't include the image here if we're placing a map on the page -->
+      <#if !latlongDG?has_content>
         <#-- Image -->
         <#assign individualImage>
+                
         <@p.image individual=individual
             propertyGroups=propertyGroups
             namespaces=namespaces
@@ -53,6 +54,15 @@
                     <#--  Most-specific types -->
                     <@p.mostSpecificTypes individual />
                     <span id="iconControlsVitro"><img id="uriIcon" title="${individual.uri}" class="middle" src="${urls.images}/individual/uriIcon.gif" alt="uri icon"/></span>
+                    <#if latlongDG?has_content>
+                    <#assign localID = "${latlongDG?first.localID}">
+                      <#if localID??>
+                        <span class="display-link"><a href="http://www.unavco.org/data/gps-gnss/data-access-methods/dai2/app/dai2.html#4Char=${localID};scope=Station" target="blank">Data Archive Interface</a> <img src="${urls.images}/externallink.png" class="middle" alt="external link icon"/></span>
+                      </#if>
+                    
+                    
+                    
+                    </#if>
                 </h1>
             </#if>
         </header>
