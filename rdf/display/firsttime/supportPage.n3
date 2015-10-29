@@ -11,6 +11,7 @@ support:SUPPORTDG
             <li><a href=\"#howcaniupdate\">How can I update my profile?</a></li>
             <li><a href=\"#wheredoesthe\">Where does the information in Connect UNAVCO come from?</a></li>
             <li><a href=\"#myprofilepage\">My profile page only lists some of my publications. What's up?</a></li>
+            <li><a href=\"#vis\">Why do co-author visualizations only include some of my co-authors?</a></li>
             <li><a href=\"#whyareonly\">Why are only some names linked on grants, datasets, and publications?</a></li>
             <li><a href=\"#howisconnect\">How is Connect UNAVCO different than (insert social networking website)?</a></li>
             <li><a href=\"#isunavco\">Is UNAVCO an acronym?</a></li>
@@ -32,16 +33,20 @@ support:SUPPORTDG
 
             Additional publications otherwise unrelated to UNAVCO may be included for UNAVCO employees if they are listed on their ORCID profile. 
 
+            <h3 id=\"vis\">Why do co-author visualizations only include some of my co-authors?</h3>
+            <p>Only people with profile pages on Connect UNAVCO are included in the visualizations. Stubs (see next question) are not included. 
+            </p>
+            
             <h3 id=\"whyareonly\">Why are only some names linked on grants, datasets, and publications?</h3>
             <p>Unlinked names are stubs, meaning that the database only contains a name and uri for that author. If you are listed as a stub and would like to activate a full profile page, please <a href=\"/contact\">contact us</a>.
             </p>
 
             <h3 id=\"howisconnect\">How is Connect UNAVCO different than (insert social networking website)?</h3>
-            <p>Connect UNAVCO is an aggregation of geodesy-related information populated from a wide range of source. All data is semantically linked, meaning objects are described by controlled vocabularies and relationships to other objects are explicitly defined.
+            <p>Connect UNAVCO is an aggregation of geodesy-related information populated from a wide range of sources. All data is semantically linked, meaning objects are described by controlled vocabularies and relationships to other objects are explicitly defined.
             </p><p>Additionally, the software is designed to serve machine-readable linked open data. Connect UNAVCO currently makes 1.25 million triples freely available. Clicking the green link icon near the top of any page will provide a link to the page in RDF format.</p>
 
             <h3 id=\"isunavco\">Is UNAVCO an acronym?</h3>
-            <p>Not anymore!
+            <p>Not anymore! UNAVCO originated as the University NAVSTAR Consortium in 1984 within the Cooperative Institute for Research in Environmental Sciences (CIRES) at the University of Colorado, Boulder. In 2001, UNAVCO, Inc, became an independent 501(c)(3) organization. Our name is no longer an acronym, although we still capitalize all of the letters.
             </p>
 
             </div>
