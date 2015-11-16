@@ -322,7 +322,9 @@ name will be used as the label. -->
 <#-- Most specific types -->
 <#macro mostSpecificTypes individual >
     <#list individual.mostSpecificTypes as type>
+      <#if type != "Person">
         <span class="display-title">${type}</span>
+      </#if>
     </#list>
 </#macro>
 
