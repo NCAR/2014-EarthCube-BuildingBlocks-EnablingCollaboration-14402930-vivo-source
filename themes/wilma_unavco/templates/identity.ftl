@@ -12,6 +12,9 @@
         <ul id="header-nav" role="list">
             <#include "languageSelector.ftl">
             <li role="listitem"><a href="${urls.index}" title="${i18n().identity_index}">${i18n().identity_index}</a></li>
+            <#if urls.contact??>
+                <li role="listitem"><a href="${urls.contact}" title="${i18n().menu_feedback}">${i18n().menu_feedback}</a></li>
+            </#if> 
             <li role="listitem"> <a href="${urls.about}" class="log-out" title="${i18n().menu_about}">${i18n().menu_about}</a></li>
             
         </ul>
