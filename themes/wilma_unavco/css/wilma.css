@@ -1272,11 +1272,13 @@ ul#individual-tools-people li a {
 #menupage-intro {
     width: 920px;
     background: #fff;
+    margin: .5em auto;
 }
 #menupage-intro h2 {
     font-size: 1.375em;
     color: #064d68;
     font-weight: normal;
+    padding: 0 10px 5px 0;
 }
 #menupage-intro.people h2 {
     float: left;
@@ -1858,4 +1860,16 @@ span.subclassExpandMinus {
     color: #5f6464;
     line-height: 1.3em;
     padding: 10px 0 0 0;
+}
+/* ------------------------------------------------->  */
+/* Class group browse------>  */    
+/* ------------------------------------------------->  */  
+
+#class-group-description {
+    padding: 5px;
+    font-size: .8em;
+    color: #444;
+    border: dotted 1px #eee;
+    background-color: #e5f7ff;
+    margin-bottom: 20px;
 }
