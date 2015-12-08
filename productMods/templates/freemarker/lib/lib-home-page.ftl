@@ -113,37 +113,32 @@
             
 </#macro>
 
-<#-- Renders the html for the research section on the home page. -->
-<#-- Works in conjunction with the homePageUtils.js file -->
-<#macro researchClasses classGroups=vClassGroups>
-<#assign foundClassGroup = false />
-<section id="home-research" class="home-sections">
-    <h4>${i18n().research_capitalized}</h4>
-    <ul>
-        <#list classGroups as group>
-            <#if (group.individualCount > 0) && group.uri?contains("publications") >
-                <#assign foundClassGroup = true />
-                <#list group.classes as class>
-                    <#if (class.individualCount > 0) && (class.uri?contains("AcademicArticle") || class.uri?contains("Dataset") || class.uri?contains("Abstract") ||class.uri?contains("Grant") || class.uri?contains("Chapter") || class.uri?contains("Book")) >
-                        <li role="listitem">
-                            <span>${class.individualCount!}</span>&nbsp;
-                            <a href='${urls.base}/individuallist?vclassId=${class.uri?replace("#","%23")!}'>
-                                <#if class.name?substring(class.name?length-1) == "s">
-                                    ${class.name}
-                                <#else>
-                                    ${class.name}s 
-                                </#if>
-                            </a>
-                        </li>
-                    </#if>
-                </#list>
-                <li><a href="${urls.base}/research" alt="${i18n().view_all_research}">${i18n().view_all}</a></li>
-            </#if>
-        </#list>
-        <#if !foundClassGroup>
-            <p><li style="padding-left:1.2em">${i18n().no_research_content_found}</li></p> 
-        </#if>
-    </ul>
+<#macro wordMap>
+<section id="home-word-cloud" class="home-sections">
+  <h4>Community Expertise and Research Areas</h4>
+  <script>
+  
+
+  var word_list = [
+  <#if wordCloudDG?has_content>
+      <#list wordCloudDG as resultRow>
+          <#assign uri = resultRow["theURI"] />
+          <#assign label = resultRow["name"] />
+          <#assign size = resultRow["size"] />
+          {"text":"${label}","size":${size},"uri":"${uri?url}"}<#if (resultRow_has_next)>,</#if>
+      </#list>
+  </#if>
+  ];
+
+  var urlsBase = "${urls.base}";
+  </script>
+
+
+
+  <div id="wordMap" style="margin-top:15px">
+
+  </div>
+
 </section>
 </#macro>
 
@@ -157,30 +152,39 @@
     </section>        
 </#macro>
 
-<#-- builds the "academic departments" box on the home page -->
-<#macro listAcademicDepartments>
+
+
+<#-- Renders the html for the consortium members section on the home page. -->
+<#-- Works in conjunction with the homePageUtils.js file -->
+<#macro membersHtml>
+    <section id="home-members" class="home-sections">
+        <h4>Consortium Members</h4>
+        <div id="members">
+        </div>
+    </section>
+</#macro>
+
+<#-- builds the "consortium members" box on the home page -->
+<#macro listMembers>
 <script>
-var academicDepartments = [
-<#if academicDeptDG?has_content>
-    <#list academicDeptDG as resultRow>
+var members = [
+<#if membersDG?has_content>
+    <#list membersDG as resultRow>
         <#assign uri = resultRow["theURI"] />
         <#assign label = resultRow["name"] />
-        {"uri": "${uri?url}", "name": "${label}"}<#if (resultRow_has_next)>,</#if>
-    </#list>        
+        <#assign type = resultRow["memberType"] />
+        <#assign repURI = resultRow["rep"] />
+        <#if type?contains("Associate")>
+            <#assign type = "Associate Member" />
+            <#else><#assign type = "Member" />
+        </#if>    
+        <#assign repName = resultRow["repName"] />
+        {"uri": "${uri?url}", "name": "${label}", "repURI": "${repURI}", "repName": "${repName}", "type": "${type}"}<#if (resultRow_has_next)>,</#if>
+    </#list>
 </#if>
 ];
 var urlsBase = "${urls.base}";
 </script>
-</#macro>
-
-<#-- Renders the html for the associate members section on the home page. -->
-<#-- Works in conjunction with the homePageUtils.js file -->
-<#macro assocMembersHtml>
-    <section id="home-assoc-members" class="home-sections">
-        <h4>Associate Members</h4>
-        <div id="associate-members">
-        </div>
-    </section>
 </#macro>
 
 <#-- builds the "associate members" box on the home page -->

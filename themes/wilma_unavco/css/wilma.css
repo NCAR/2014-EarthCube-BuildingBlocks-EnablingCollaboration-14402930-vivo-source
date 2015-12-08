@@ -889,6 +889,7 @@ a.view-all-style {
 		background-color: #395d7f; /* layer fill content */
 		border-bottom: 2px solid #62b6d7;
 		color: #fff;
+    margin-left: 15px;
 }
 #home-stats {
 		margin-top: 30px;
@@ -937,6 +938,15 @@ a.view-all-style {
 	margin-left: 4px;
 	text-align: center;
 }
+#home-word-cloud  {
+	width: 60%; 
+	float: left;
+	clear: both;
+}
+#home-word-cloud h4 {
+    display: inline;
+    padding: 3px 10px;
+}
 #home-academic-depts  {
 	width: 297px; 
 	margin-left: 15px;
@@ -949,6 +959,7 @@ a.view-all-style {
     display: inline;
     padding: 3px 10px;
 }
+
 #home-academic-depts ul {
     list-style: disc outside url(../../../images/arrowIcon.gif); 
 	padding: 0.4em 0 0.6em 1.8em; 
@@ -960,24 +971,61 @@ a.view-all-style {
 	font-size: 0.9em;
 }
 
-#home-assoc-members  {
-	width: 297px; 
+#home-members  {
+	width: 35%; 
 	margin-left: 15px;
 	float: left;
 }
-#home-assoc-members h4 {
+#home-members h4 {
     display: inline;
     padding: 3px 10px;
 }
-#home-assoc-members ul {
+#home-members ul {
     list-style: disc outside url(../../../images/arrowIcon.gif); 
 	padding: 0.4em 0 0.6em 1.8em; 
 }
-#home-assoc-members li {
+#home-members li {
 	line-height: 1.25em;
-	padding-top: 1.0em;
+	padding-top: 0.5em;
 	padding-right: 4px;
 	font-size: 0.9em;
+}
+
+div#members {
+    font-size: 1em;
+    line-height: 16px;
+}
+
+div#members li.individual {
+    clear: both;
+}
+div#members ul li.individual:first-child {
+    clear: both;
+    padding-top: 20px
+}
+div#members li h1 {
+    padding: 6px 0 2px 0;
+}
+
+div#members li span.title {
+    display: block;
+    font-size: 0.825em;
+    line-height: 1.25em;
+    /*padding-bottom: 8px;*/
+}
+
+div#members li span.title a {
+    color: #676c65;
+    text-decoration: none;
+}
+
+div#members li span.title a:hover {
+    color: #676c65;
+    text-decoration: underline;
+}
+
+div#wordMap text {
+    cursor:pointer;
 }
 
 #home-faculty-mbrs  {

@@ -20,6 +20,8 @@
             <#include "geoFocusMapScripts.ftl">
         </#if>
         <script type="text/javascript" src="${urls.base}/js/homePageUtils.js?version=x"></script>
+        <script type="text/javascript" src="${urls.base}/js/d3.min.js"></script>
+        <script type="text/javascript" src="${urls.base}/js/visualization/d3.layout.cloud.js"></script>
     </head>
     
     <body class="${bodyClasses!}" onload="${bodyOnload!}">
@@ -68,29 +70,32 @@
           </section><!-- #home-featured-image -->
           
         
-        <!-- List of research classes: e.g., articles, books, collections, conference papers -->
-        <@lh.researchClasses />
-                
-        <!-- List of four randomly selected faculty members -->
-    <#--        <@lh.facultyMbrHtml /> -->
 
-        <!-- List of randomly selected academic departments -->
-        <@lh.academicDeptsHtml />
+        
+        
+        <!-- List of expertise and research areas -->
+        <@lh.wordMap />
 
-        <@lh.assocMembersHtml />
+        <!-- List of UNAVCO consortium members -->
+        <@lh.membersHtml />
 
         <#if geoFocusMapsEnabled >
             <!-- Map display of researchers' areas of geographic focus. Must be enabled in runtime.properties -->
             <@lh.geographicFocusHtml />
         </#if>
         
+
+        
         <!-- Statistical information relating to property groups and their classes; displayed horizontally, not vertically-->
         <@lh.allClassGroups vClassGroups! />
+        
+  
+        
 
         <#include "footer.ftl">
         <#-- builds a json object that is used by js to render the academic departments section -->
-        <@lh.listAcademicDepartments />
-        <@lh.listAssociateMembers />
+      
+        <@lh.listMembers />
  <script>       
         var i18nStrings = {
             researcherString: '${i18n().researcher}',
