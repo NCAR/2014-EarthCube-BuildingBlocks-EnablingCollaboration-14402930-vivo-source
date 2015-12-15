@@ -29,7 +29,7 @@ $(document).ready(function(){
                    + i18nStrings.noDepartmentsFound + "</li></p></ul>";
         }
 	else if ( memNbr > 6 ) {
-                //if there are more than 6 departments, we want to choose a random subset and display
+                //if there are more than 6 consortium members, we want to choose a random subset and display
                 //and also to make sure the same department is not repeated twice
                 var memindicesUsed = {};//utilizing a hash since easier
                 var memindicesCount = 0;
@@ -75,9 +75,9 @@ $(document).ready(function(){
   // build a word cloud from the research area and expertise list using d3
   function buildWordMap() {
     var fill = d3.scale.linear()
-        .domain([0, 1])
-        .range(["black", "red"]);
-  var membersHeight = $('#members').height();    
+        .domain([0, 0.4, 1])
+        .range(["#000000", "#395d7f", "#62b6d7"]);
+  var membersHeight = $('#members').height()-30;    
         
   var layout = d3.layout.cloud()
   .size([558, membersHeight-22])
@@ -112,6 +112,16 @@ $(document).ready(function(){
           window.location = urlsBase+"/individual?uri="+d.uri;
       });
   
+
+  var vahtml = "<ul style='list-style:none'>"
+          + "<li style='font-size:0.9em;text-align:right;padding: 6px 16px 0 0'><a href='"
+          + urlsBase
+          + "/expertise' alt='"
+          + "view expertise and research index'>"
+          + i18nStrings.viewAllString + "</a></li></ul>";
+
+  
+  $("div#wordMap").append(vahtml);
 
   }
     

@@ -1921,3 +1921,12 @@ span.subclassExpandMinus {
     background-color: #e5f7ff;
     margin-bottom: 20px;
 }
+
+
+/* <------ List Items for Expertise Index */
+ul#individual-hasResearchArea li {
+    float: left;
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: 1px solid #5e6363;
+}
