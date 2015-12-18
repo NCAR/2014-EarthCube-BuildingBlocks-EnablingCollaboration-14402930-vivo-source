@@ -3,3 +3,11 @@
 <http://connect.unavco.org/ontology/vlocal#hasLiaison>
 <http://vitro.mannlib.cornell.edu/ontologies/display/1.1#listViewConfigFile>
 "listViewConfig-hasLiaison.xml" .
+
+<http://connect.unavco.org/ontology/vlocal#expertiseOf>
+<http://vitro.mannlib.cornell.edu/ontologies/display/1.1#listViewConfigFile>
+"listViewConfig-researchAreaOf.xml" .
+
+<http://purl.obolibrary.org/obo/ERO_0000070>
+<http://vitro.mannlib.cornell.edu/ontologies/display/1.1#listViewConfigFile>
+"listViewConfig-researchAreaOf.xml" .
