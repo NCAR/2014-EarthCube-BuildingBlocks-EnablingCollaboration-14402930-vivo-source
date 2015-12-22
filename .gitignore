@@ -8,10 +8,8 @@ runtime.properties
 .build/
 
 #Release files
-vivo-rel-1.5.1
 vitro-data
 data
-vivo-rel-1.5.1.zip
 revisionInfo
 
 #Eclipse
@@ -30,3 +28,18 @@ ehthumbs.db
 Thumbs.db
 
 .*.sw*
+
+/.build/
+/.classpath
+/.project
+/.settings
+/bin/
+/ontology/public/catalog-v0001.xml
+
+rdf/auth/firsttime/test-user-model.owl
+utilities/solrtester/.work
+utilities/rdbmigration/.work
+
+**/.idea
+**/*.iml
+**/target
