@@ -65,6 +65,7 @@
         </section> <!-- #intro -->
         
         <section id="home-featured-image" role="region">
+          <img src="${urls.base}/themes/wilma_unavco/images/unavco-logo-red-black-shadow-small.png" style="width: 180px;float:right;padding: 0px 0px 15px 0px;">
                <img alt="PBO Station P692 Maintenance" src="${urls.base}/themes/wilma_unavco/images/thumbnail_home-featured-image.jpg" title="PBO Station P692 Maintenance" class="individual-photo" width="95%">
               <p><a href="display/org253530">UNAVCO</a> PBO engineers <a href="display/per325107">Mike Gottlieb</a> and <a href="display/per087255">Chad Pyatt</a> perform maintenance at station <a href="display/P692">P692</a>, Loowit Falls, near Mount St. Helens. (Photo by <a href="display/per632935">Beth Bartel</a>).</p>    		
           </section><!-- #home-featured-image -->

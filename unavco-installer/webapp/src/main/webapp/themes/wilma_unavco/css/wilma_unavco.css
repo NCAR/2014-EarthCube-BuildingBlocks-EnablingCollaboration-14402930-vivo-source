@@ -447,19 +447,19 @@ hr.formDivider {
 #branding {
     position: relative;
     width: 970px;
-    height: 100px;
+    height: 110px;
     margin: 0 auto;
 }
 /* BRANDING ------>  */
-h1.vivo-logo {
+h1.connect-unavco-logo {
     position: absolute;
-    width: 670px;
+    width: 464px;
     height: 100px;
-    top: 8px;
-    left: 0;
-    background: url(../images/VIVO-logo.png) 0 0 no-repeat;
+    top: 5px;
+    left: 15px;
+    background: url(../images/Connect-UNAVCO-logo.png) 0 0 no-repeat;
 }
-h1.vivo-logo a {
+h1.connect-unavco-logo a {
     display: block;
     width: 386px;
     height: 59px;
@@ -583,7 +583,7 @@ body.loggedIn #intro {
     width: 60%;
 }
 #intro h2 {
-    padding: 35px 0 12px 24px;
+    padding: 15px 0 12px 24px;
     border-bottom: none;
     color: #2485AE;
 }
@@ -1900,8 +1900,7 @@ span.subclassExpandMinus {
     padding-left: 7px;
     margin-bottom: 30px;
     overflow: hidden;
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: 15px;
 }
 #home-featured-image p {
     font-size: 16px;
