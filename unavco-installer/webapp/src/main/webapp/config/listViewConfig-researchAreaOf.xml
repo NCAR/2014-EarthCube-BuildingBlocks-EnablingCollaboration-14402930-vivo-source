@@ -23,6 +23,7 @@
                ?title
                ?parentOrg
                ?parentOrgLabel
+               ?dateTimeEnd
 
       WHERE { 
               ?subject ?property ?person .
@@ -51,9 +52,14 @@
                           ?org obo:BFO_0000050 ?parentOrg .
                           ?parentOrg rdfs:label ?parentOrgLabel .
                }
+              OPTIONAL { ?position core:dateTimeInterval ?dateTimeInterval .
+                         ?dateTimeInterval core:end ?dateTimeEndValue .
+                         ?dateTimeEndValue core:dateTime ?dateTimeEnd .
+                         FILTER ( ?dateTimeEnd &lt; now() )
+              }
 
       } 
-      ORDER BY (fn:lower-case(?personName))
+      ORDER BY (fn:lower-case(?personName)) (bound(?dateTimeEnd)) desc(?dateTimeEnd)
   </query-select>
 
     <query-construct>
@@ -72,6 +78,9 @@
             ?org rdfs:label ?orgName .
             ?org obo:BFO_0000050 ?parentOrg .
             ?parentOrg rdfs:label ?parentOrgLabel .
+            ?position core:dateTimeInterval ?dateTimeInterval .
+            ?dateTimeInterval core:end ?endDate .
+            ?endDate core:dateTime ?endDateValue .
         } WHERE {
             { 
                 ?subject ?property ?person 
@@ -79,26 +88,17 @@
                 ?subject ?property ?person .
                 ?person core:relatedBy ?position .
                 ?position a core:Position .
-                FILTER NOT EXISTS {?position core:dateTimeInterval ?dateTimeInterval .
-                            ?dateTimeInterval core:end ?endDate .
-                            ?endDate core:dateTime ?endDateValue}
             } UNION {      
                 ?subject ?property ?person .
                 ?person core:relatedBy ?position .
                 ?position a core:Position .
                 ?position rdfs:label ?posnLabel .
-                FILTER NOT EXISTS {?position core:dateTimeInterval ?dateTimeInterval .
-                            ?dateTimeInterval core:end ?endDate .
-                            ?endDate core:dateTime ?endDateValue}
             } UNION {      
                 ?subject ?property ?person .
                 ?person core:relatedBy ?position .
                 ?position a core:Position .
                 ?position core:relates ?org .
                 ?org a foaf:Organization .
-                FILTER NOT EXISTS {?position core:dateTimeInterval ?dateTimeInterval .
-                            ?dateTimeInterval core:end ?endDate .
-                            ?endDate core:dateTime ?endDateValue}
 
             } UNION {      
                 ?subject ?property ?person .
@@ -107,9 +107,6 @@
                 ?position core:relates ?org .
                 ?org a foaf:Organization .
                 ?org rdfs:label ?orgName .
-                FILTER NOT EXISTS {?position core:dateTimeInterval ?dateTimeInterval .
-                            ?dateTimeInterval core:end ?endDate .
-                            ?endDate core:dateTime ?endDateValue}
             } UNION {
                 ?subject ?property ?person .
                 ?person core:relatedBy ?position .
@@ -118,9 +115,6 @@
                 ?org a foaf:Organization .
                 ?org obo:BFO_0000050 ?parentOrg .
                 ?parentOrg rdfs:label ?parentOrgLabel .
-                FILTER NOT EXISTS {?position core:dateTimeInterval ?dateTimeInterval .
-                            ?dateTimeInterval core:end ?endDate .
-                            ?endDate core:dateTime ?endDateValue}
             } UNION {
                 ?subject ?property ?person .
                 ?person core:relatedBy ?position .
@@ -129,9 +123,13 @@
                 ?org a foaf:Organization .
                 ?org obo:BFO_0000050 ?parentOrg .
                 ?parentOrg rdfs:label ?parentOrgLabel .
-                FILTER NOT EXISTS {?position core:dateTimeInterval ?dateTimeInterval .
-                            ?dateTimeInterval core:end ?endDate .
-                            ?endDate core:dateTime ?endDateValue}
+            } UNION {
+                ?subject ?property ?person .
+                ?person core:relatedBy ?position .
+                ?position a core:Position .
+                ?position core:dateTimeInterval ?dateTimeInterval .
+                ?dateTimeInterval core:end ?endDate .
+                ?endDate core:dateTime ?endDateValue
             }
         }
     </query-construct>
