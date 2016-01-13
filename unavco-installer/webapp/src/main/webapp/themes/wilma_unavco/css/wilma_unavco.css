@@ -28,6 +28,7 @@ body {
 }
 body {
    background: #f3f3f0 url(../images/header-background.png) center 0 no-repeat; 
+   background-position: center 57px;
 }
 a {
     color: #2485AE;
@@ -443,6 +444,15 @@ hr.formDivider {
 /* HOMEPAGE AND INTERIOR PAGES STYLES -------------->  */
 /* ------------------------------------------------->  */
 
+/* UNAVCO HEADER ------>  */
+#unavco-branding {
+  display:block;
+  overflow:hidden;
+  height: 55px;
+  background: #0C202E;
+  border-bottom: 2px solid #464646;
+}
+
 /* HEADER ------>  */
 #branding {
     position: relative;
@@ -463,6 +473,44 @@ h1.connect-unavco-logo a {
     display: block;
     width: 386px;
     height: 59px;
+}
+/* UNAVCO HEADER NAV------>  */
+ul#unavco-header-nav {
+    float: right;
+    list-style: none;
+    height: 30px;
+    padding-top: 15px;
+    margin-right: 13px;
+}
+ul#unavco-header-nav li {
+    float: left;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid #464646;
+    font-size: .7em;
+    height: 11px;
+    font-weight: bold;
+    font-family: arial,helvetica,clean,sans-serif;
+    color: #fff;
+}
+ul#unavco-header-nav li:last-child {
+/*    padding-left: 1px;
+    padding-right: 0; */
+    border-right: none;
+}
+
+ul#unavco-header-nav a {
+    text-decoration:none;
+    color: #999;
+}
+ul#unavco-header-nav a:hover,
+ul#unavco-header-nav a:active {
+    text-decoration: none;
+    color: #C20000; 
+}
+ul#unavco-header-nav a.log-out {
+    padding-left: 10px;
 }
 /* HEADER NAV------>  */
 ul#header-nav {

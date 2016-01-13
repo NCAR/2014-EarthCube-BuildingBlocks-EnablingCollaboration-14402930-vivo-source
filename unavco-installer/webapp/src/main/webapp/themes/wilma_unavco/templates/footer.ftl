@@ -25,7 +25,7 @@
             <#if urls.contact??>
                 <li role="listitem"><a href="${urls.contact}" title="${i18n().menu_contactus}">${i18n().menu_contactus}</a></li>
             </#if> 
-            <li role="listitem"><a href="${urls.base}/support" title="${i18n().menu_support}">${i18n().menu_support}</a></li>
+            <li role="listitem"><a href="${urls.base}/faq" title="${i18n().menu_support}">${i18n().menu_support}</a></li>
             <#if user.loggedIn>
                 <#-- COMMENTING OUT THE EDIT PAGE LINK FOR RELEASE 1.5. WE NEED TO IMPLEMENT THIS IN A MORE 
                      USER FRIENDLY WAY. PERHAPS INCLUDE A LINK ON THE PAGES THEMSELVES AND DISPLAY IF THE
