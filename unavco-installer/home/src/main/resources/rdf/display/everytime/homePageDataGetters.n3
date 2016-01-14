@@ -58,6 +58,6 @@ display:wordCloudDataGetter
           UNION{?person obo:ERO_0000031 ?theURI}.
           ?theURI rdfs:label ?label .
     }
-    GROUP BY ?theURI ?label
+    GROUP BY ?theURI ?label ORDER BY DESC(?size)
 
     """ .
