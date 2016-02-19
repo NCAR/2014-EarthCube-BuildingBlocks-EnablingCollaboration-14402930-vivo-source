@@ -33,6 +33,7 @@ display:membersDataGetter
           ?theURI rdfs:label ?label .
           ?theURI vlocal:hasLiaison ?rep .
           ?rep rdfs:label ?replabel .
+          FILTER (?theURI != <http://connect.unavco.org/individual/org253530>)
     }}
     """ .     
     
