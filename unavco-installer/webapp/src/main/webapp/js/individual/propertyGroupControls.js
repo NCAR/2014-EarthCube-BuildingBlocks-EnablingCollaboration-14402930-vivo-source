@@ -7,6 +7,9 @@ $(document).ready(function(){
     padSectionBottoms();
     checkLocationHash();
     
+    // prevents the page jumping down when loading a page with a requested tab in the url
+    removeHash();
+    
     // ensures that shorter property group sections don't cause the page to "jump around"
     // when the tabs are clicked
     function padSectionBottoms() {
@@ -44,10 +47,30 @@ $(document).ready(function(){
                 $('nav#scroller').addClass("hidden"); 
                 $('section#' + groupName).show();
             }
+            
             manageLocalStorage();
             return false;
         });
     });
+
+    
+    function removeHash () { 
+      //window.location.hash = "";
+        var scrollV, scrollH, loc = window.location;
+        if ("pushState" in history)
+            history.replaceState("", document.title, loc.pathname + loc.search);
+        else {
+            // Prevent scrolling by storing the page's current scroll offset
+            scrollV = document.body.scrollTop;
+            scrollH = document.body.scrollLeft;
+
+            loc.hash = "";
+
+            // Restore the scroll offset, should be flicker free
+            document.body.scrollTop = scrollV;
+            document.body.scrollLeft = scrollH;
+        }
+    }
     
     function processViewAllTab() {
         $.each($('section.property-group'), function() {
@@ -59,47 +82,64 @@ $(document).ready(function(){
         });        
     }
    
-    // If users click a marker on the home page map, they are taken to the profile
-    // page of the corresponding country. The url contains the word "Research" in
-    // the location hash. Use this to select the Research tab, which displays the
-    // researchers who have this countru as a geographic focus.
+    // If a page is requested with a hash this script will try to open a property 
+    // group tab matching that hash value.
+    // The geographic focus map links to a county's page with a #map hash. This will
+    // select the research tab and expand the 'geographic focus of' property list.
     function checkLocationHash() {
+        var currentTab = $('li.selectedGroupTab').attr('groupName')
+        
         if ( location.hash ) {
             // remove the trailing white space
             location.hash = location.hash.replace(/\s+/g, '');
-            if ( location.hash.indexOf("map") >= 0 ) {  
-                // get the name of the group that contains the geographicFocusOf property.
-                // if it doesn't exist, don't do anything.
+            var tabExists = $("[groupname=" + location.hash.replace('#', '') + "]")
+            
+            if ( tabExists.length > 0 ) {
+                  tabName = location.hash.replace('#', '')
+            }
+
+            else if ( location.hash.indexOf("map") >= 0 ) {
                 if ( $('h3#geographicFocusOf').length ) {
                     var tabName = $('h3#geographicFocusOf').parent('article').parent('div').attr("id");
                     tabName = tabName.replace("Group","");
-                    tabNameCapped = tabName.charAt(0).toUpperCase() + tabName.slice(1);
-                    // if the name of the first tab section = tabName we don't have to do anything;
-                    // otherwise, select the correct tab and deselect the first one
-                    var $firstTab = $('li.clickable').first();
-                    if ( $firstTab.text() != tabNameCapped ) {
-                        // select the correct tab
-                        $('li[groupName="' + tabName + '"]').removeClass("nonSelectedGroupTab clickable");
-                        $('li[groupName="' + tabName + '"]').addClass("selectedGroupTab clickable");
-                        // deselect the first tab
-                        $firstTab.removeClass("selectedGroupTab clickable");
-                        $firstTab.addClass("nonSelectedGroupTab clickable");
-                        $('section.property-group:visible').hide();
-                        // show the selected tab section
-                        $('section#' + tabName).show();                
-                    }
-                }
-                // if there is a more link, "click" more to show all the researchers
-                // we need the timeout delay so that the more link can get rendered                
-                setTimeout(geoFocusExpand,250);
+                  }
             }
+
+            if ( tabName ) {
+                if ( tabName != currentTab ) {
+                    swapTabs(tabName, currentTab)
+                }    
+            }
+            
+            // the requested tab was gibberish, try the local storage
             else {
-                retrieveLocalStorage();
-            }            
+                retrieveLocalStorage(currentTab);
+            }
         }
+        
         else {
-            retrieveLocalStorage();
-        }
+            retrieveLocalStorage(currentTab);
+        }  
+    }
+          
+    function swapTabs(tabName, currentTab) {  
+      $('li[groupName="' + tabName + '"]').removeClass("nonSelectedGroupTab clickable");
+      $('li[groupName="' + tabName + '"]').addClass("selectedGroupTab clickable");
+      // deselect the first tab
+      $('li[groupName="' + currentTab + '"]').removeClass("selectedGroupTab clickable");
+      $('li[groupName="' + currentTab + '"]').addClass("nonSelectedGroupTab clickable");
+      
+      if ( tabName == 'viewAll'){
+        processViewAllTab();
+      }
+      
+      else {
+          padSectionBottoms();
+          $('section.property-group:visible').hide();
+          // show the selected tab section
+          $('section#' + tabName).show();
+      }
+      
     }
 
     function geoFocusExpand() {
@@ -153,7 +193,7 @@ $(document).ready(function(){
         }
     }
 
-    function retrieveLocalStorage() {
+    function retrieveLocalStorage(currentTab) {
         
         var localName = this.individualLocalName;
         var selectedTab = amplify.store(individualLocalName);
@@ -185,6 +225,10 @@ $(document).ready(function(){
                     $('section#' + groupName).show();
                 }
             }
+        }
+        // if nothing is in the local storage, open up the view all tab for small profiles
+        else if ( $('article.property').length < 10 ) {
+           swapTabs('viewAll', currentTab)
         }
     }
     // if there are so many tabs that they wrap to a second line, adjust the font size to 
@@ -231,12 +275,5 @@ $(document).ready(function(){
             $('ul.propertyTabsList li:last-child').css('width', newDiff + 'px');
         }
     }
-    
-    count = $('article.property').length;
-    if ( count < 10 ) {
-    $('li[groupname=viewAll]').trigger("click");
-    }
 
 });
-
-
