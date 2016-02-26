@@ -256,7 +256,7 @@
             ?subject ?property ?role .  
             ?role a core:PrincipalInvestigatorRole .
             ?role &lt;http://vivoweb.org/ontology/core#relatedBy&gt; ?activity .
-            ?activity a &lt;http://connect.unavco.org/ontology/vlocal#Station&gt; .
+            ?activity a &lt;https://library.ucar.edu/earthcollab/schema#Station&gt; .
             ?activity &lt;http://connect.unavco.org/ontology/vlocal#has4CharID&gt; ?localId  
         } 
     </query-construct>

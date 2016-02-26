@@ -10,12 +10,13 @@
  
 # individual map datagetter
 
-<http://connect.unavco.org/ontology/vlocal#Station> display:hasDataGetter display:individualLatLongDataGetter .
+<https://library.ucar.edu/earthcollab/schema#Station> display:hasDataGetter display:individualLatLongDataGetter .
 
 display:individualLatLongDataGetter
     a <java:edu.cornell.mannlib.vitro.webapp.utils.dataGetter.SparqlQueryDataGetter> ;
     display:saveToVar "latlongDG" ;
     display:query """
+    PREFIX ec:    <https://library.ucar.edu/earthcollab/schema#>
     PREFIX vlocal:    <http://connect.unavco.org/ontology/vlocal#>
     PREFIX wgs84:    <http://www.w3.org/2003/01/geo/wgs84_pos#>
 

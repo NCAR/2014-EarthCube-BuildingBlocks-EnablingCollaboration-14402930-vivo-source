@@ -7,8 +7,9 @@
 @prefix core:  <http://vivoweb.org/ontology/core#> .
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix ec: <https://library.ucar.edu/earthcollab/schema#> .
 
-vlocal:DatasetType  a    owl:Class ;
+ec:DatasetType  a    owl:Class ;
         rdfs:label       "Dataset Type"@en-US ;
         rdfs:subClassOf  []  ;
         vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -22,8 +23,13 @@ vlocal:DatasetType  a    owl:Class ;
         a                          owl:Ontology ;
         rdfs:label                 "UNAVCO Local Ontology"@en-US ;
         vitro:ontologyPrefixAnnot  "vlocal"^^xsd:string .
+        
+<https://library.ucar.edu/earthcollab/schema>
+        a                          owl:Ontology ;
+        rdfs:label                 "EarthCollab Schema"@en-US ;
+        vitro:ontologyPrefixAnnot  "ec"^^xsd:string .
 
-vlocal:hasDatasetType
+ec:hasDatasetType
         a                              owl:ObjectProperty ;
         rdfs:domain                    core:Dataset ;
         rdfs:label                     "dataset type"@en-US ;
@@ -67,7 +73,7 @@ vlocal:AssociateMemberRole
         vitro:prohibitedFromUpdateBelowRoleLevelAnnot
                 <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
-vlocal:isDatasetTypeFor
+ec:isDatasetTypeFor
         a                              owl:ObjectProperty ;
         rdfs:domain                    vlocal:datasetType ;
         rdfs:label                     "dataset type for"@en-US ;
@@ -98,7 +104,7 @@ vlocal:UNAVCOEmployee
         vitro:isMenuPageIntersectionClass
                 "true" .
 
-vlocal:Station  a                     owl:Class ;
+ec:Station  a                     owl:Class ;
         rdfs:label                    "Station"@en-US ;
         rdfs:subClassOf               obo:BFO_0000029 , wgs84:SpatialThing ;
         vitro:customDisplayViewAnnot  "individual--ec-station.ftl"^^xsd:string ;
