@@ -116,23 +116,9 @@
 <#macro wordMap>
 <section id="home-word-cloud" class="home-sections">
   <h4>Community Expertise and Research Areas</h4>
-  <script>
-  
 
-  var word_list = [
-  <#if wordCloudDG?has_content>
-      <#list wordCloudDG as resultRow>
-          <#assign uri = resultRow["theURI"] />
-          <#assign label = resultRow["name"] />
-          <#assign size = resultRow["size"] />
-          {"text":"${label}","size":${size},"uri":"${uri?url}"}<#if (resultRow_has_next)>,</#if>
-      </#list>
-  </#if>
-  ];
-
-  var urlsBase = "${urls.base}";
-  </script>
-
+<#-- Include cached word cloud terms -->
+<#include "wordCloudTerms.ftl">
 
 
   <div id="wordMap" style="margin-top:15px">
