@@ -33,7 +33,7 @@ ec:hasDatasetType
         a                              owl:ObjectProperty ;
         rdfs:domain                    core:Dataset ;
         rdfs:label                     "dataset type"@en-US ;
-        rdfs:range                     vlocal:datasetType ;
+        rdfs:range                     ec:datasetType ;
         vitro:displayLimitAnnot        "-1"^^xsd:int ;
         vitro:hiddenFromDisplayBelowRoleLevelAnnot
                 <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
@@ -43,7 +43,7 @@ ec:hasDatasetType
         vitro:prohibitedFromUpdateBelowRoleLevelAnnot
                 <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
         vitro:selectFromExistingAnnot  true ;
-        owl:inverseOf                  vlocal:isDatasetTypeFor .
+        owl:inverseOf                  ec:isDatasetTypeFor .
 
 vlocal:hasLiaison  a                   owl:ObjectProperty ;
         rdfs:domain                    core:Consortium ;
@@ -75,7 +75,7 @@ vlocal:AssociateMemberRole
 
 ec:isDatasetTypeFor
         a                              owl:ObjectProperty ;
-        rdfs:domain                    vlocal:datasetType ;
+        rdfs:domain                    ec:datasetType ;
         rdfs:label                     "dataset type for"@en-US ;
         rdfs:range                     core:Dataset ;
         vitro:displayRankAnnot         "2"^^xsd:int ;
@@ -87,7 +87,7 @@ ec:isDatasetTypeFor
         vitro:prohibitedFromUpdateBelowRoleLevelAnnot
                 <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
         vitro:selectFromExistingAnnot  true ;
-        owl:inverseOf                  vlocal:hasDatasetType .
+        owl:inverseOf                  ec:hasDatasetType .
 
 vlocal:UNAVCOEmployee
         a                        owl:Class ;
@@ -117,7 +117,7 @@ ec:Station  a                     owl:Class ;
                 <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
                 
 vlocal:has4CharID  a                  owl:FunctionalProperty , owl:DatatypeProperty ;
-        rdfs:domain                   vlocal:Station ;
+        rdfs:domain                   ec:Station ;
         rdfs:label                    "UNAVCO 4-character ID"@en-US ;
         rdfs:range                    xsd:string ;
         vitro:hiddenFromDisplayBelowRoleLevelAnnot
