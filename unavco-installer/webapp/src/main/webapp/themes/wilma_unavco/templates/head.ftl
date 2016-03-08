@@ -4,6 +4,14 @@
 <!-- Google Chrome Frame open source plug-in brings Google Chrome's open web technologies and speedy JavaScript engine to Internet Explorer-->
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
+<#if individual??>
+    <#assign claz = individual.clazz>
+    <#assign excludeList = ['http://www.w3.org/2006/vcard/ns#Individual','http://www.w3.org/2006/vcard/ns#Name','http://www.w3.org/2006/vcard/ns#email','http://vivoweb.org/ontology/core#Authorship','http://vivoweb.org/ontology/core#AdministratorRole','http://vivoweb.org/ontology/core#PrincipalInvestigatorRole','http://vivoweb.org/ontology/core#CoPrincipalInvestigatorRole','http://www.w3.org/2006/vcard/ns#URL','http://vitro.mannlib.cornell.edu/ns/vitro/public#File','http://vitro.mannlib.cornell.edu/ns/vitro/public#FileByteStream','http://vivoweb.org/ontology/core#ResearcherRole','http://vivoweb.org/ontology/core#AwardedDegree','http://vivoweb.org/ontology/core#NonAcademicPosition','http://vivoweb.org/ontology/core#Position','http://vivoweb.org/ontology/core#DateTimeInterval','http://vivoweb.org/ontology/core#DateTimeValue']>
+    <#if excludeList?seq_contains(claz)>
+        <meta name="robots" content="noindex">
+    </#if>
+</#if>
+
 <title>${(title?html)!siteName!}</title>
 
 <#-- VIVO OpenSocial Extension by UCSF -->
