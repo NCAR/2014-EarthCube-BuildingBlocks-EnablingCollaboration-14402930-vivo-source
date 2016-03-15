@@ -65,7 +65,7 @@ $(document).ready(function(){
             memhtml += "</ul><ul style='list-style:none'>"
                     + "<li style='font-size:0.9em;text-align:right;padding: 6px 16px 0 0'><a href='"
                     + urlsBase
-                    + "/display/org253530#Membership' alt='"
+                    + "/display/org253530#membership' alt='"
                     + i18nStrings.viewAllDepartments + "'>"
                     + i18nStrings.viewAllString + "</a></li></ul>";
         }
