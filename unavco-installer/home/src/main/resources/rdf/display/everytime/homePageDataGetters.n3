@@ -11,7 +11,7 @@
     
 # members datagetter
 
-<freemarker:lib-home-page.ftl> display:hasDataGetter display:membersDataGetter .
+display:Home display:hasDataGetter display:membersDataGetter .
 
 display:membersDataGetter
     a <java:edu.cornell.mannlib.vitro.webapp.utils.dataGetter.SparqlQueryDataGetter> ;

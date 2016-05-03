@@ -122,7 +122,7 @@ $(document).ready(function(){
 
     var width  = 725;
     var height = 725;
-    var padding = 175;
+    var padding = 75;
     var inner_radius = Math.min(width, height) * 0.37;
     var outer_radius = Math.min(width, height) * 0.39;
 

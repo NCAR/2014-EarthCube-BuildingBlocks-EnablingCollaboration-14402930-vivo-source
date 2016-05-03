@@ -22,6 +22,7 @@
         WHERE
         { {
         ?subject ?property ?position .
+        ?position a core:Position .
         
         
         OPTIONAL {
@@ -183,6 +184,7 @@
             UNION
             {
                 ?subject ?property ?position .
+                ?position a core:Position .
                 ?position core:relates ?person .
                 ?person a foaf:Person .
                 ?person rdfs:label ?personName .
@@ -281,6 +283,7 @@
             {
                 ?subject obo:BFO_0000051 ?subOrg .
                 ?subOrg ?property ?position .
+                ?position a core:Position .
                 ?position core:relates ?person .
                 ?person a foaf:Person .
                 ?person rdfs:label ?personName .
