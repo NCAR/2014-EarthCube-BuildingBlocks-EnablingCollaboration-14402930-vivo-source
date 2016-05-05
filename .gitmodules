@@ -4,3 +4,6 @@
 [submodule "Vitro"]
 	path = Vitro
 	url = https://github.com/vivo-project/Vitro.git
+[submodule "unavco-installer/webapp/src/main/webapp/js/facetview2"]
+	path = unavco-installer/webapp/src/main/webapp/js/facetview2
+	url = https://github.com/gneissone/facetview2.git
