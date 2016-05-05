@@ -1,33 +1,31 @@
-${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview2/vendor/jquery/1.7.1/jquery-1.7.1.min.js"></script>',
+${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview2/vendor/jquery/1.12.3/jquery-1.12.3.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/vendor/bootstrap/js/bootstrap.min.js"></script>',
-              '<script type="text/javascript" src="${urls.base}/js/facetview2/vendor/jquery-ui-1.8.18.custom/jquery-ui-1.8.18.custom.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/es.js"></script>',
-              '<script type="text/javascript" src="${urls.base}/js/facetview2/bootstrap2.facetview.theme.js"></script>',
+              '<script type="text/javascript" src="${urls.base}/js/facetview2/bootstrap3.facetview.theme.js"></script>',
                 '<script type="text/javascript" src="${urls.base}/js/facetview2/jquery.facetview2.js"></script>',
                 ' <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(\'.facet-view-simple\').facetview({
                 search_url: \'http://localhost:9200/unavco/publication/_search\',
-                page_size: 20,
+                page_size: 10,
+                page_size_dropdown: true,
                 sort: [{"publicationYear" : {"order" : "desc"}}],
-                sharesave_link: true,
-                search_button: false,
+                sharesave_link: false,
+                search_button: true,
                 default_freetext_fuzzify: "*",
                 default_facet_operator: "AND",
                 default_facet_order: "count",
                 default_facet_size: 15,
 				pushstate: false,
                 facets: [
-                    {\'field\': \'mostSpecificType\', \'display\': \'Type\'},
-                    // {\'field\': \'community.name.exact\', \'display\': \'DCO Community\'},
-                    // {\'field\': \'team.name.exact\', \'display\': \'DCO Team\'},
-                    {\'field\': \'subjectArea.name.exact\', \'display\': \'Subject Area\'},
-                    {\'field\': \'authors.name.exact\', \'size\': 20, \'display\': \'Author\'},
-                    {\'field\': \'publicationYear\', \'display\': \'Publication Year\', "type" : "date_histogram", "open" : 				 						false,\'sort\':\'desc\', "size" : 50},
-                    {\'field\': \'publishedIn.name.exact\', \'display\': \'Published in\'},
-                    {\'field\': \'presentedAt.name.exact\', \'display\': \'Presented at Event\'},
+                    {\'field\': \'mostSpecificType\', \'display\': \'Type\', \'controls\': false},
+                    {\'field\': \'subjectArea.name.exact\', \'display\': \'Subject Area\', \'controls\': false},
+                    {\'field\': \'authors.name.exact\', \'size\': 20, \'display\': \'Author\', \'controls\': false},
+                    {\'field\': \'publicationYear\', \'display\': \'Publication Year\', "type" : "date_histogram", "open" : false,\'sort\':\'desc\', "size" : 50},
+                    {\'field\': \'publishedIn.name.exact\', \'display\': \'Published in\', \'controls\': true},
+                    {\'field\': \'presentedAt.name.exact\', \'display\': \'Presented at Event\', \'controls\': true},
                     // {\'field\': \'authors.organization.name.exact\', \'display\': \'Author Organization\'},
-                    {\'field\': \'authors.researchArea.exact\', \'display\': \'Author Research Area\'},
+                    // {\'field\': \'authors.researchArea.exact\', \'display\': \'Author Research Area\', \'controls\': false},
                    // {\'field\': \'isDcoPublication\', \'display\': \'Only show contributions to the DCO\'}
                 ],
                 search_sortby: [
@@ -155,47 +153,82 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
 
     </script>')}
 
-${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/vendor/bootstrap/css/bootstrap.min.css" />',
-                  '<link rel="stylesheet" href="${urls.base}/js/facetview2/vendor/jquery-ui-1.8.18.custom/jquery-ui-1.8.18.custom.css" />',
-                  '<link rel="stylesheet" href="${urls.base}/js/facetview2/css/facetview.css" />',
-                  '<link rel="stylesheet" href="${urls.base}/js/facetview2/css/browsers.css" />',
-                  ' <style type="text/css">
+    ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/vendor/bootstrap/css/bootstrap.min.css" />',
+                      '<link rel="stylesheet" href="${urls.base}/js/facetview2/css/facetview.css" />',
+                      '<link rel="stylesheet" href="${urls.base}/js/facetview2/css/browsers.css" />',
+                      '<link rel="stylesheet" href="${urls.base}/js/facetview2/css/style.css" />',
+                      ' <style type="text/css">
 
-        @import url("http://vivodev.int.unavco.org/themes/wilma_unavco/css/wilma.css") body;
+                      .facet-view-simple{
+                          width:100%;
+                          height:100%;
+                          margin:0 auto 0 auto;
+                      }
+                      
+                      .facet-view-simple a {
+                          text-decoration: none     
+                      }
 
-        .facet-view-simple{
-            width:95%;
-            height:100%;
-            margin:20px auto 0 auto;
-        }
-        
-        .facet-view-simple a {
-            text-decoration: none     
-        }
+                      .facetview_freetext.span4 {
+                         width: 290px;
+                         height: 10px;
+                      }
 
-        .facetview_freetext.span4 {
-           width: 290px;
-           height: 18px;
-        }
+                      legend {
+                          display: none;
+                      }
 
-        legend {
-           display: none;
-        }
+                      #wrapper-content {
+                        padding: 0px !important;
+                        width: 970px !important;
+                        
+                      }
 
-        #wrapper-content {
-          padding-top: 0px;
-        }
+                      input {
+                          -webkit-box-shadow: none;
+                          box-shadow: none;
+                      }
 
-        input {
-            -webkit-box-shadow: none;
-            box-shadow: none;
-        }
-        
-        .alert {
-           margin-top: 20px; 
-        }
+                      .person-info {
+                          display: inline-block;
+                          vertical-align: top;
+                          // clear: left;
+                          margin-left: 0 !important;
+                      }
 
-    </style>')}
+                      .thumbnail {
+                          display: inline-block;
+                          width: 150px;
+                          box-shadow: none;
+                          border: none;
+                      }
+                      
+                      .row {
+                          background-color: #fff !important;
+                          margin: 0 !important;
+                      }
+                      
+                      h3 a:link, h3 a:visited{
+                        text-decoration: none !important;
+                      }
+                      
+                      .pagination {
+                        margin-top: 16px !important;
+                      }
+                      
+                      .facet-panel {
+                        border: 2px solid;
+                        border-color: #f3f3f0;
+                      }
+                      
+                      ul#main-nav {
+                      width: 970px !important;
+                      height: 48px !important;  
+                      }
+
+
+
+                  </style>')}
 
 
 <div class="facet-view-simple"></div>
