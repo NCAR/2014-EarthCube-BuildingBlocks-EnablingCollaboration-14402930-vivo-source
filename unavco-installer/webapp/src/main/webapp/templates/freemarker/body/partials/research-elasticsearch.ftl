@@ -2,8 +2,8 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
               '<script type="text/javascript" src="${urls.base}/js/facetview2/vendor/bootstrap/js/bootstrap.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/es.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/bootstrap3.facetview.theme.js"></script>',
-                '<script type="text/javascript" src="${urls.base}/js/facetview2/jquery.facetview2.js"></script>',
-                ' <script type="text/javascript">
+              '<script type="text/javascript" src="${urls.base}/js/facetview2/jquery.facetview2.js"></script>',
+              '<script type="text/javascript">
         jQuery(document).ready(function($) {
             $(\'.facet-view-simple\').facetview({
                 search_url: \'http://localhost:9200/unavco/publication/_search\',
@@ -136,7 +136,8 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
 
                     if (record["doi"]) {
                         var escapedDOI = encodeURIComponent(record["doi"]);
-                        html += "<a href=\\"" + doiUrl + "\\" target=\\"_blank\\"><img style=\'vertical-align: middle\' src=\'//dcotest.tw.rpi.edu/badges/badge?title=DOI&text="+escapedDOI+"&color=66CCFF\'/></a>&emsp;";
+                        html += "<div style=\'display: inline-block; margin-top:.5em;\'><div style=\'display: inline;\'><a href=\\"" + doiUrl + "\\" target=\\"_blank\\"><img src=\'https://img.shields.io/badge/DOI-" + escapedDOI.replace(/-/g, "--") + "-blue.svg\'></div>"
+                        html += "<div data-badge-popover=\'right\' data-link-target=\'_blank\' data-hide-no-mentions=\'true\' class=\'altmetric-embed\' data-doi=\'" + record["doi"] + "\' style=\'display: inline; margin-left: .8em;\'></div></div>"
                     }
 
                   
@@ -225,7 +226,6 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                       width: 970px !important;
                       height: 48px !important;  
                       }
-
 
 
                   </style>')}
