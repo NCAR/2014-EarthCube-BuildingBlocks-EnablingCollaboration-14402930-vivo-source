@@ -4,6 +4,11 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
               '<script type="text/javascript" src="${urls.base}/js/facetview2/es.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/bootstrap3.facetview.theme.js"></script>',
                 '<script type="text/javascript" src="${urls.base}/js/facetview2/jquery.facetview2.js"></script>',
+                '<script type="text/javascript" src="${urls.base}/js/js.cookie.js"></script>',
+                '<script type="text/javascript">jQuery(function( $ ){$(".close").click(function( e ){e.preventDefault();
+                 Cookies.set("alert-box-people", "closed", { path: "/" });});});
+                 jQuery(function( $ ){if( Cookies.get("alert-box-people") === "closed" ){$(".alert").hide();}});
+                 </script>',
                 '<script id="person-template" type="text/x-handlebars-template">
         <tr>
             <td class="vert-align">
@@ -17,7 +22,7 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                     {{#if thumbnail}}<img src="{{thumbnail}}">{{/if}}
                 </div>
                 <div class="person-info col-md-7">
-                    {{#if (showMostSpecificType mostSpecificType)}}<div><em class="small">{{mostSpecificType}}</em></div>{{/if}}
+                    {{#if (showMostSpecificType mostSpecificType)}}<div>{{mostSpecificType}}</div>{{/if}}
                     {{#if email}}<div><strong>email: </strong><a href="mailto:{{email}}">{{email}}</a></div>{{/if}}
 
                     {{#if organizations}}
@@ -38,9 +43,8 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                     {{/if}}
 
                     {{!-- BADGES --}}
-
                     <div>
-                        {{#if orcid}}<a href="{{orcidURL orcid}}" target="_blank"><img class="badge" src="{{orcidBadgeURL orcid}}"/></a>{{/if}}
+                        {{#if orcid}}<a href="{{orcidURL orcid}}" target="_blank"><img src="{{orcidBadgeURL orcid}}" style="margin-top: .5em;"/></a>{{/if}}
                     </div>
 
                 </div>
@@ -56,8 +60,8 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
 
 
         Handlebars.registerHelper("orcidBadgeURL", function(orcid) {
-            var escapedORCID = encodeURIComponent(orcid);
-            return "//dcotest.tw.rpi.edu/badges/badge?title=ORCID&text="+escapedORCID+"&color=a6ce39";
+            var escapedORCID = encodeURIComponent(orcid).replace(/-/g, "--");
+            return "https://img.shields.io/badge/ORCID-" + escapedORCID + "-green.svg";
         });
 
 
@@ -117,7 +121,7 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                 search_sortby: [
                     {"display":"Name","field":"name.sort"}
                 ],
-                // TODO FIGURE OUT WHAT THE F%@*&! DIFFERENCE IS 
+                // TODO FIGURE OUT WHAT THE DIFFERENCE IS 
                 facetview_orderby: [
                     {"display":"Name","field":"name.exact"}
                 ],
@@ -160,7 +164,7 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/vendo
                   }
 
                   #wrapper-content {
-                    padding: 0px !important;
+                  //  padding: 0px !important;
                     width: 970px !important;
                     
                   }
@@ -206,9 +210,25 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/vendo
                   width: 970px !important;
                   height: 48px !important;  
                   }
+                  
+                  #unavco-branding {
+                    height: 57px !important;
+                  }
+                  
+           
 
 
 
               </style>')}
+<section id="menupage-intro" role="region">
+<h2>${page.title}</h2>
+<div style="clear:both"></div>
+
+<div class="alert alert-info fade in">
+   <a href="#" class="close" data-dismiss="alert" aria-label="close">&#10006;</a>
+<small>${i18n().class_group_description_people}</small>
+</div>
+
+</section>
 
 <div class="facet-view-simple"></div>

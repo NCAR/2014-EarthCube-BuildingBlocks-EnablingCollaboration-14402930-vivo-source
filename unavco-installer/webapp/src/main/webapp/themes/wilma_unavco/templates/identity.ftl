@@ -1,6 +1,6 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 <header id="unavco-branding" role="banner">
-  <a href="http://unavco.org" title="main unavco website"><img src="/vivo/themes/wilma_unavco/images/unavco-logo-red-black-shadow.png" style="width: 150px;float:left;padding: 10px 10px 10px 20px;"></a>
+  <a href="http://unavco.org" title="main unavco website"><img src="/vivo/themes/wilma_unavco/images/unavco-logo-red-black-shadow.png" style="width: 150px;float:left;margin: 10px 10px 10px 20px;"></a>
   <nav>
     <ul id="unavco-header-nav" role="list">
       <li role="listitem"><a href="http://unavco.org" title="main unavco website">UNAVCO.ORG</a></li>
