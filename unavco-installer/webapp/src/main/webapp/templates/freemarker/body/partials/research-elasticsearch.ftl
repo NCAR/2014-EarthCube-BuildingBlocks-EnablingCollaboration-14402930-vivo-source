@@ -35,7 +35,8 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 ],
                 search_sortby: [
                     {\'display\':\'Title\',\'field\':\'title.exact\'},
-                    {\'display\':\'Date\',\'field\':\'publicationYear\'}
+                    {\'display\':\'Date\',\'field\':\'publicationYear\'},
+                    {\'display\':\'Altmetric Score\',\'field\':\'amscore\'}
                 ],
                 render_result_record: function(options, record)
                 {
