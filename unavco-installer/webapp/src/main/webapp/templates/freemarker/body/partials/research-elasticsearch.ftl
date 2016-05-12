@@ -21,6 +21,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 default_facet_operator: "AND",
                 default_facet_order: "count",
                 default_facet_size: 15,
+                search_fields_multi: ["*folded","_all"],
 				pushstate: false,
                 facets: [
                     {\'field\': \'mostSpecificType\', \'display\': \'Type\', \'controls\': false},

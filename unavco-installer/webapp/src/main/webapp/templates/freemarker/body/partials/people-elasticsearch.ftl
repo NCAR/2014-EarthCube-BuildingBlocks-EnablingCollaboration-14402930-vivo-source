@@ -110,6 +110,7 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                 default_facet_operator: "AND",
                 default_facet_order: "count",
                 default_facet_size: 5,
+                search_fields_multi: ["*folded","_all"],
                 controls: false,
 				        pushstate: false,
                 facets: [
