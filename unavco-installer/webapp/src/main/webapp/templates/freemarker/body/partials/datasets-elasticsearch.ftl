@@ -11,7 +11,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
               '<script type="text/javascript">
         jQuery(document).ready(function($) {
             $(\'.facet-view-simple\').facetview({
-                search_url: \'http://localhost:9200/unavco/publication/_search\',
+                search_url: \'http://localhost:9200/unavco/dataset/_search\',
                 page_size: 10,
                 page_size_dropdown: true,
                 sort: [{"_score" : {"order" : "desc"}},{"publicationYear" : {"order" : "desc"}}],
@@ -20,24 +20,17 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 default_freetext_fuzzify: "*",
                 default_facet_operator: "AND",
                 default_facet_order: "count",
-                default_facet_size: 15,
+                default_facet_size: 10,
                 search_fields_multi: ["*folded","_all"],
-				pushstate: false,
+				        pushstate: false,
                 facets: [
-                    {\'field\': \'mostSpecificType\', \'display\': \'Type\', \'controls\': false},
-                    {\'field\': \'subjectArea.name.exact\', \'display\': \'Subject Area\', \'controls\': false},
-                    {\'field\': \'authors.name.exact\', \'size\': 20, \'display\': \'Author\', \'controls\': false},
-                    {\'field\': \'publicationYear\', \'display\': \'Publication Year\', "type" : "date_histogram", "open" : false,\'sort\':\'desc\', "size" : 50},
-                    {\'field\': \'publishedIn.name.exact\', \'display\': \'Published in\', \'controls\': true},
-                    {\'field\': \'presentedAt.name.exact\', \'display\': \'Presented at Event\', \'controls\': true},
-                    // {\'field\': \'authors.organization.name.exact\', \'display\': \'Author Organization\'},
-                    // {\'field\': \'authors.researchArea.exact\', \'display\': \'Author Research Area\', \'controls\': false},
-                   // {\'field\': \'isDcoPublication\', \'display\': \'Only show contributions to the DCO\'}
+                  {"field": "dataTypes.name.exact", "display": "Dataset Type", "open" : true, "controls": false},
+                  {"field": "publicationYear", "display": "Publication Year", "type" : "date_histogram", "open" : false,"sort":"desc", "size" : 50, "controls": false},
+                  {"field": "authors.name.exact", "size": 20, "display": "Author", "controls": false}
                 ],
                 search_sortby: [
                     {\'display\':\'Title\',\'field\':\'title.exact\'},
-                    {\'display\':\'Date\',\'field\':\'publicationYear\'},
-                    {\'display\':\'Altmetric Score\',\'field\':\'amscore\'}
+                    {\'display\':\'Date\',\'field\':\'publicationYear\'}
                 ],
                 render_result_record: function(options, record)
                 {
@@ -85,57 +78,54 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                             html += "</small></span>";
                         }
                     }
+                    
+                    // display dataTypes
+                    if (record["dataTypes"]) {
+                        html += "<br /><span>Dataset Type: ";
+                        if (record["dataTypes"].length == 0) {
+                            html += \'N/A\'
+                        } else {
+                            for (var i = 0; i < record["dataTypes"].length; i++) {
+                                html += "<a href=\'" + vivoUrlRoot + record["dataTypes"][i]["uri"] + "\' >" + record["dataTypes"][i]["name"] + "</a>";
+                                if (i < record["dataTypes"].length - 1) {
+                                    html += "; ";
+                                }
+                            }
+                        }
+                        html += "</span>";
+                    }                    
 					
-                    // display publication venue
-                    if (record["publishedIn"]) {
-                        if (record["publishedIn"].length != 0) {
-                            html += "<br /><span><small>Published In: ";
-                            for (var i = 0; i < record["publishedIn"].length; i++) {
-								if(record["publishedIn"][i]["uri"]){ 
-                                html += "<a href=\\"" + vivoUrlRoot + record["publishedIn"][i]["uri"] + "\\" >" + 										record["publishedIn"][i]["name"] + "</a>"; }
-								else {
-									html += record["publishedIn"][i]["name"]
-								}
-                                if (i < record["publishedIn"].length - 1) {
-                                    html += "; ";
-                                }
-                            }
-                            html += "</small></span>";
+                    // display related stations
+                if (record["stations"]) {
+                  html += "<br /><span>Related stations: ";
+                  if (record["stations"].length == 0) {
+                      html += "N/A"
+                  } else {
+                    for (var i = 0; i < record["stations"].length; i++) {
+                        html += "<a href=\'" + vivoUrlRoot + record["stations"][i]["uri"] + "\' >" + record["stations"][i]["name"] + "</a>";
+                        if (i < record["stations"].length - 1) {
+                            html += "; ";
                         }
                     }
-
-                    // display conference
-                    if (record["presentedAt"]) {
-                        if (record["presentedAt"].length != 0) {
-                            html += "<br /><span><small>Presented at: ";
-                            for (var i = 0; i < record["presentedAt"].length; i++) {
-								if(record["presentedAt"][i]["uri"]){ 
-                                html += "<a href=\\"" + vivoUrlRoot + record["presentedAt"][i]["uri"] + "\\" >" + 										record["presentedAt"][i]["name"] + "</a>"; }
-								else {
-									html += record["presentedAt"][i]["name"]
-								}
-                                if (i < record["presentedAt"].length - 1) {
-                                    html += "; ";
-                                }
-                            }
-                            html += "</small></span>";
-                        }
-                    }					
-
-                    if (record["subjectArea"]) {
-                        html += "<br /><span>Subject Areas: ";
-
-                        for(var i = 0; i < record["subjectArea"].length; i++) {
-                            html += "<a href=\\"" + vivoUrlRoot + record["subjectArea"][i]["uri"] + "\\" target=\\"_blank\\">" + record["subjectArea"][i]["name"] + "</a>";
-                            if (i < record["subjectArea"].length - 1) {
-                                html += "; ";
-                            }
-                        }
-
-                        html += "</span>"
-                    }
-
-
+                  }
+                  html += "</span>";
+                }
+                
+                // display citations
+               if (record["citations"]) {
+                   html += "<br /><span>Related documents: ";
+                   if (record["citations"].length == 0) {
+                       html += \'N/A\'
+                   } else {
+                       for (var i = 0; i < record["citations"].length; i++) {
+                           html += "<a href=\'" + vivoUrlRoot + record["citations"][i]["uri"] + "\' >" + record["citations"][i]["name"] + "</a>";
+                           if (i < record["citations"].length - 1) {
+                               html += "; ";
+                           }
+                       }
+                   }
+                   html += "</span>";
+               }                
 
                     // Badges
 
@@ -144,7 +134,6 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                     if (record["doi"]) {
                         var escapedDOI = encodeURIComponent(record["doi"]);
                         html += "<div style=\'display: inline-block; margin-top:.5em;\'><div style=\'display: inline;\'><a href=\\"" + doiUrl + "\\" target=\\"_blank\\"><img src=\'https://img.shields.io/badge/DOI-" + escapedDOI.replace(/-/g, "--") + "-blue.svg\'></div>"
-                        html += "<div data-badge-type=\'1\' data-badge-popover=\'right\' data-link-target=\'_blank\' data-hide-no-mentions=\'true\' class=\'altmetric-embed\' data-doi=\'" + record["doi"] + "\' style=\'display: inline; margin-left: .8em;\'></div></div>"
                     }
 
                   
