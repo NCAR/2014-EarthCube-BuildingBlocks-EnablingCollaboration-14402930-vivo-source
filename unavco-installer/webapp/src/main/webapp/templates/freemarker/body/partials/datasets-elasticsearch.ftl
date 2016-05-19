@@ -38,50 +38,17 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                     var doiUrl = "https://dx.doi.org/"+record["doi"];
 					var vivoUrlRoot = \'http://localhost:8080/vivo/individual?uri=\'
 
-                    var html = "<tr><td>";
+                    var html = "<tr><td><div class=\'document\'>";
 				
 					// title and link to vivo page
-                    html += "<strong><a href=\\""+ vivoUrlRoot + record["uri"] + "\\" >" + record["title"] + 							"</a></strong>";
+                    html += "<h3><a href=\\""+ vivoUrlRoot + record["uri"] + "\\" >" + record["title"] + "</a></h3><div class=\'doc_info\'>";
 
-                    // display publicationYear
-                    if (record["publicationYear"]) {
-						pubYear = new Date(record["publicationYear"]).getUTCFullYear();
-                        html += "&emsp;<small>(" + pubYear + ")</small>";
-                    }
+                    // Record info
+                    html += "<dl class=\'doc_info_list\'>";
 
-                    if (record["mostSpecificType"]) {
-                        html += "<br />Type: " + record["mostSpecificType"];
-                    }
-
-                  /*  if (record["community"]) {
-                        html += "<br /><span>Community: <a href=\\"" + record["community"]["uri"] + "\\" target=\\"_blank\\">" + record["community"]["name"] + "</a></span>";
-                    }
-
-                    if (record["team"]) {
-                        html += "<br /><span>Team: <a href=\\"" + record["team"]["uri"] + "\\" target=\\"_blank\\">" + record["team"]["name"] + "</a></span>";
-                    } */
-
-                    // display authors
-                    if (record["authors"]) {
-                        if (record["authors"].length != 0) {
-                            html += "<br /><span><small>Authors: ";
-                            for (var i = 0; i < record["authors"].length; i++) {
-								if(record["authors"][i]["uri"]){ 
-                                html += "<a href=\\"" + vivoUrlRoot + record["authors"][i]["uri"] + "\\" >" + 										record["authors"][i]["name"] + "</a>"; }
-								else {
-									html += record["authors"][i]["name"]
-								}
-                                if (i < record["authors"].length - 1) {
-                                    html += "; ";
-                                }
-                            }
-                            html += "</small></span>";
-                        }
-                    }
-                    
                     // display dataTypes
                     if (record["dataTypes"]) {
-                        html += "<br /><span>Dataset Type: ";
+                        html += "<dt>Dataset Type:</dt><dd>";
                         if (record["dataTypes"].length == 0) {
                             html += \'N/A\'
                         } else {
@@ -92,28 +59,37 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                                 }
                             }
                         }
-                        html += "</span>";
-                    }                    
-					
-                    // display related stations
-                if (record["stations"]) {
-                  html += "<br /><span>Related stations: ";
-                  if (record["stations"].length == 0) {
-                      html += "N/A"
-                  } else {
-                    for (var i = 0; i < record["stations"].length; i++) {
-                        html += "<a href=\'" + vivoUrlRoot + record["stations"][i]["uri"] + "\' >" + record["stations"][i]["name"] + "</a>";
-                        if (i < record["stations"].length - 1) {
-                            html += "; ";
+                        html += "</dd>";
+                    }  
+
+                    // display authors
+                    if (record["authors"]) {
+                        if (record["authors"].length != 0) {
+                            html += "<dt>Authors:</dt><dd>";
+                            for (var i = 0; i < record["authors"].length; i++) {
+								if(record["authors"][i]["uri"]){ 
+                                html += "<a href=\\"" + vivoUrlRoot + record["authors"][i]["uri"] + "\\" >" + record["authors"][i]["name"] + "</a>"; }
+								else {
+									html += record["authors"][i]["name"]
+								}
+                                if (i < record["authors"].length - 1) {
+                                    html += "; ";
+                                }
+                            }
+                            html += "</dd>";
                         }
                     }
-                  }
-                  html += "</span>";
-                }
+
+                    // display publicationYear
+                    if (record["publicationYear"]) {
+						          pubYear = new Date(record["publicationYear"]).getUTCFullYear();
+                        html += "<dt>Publication Date:</dt><dd>" + pubYear + "</dd>";
+                    }                  
+
                 
                 // display citations
                if (record["citations"]) {
-                   html += "<br /><span>Related documents: ";
+                   html += "<dt>Related documents:</dt><dd>";
                    if (record["citations"].length == 0) {
                        html += \'N/A\'
                    } else {
@@ -124,22 +100,41 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                            }
                        }
                    }
-                   html += "</span>";
-               }                
+                   html += "</dd>";
+               }
+               
+				
+                   // display related stations
+               if (record["stations"]) {
+                 html += "<dt>Related stations:</dt><dd>";
+                 if (record["stations"].length == 0) {
+                     html += "N/A"
+                 } else {
+                   for (var i = 0; i < record["stations"].length; i++) {
+                       html += "<a href=\'" + vivoUrlRoot + record["stations"][i]["uri"] + "\' >" + record["stations"][i]["name"] + "</a>";
+                       if (i < record["stations"].length - 1) {
+                           html += "; ";
+                       }
+                   }
+                 }
+                 html += "</dd>";
+               }                             
+               
+                    html += "</dl>"  
 
-                    // Badges
+               // Badges
 
-                    html += "<br />";
+               if (record["doi"]) {
+                   html += "<div style=\'display: inline-block; margin-top:.5em;\'>";
+                   var escapedDOI = encodeURIComponent(record["doi"]);
+                   html += "<div style=\'display: inline;margin-right: .5em;\'><a href=\\"" + doiUrl + "\\" target=\\"_blank\\"><img src=\'https://img.shields.io/badge/DOI-" + escapedDOI.replace(/-/g, "--") + "-blue.svg\'></div>"
+               }
 
-                    if (record["doi"]) {
-                        var escapedDOI = encodeURIComponent(record["doi"]);
-                        html += "<div style=\'display: inline-block; margin-top:.5em;\'><div style=\'display: inline;\'><a href=\\"" + doiUrl + "\\" target=\\"_blank\\"><img src=\'https://img.shields.io/badge/DOI-" + escapedDOI.replace(/-/g, "--") + "-blue.svg\'></div>"
-                    }
 
                   
 
-                    html += "</td></tr>";
-                    return html;
+               html += "</div></div></div></td></tr>";
+               return html;
                 },
                 selected_filters_in_facet: true,
                 show_filter_field : true,

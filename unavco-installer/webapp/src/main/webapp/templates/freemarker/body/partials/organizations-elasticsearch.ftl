@@ -38,19 +38,27 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                     var doiUrl = "https://dx.doi.org/"+record["doi"];
 					          var vivoUrlRoot = \'http://localhost:8080/vivo/individual?uri=\'
 
-                    var html = "<tr><td>";
+                    var html = "<tr><td><div class=\'document\'>";
 				
                     // title and link to vivo page
-                    html += "<strong><a href=\\""+ vivoUrlRoot + record["uri"] + "\\" >" + record["name"] + 							"</a></strong>";
+                    html += "<h3><a href=\\""+ vivoUrlRoot + record["uri"] + "\\" >" + record["name"] + "</a></h3><div class=\'doc_info\'>";
 
+                    // Record info
+                    html += "<dl class=\'doc_info_list\'>";
+                    
                     if (record["mostSpecificType"]) {
-                        html += "<br />Type: " + record["mostSpecificType"];
+                        html += "<dt>Type:</dt><dd>" + record["mostSpecificType"] + "</dd>";
                     }
+                    
+                    if (record["location"]) {
+                        html += "<dt>Location:</dt><dd> " + record["location"]["lat"] + ", " + record["location"]["lon"] + "</dd>";
+                    }
+
 
                     // display associated people
                     if (record["people"]) {
                         if (record["people"].length != 0) {
-                            html += "<br /><span>People: ";
+                            html += "<dt>People:</dt><dd> ";
                             for (var i = 0; i < record["people"].length; i++) {
 								              if(record["people"][i]["uri"]){ 
                                 html += "<a href=\\"" + vivoUrlRoot + record["people"][i]["uri"] + "\\" >" + record["people"][i]["name"] + "</a>"; }
@@ -64,75 +72,39 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                                     html += "; ";
                                 }
                             }
-                            html += "</span>";
+                            html += "</dd><br />";
                         }
-                    }
-                    
-                    // display dataTypes
-                    if (record["dataTypes"]) {
-                        html += "<br /><span>Dataset Type: ";
-                        if (record["dataTypes"].length == 0) {
-                            html += \'N/A\'
-                        } else {
-                            for (var i = 0; i < record["dataTypes"].length; i++) {
-                                html += "<a href=\'" + vivoUrlRoot + record["dataTypes"][i]["uri"] + "\' >" + record["dataTypes"][i]["name"] + "</a>";
-                                if (i < record["dataTypes"].length - 1) {
-                                    html += "; ";
-                                }
-                            }
-                        }
-                        html += "</span>";
-                    }                    
-					
-                    // display related stations
-                if (record["stations"]) {
-                  html += "<br /><span>Related stations: ";
-                  if (record["stations"].length == 0) {
-                      html += "N/A"
-                  } else {
-                    for (var i = 0; i < record["stations"].length; i++) {
-                        html += "<a href=\'" + vivoUrlRoot + record["stations"][i]["uri"] + "\' >" + record["stations"][i]["name"] + "</a>";
-                        if (i < record["stations"].length - 1) {
-                            html += "; ";
-                        }
-                    }
-                  }
-                  html += "</span>";
-                }
-                
-                // display citations
-               if (record["citations"]) {
-                   html += "<br /><span>Related documents: ";
-                   if (record["citations"].length == 0) {
-                       html += \'N/A\'
-                   } else {
-                       for (var i = 0; i < record["citations"].length; i++) {
-                           html += "<a href=\'" + vivoUrlRoot + record["citations"][i]["uri"] + "\' >" + record["citations"][i]["name"] + "</a>";
-                           if (i < record["citations"].length - 1) {
-                               html += "; ";
-                           }
-                       }
-                   }
-                   html += "</span>";
-               }                
+                    }                                  
 
                     // Badges
+                    if (record["gridId"] || record["isni"] || record["membershipType"]) {
 
-                    html += "<br />";
-
+                    html += "<br /> <div style=\'display: inline-block; margin-top:.5em;\'>";
                     if (record["membershipType"]) {
                         var membershipType = record["membershipType"];
                         if (membershipType == "Associate Member") {
-                        html += "<div style=\'display: inline-block; margin-top:.5em;\'><div style=\'display: inline;\'><img src=\'https://img.shields.io/badge/UNAVCO-" + membershipType + "-green.svg\'></div>"
+                        html += "<div style=\'display: inline;margin-right: .5em;\'><img src=\'https://img.shields.io/badge/UNAVCO-" + membershipType + "-66ccff.svg\'></div>"
                         }
                         else if (membershipType == "Member") {
-                          html += "<div style=\'display: inline-block; margin-top:.5em;\'><div style=\'display: inline;\'><img src=\'https://img.shields.io/badge/UNAVCO-" + membershipType + "-red.svg\'></div>"
+                          html += "<div style=\'display: inline;margin-right: .5em;\'><img src=\'https://img.shields.io/badge/UNAVCO-" + membershipType + "-red.svg\'></div>"
                         }
+                    if (record["gridId"]) {
+                      var gridId = record["gridId"];
+                      html += "<div style=\'display: inline;margin-right: .5em;\'><a href=\'https://www.grid.ac/institutes/" + gridId + "\' target=\'_blank\'><img src=\'https://img.shields.io/badge/GRID ID-" + gridId + "-blue.svg\'></a></div>"
+                    }
+                    if (record["isni"]) {
+                      var isni = record["isni"];
+                      html += "<div style=\'display: inline;\'><a href=\'http://isni.org/" + isni.replace(/\\s/g, \'\') + "\' target=\'_blank\'><img src=\'https://img.shields.io/badge/ISNI-" + isni + "-lightgrey.svg\'></a></div>"
+                    }
+
                         
                     }
 
                   
 
+                    html += "</div></div></div>";
+                    }
+                    
                     html += "</td></tr>";
                     return html;
                 },
@@ -202,6 +174,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                       
                       h3 a:link, h3 a:visited{
                         text-decoration: none !important;
+                        color: #355374 !important;
                       }
                       
                       .pagination {

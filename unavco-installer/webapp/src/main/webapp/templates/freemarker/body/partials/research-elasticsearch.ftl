@@ -45,36 +45,25 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                     var doiUrl = "https://dx.doi.org/"+record["doi"];
 					var vivoUrlRoot = \'http://localhost:8080/vivo/individual?uri=\'
 
-                    var html = "<tr><td>";
+                    var html = "<tr><td><div class=\'document\'>";
 				
-					// title and link to vivo page
-                    html += "<strong><a href=\\""+ vivoUrlRoot + record["uri"] + "\\" >" + record["title"] + 							"</a></strong>";
+					          // title and link to vivo page
+                    html += "<h3><a href=\\""+ vivoUrlRoot + record["uri"] + "\\" >" + record["title"] + "</a></h3><div class=\'doc_info\'>";
 
-                    // display publicationYear
-                    if (record["publicationYear"]) {
-						pubYear = new Date(record["publicationYear"]).getUTCFullYear();
-                        html += "&emsp;<small>(" + pubYear + ")</small>";
-                    }
+                    // Record info
+                    html += "<dl class=\'doc_info_list\'>";
 
                     if (record["mostSpecificType"]) {
-                        html += "<br />Type: " + record["mostSpecificType"];
+                        html += "<dt>Type:</dt><dd>" + record["mostSpecificType"] + "</dd>";
                     }
-
-                  /*  if (record["community"]) {
-                        html += "<br /><span>Community: <a href=\\"" + record["community"]["uri"] + "\\" target=\\"_blank\\">" + record["community"]["name"] + "</a></span>";
-                    }
-
-                    if (record["team"]) {
-                        html += "<br /><span>Team: <a href=\\"" + record["team"]["uri"] + "\\" target=\\"_blank\\">" + record["team"]["name"] + "</a></span>";
-                    } */
 
                     // display authors
                     if (record["authors"]) {
                         if (record["authors"].length != 0) {
-                            html += "<br /><span><small>Authors: ";
+                            html += "<dt>Authors:</dt><dd>";
                             for (var i = 0; i < record["authors"].length; i++) {
 								if(record["authors"][i]["uri"]){ 
-                                html += "<a href=\\"" + vivoUrlRoot + record["authors"][i]["uri"] + "\\" >" + 										record["authors"][i]["name"] + "</a>"; }
+                                html += "<a href=\\"" + vivoUrlRoot + record["authors"][i]["uri"] + "\\" >" + record["authors"][i]["name"] + "</a>"; }
 								else {
 									html += record["authors"][i]["name"]
 								}
@@ -82,17 +71,17 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                                     html += "; ";
                                 }
                             }
-                            html += "</small></span>";
+                            html += "</dd>";
                         }
                     }
 					
                     // display publication venue
                     if (record["publishedIn"]) {
                         if (record["publishedIn"].length != 0) {
-                            html += "<br /><span><small>Published In: ";
+                            html += "<dt>Published In:</dt><dd>";
                             for (var i = 0; i < record["publishedIn"].length; i++) {
 								if(record["publishedIn"][i]["uri"]){ 
-                                html += "<a href=\\"" + vivoUrlRoot + record["publishedIn"][i]["uri"] + "\\" >" + 										record["publishedIn"][i]["name"] + "</a>"; }
+                                html += "<a href=\\"" + vivoUrlRoot + record["publishedIn"][i]["uri"] + "\\" >" + record["publishedIn"][i]["name"] + "</a>"; }
 								else {
 									html += record["publishedIn"][i]["name"]
 								}
@@ -100,14 +89,14 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                                     html += "; ";
                                 }
                             }
-                            html += "</small></span>";
+                            html += "</dd>";
                         }
                     }
 
                     // display conference
                     if (record["presentedAt"]) {
                         if (record["presentedAt"].length != 0) {
-                            html += "<br /><span><small>Presented at: ";
+                            html += "<dt>Presented at:</dt><dd>";
                             for (var i = 0; i < record["presentedAt"].length; i++) {
 								if(record["presentedAt"][i]["uri"]){ 
                                 html += "<a href=\\"" + vivoUrlRoot + record["presentedAt"][i]["uri"] + "\\" >" + 										record["presentedAt"][i]["name"] + "</a>"; }
@@ -118,12 +107,18 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                                     html += "; ";
                                 }
                             }
-                            html += "</small></span>";
+                            html += "</dd>";
                         }
                     }					
+                    
+                    // display publicationYear
+                    if (record["publicationYear"]) {
+						          pubYear = new Date(record["publicationYear"]).getUTCFullYear();
+                        html += "<dt>Publication Date:</dt><dd>" + pubYear + "</dd>";
+                    }
 
                     if (record["subjectArea"]) {
-                        html += "<br /><span>Subject Areas: ";
+                        html += "<dt>Subject Areas:</dt><dd>";
 
                         for(var i = 0; i < record["subjectArea"].length; i++) {
                             html += "<a href=\\"" + vivoUrlRoot + record["subjectArea"][i]["uri"] + "\\" target=\\"_blank\\">" + record["subjectArea"][i]["name"] + "</a>";
@@ -132,24 +127,23 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                             }
                         }
 
-                        html += "</span>"
+                        html += "</dd>"
                     }
 
-
+                    html += "</dl>"
 
                     // Badges
 
-                    html += "<br />";
-
                     if (record["doi"]) {
+                        html += "<div style=\'display: inline-block; margin-top:.5em;\'>";
                         var escapedDOI = encodeURIComponent(record["doi"]);
-                        html += "<div style=\'display: inline-block; margin-top:.5em;\'><div style=\'display: inline;\'><a href=\\"" + doiUrl + "\\" target=\\"_blank\\"><img src=\'https://img.shields.io/badge/DOI-" + escapedDOI.replace(/-/g, "--") + "-blue.svg\'></div>"
-                        html += "<div data-badge-type=\'1\' data-badge-popover=\'right\' data-link-target=\'_blank\' data-hide-no-mentions=\'true\' class=\'altmetric-embed\' data-doi=\'" + record["doi"] + "\' style=\'display: inline; margin-left: .8em;\'></div></div>"
+                        html += "<div style=\'display: inline;margin-right: .5em;\'><a href=\\"" + doiUrl + "\\" target=\\"_blank\\"><img src=\'https://img.shields.io/badge/DOI-" + escapedDOI.replace(/-/g, "--") + "-blue.svg\'></div>"
+                        html += "<div data-badge-type=\'1\' data-badge-popover=\'right\' data-link-target=\'_blank\' data-hide-no-mentions=\'true\' class=\'altmetric-embed\' data-doi=\'" + record["doi"] + "\' style=\'display: inline;margin-right: .5em;\'></div>"
                     }
 
                   
 
-                    html += "</td></tr>";
+                    html += "</div></div></div></td></tr>";
                     return html;
                 },
                 selected_filters_in_facet: true,
@@ -218,6 +212,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                       
                       h3 a:link, h3 a:visited{
                         text-decoration: none !important;
+                        color: #355374 !important;
                       }
                       
                       .pagination {

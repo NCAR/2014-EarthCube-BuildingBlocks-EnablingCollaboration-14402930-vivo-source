@@ -11,45 +11,50 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                  </script>',
                 '<script id="person-template" type="text/x-handlebars-template">
         <tr>
-            <td class="vert-align">
-                <div class="col-md-4 pull-left">
-                    
-                    <div class="caption">
+            <td>
+                <div class="document">
                         <h3>
                             <a class="" href="{{uri}}">{{name}}</a>
                         </h3>
-                    </div>
-                    {{#if thumbnail}}<img src="{{thumbnail}}">{{/if}}
-                </div>
-                <div class="person-info col-md-7">
-                    {{#if (showMostSpecificType mostSpecificType)}}<div>{{mostSpecificType}}</div>{{/if}}
-                    {{#if email}}<div><strong>email: </strong><a href="mailto:{{email}}">{{email}}</a></div>{{/if}}
+                        <div class="doc_info">
+                        {{#if thumbnail}}<div><div class="thumbnail" style="width:25%"><img src="{{thumbnail}}"></div><div style="float:right; width:70%">{{/if}}
+                    
+                    
+                        <dl class="doc_info_list">
+                        {{#if (showMostSpecificType mostSpecificType)}}<dt>Role:</dt><dd>{{mostSpecificType}}</dd>{{/if}}
+                        {{#if email}}<dt>Email:</dt><dd><a href="mailto:{{email}}">{{email}}</a></dd>{{/if}}
 
-                    {{#if organizations}}
-                    <div><strong>Organizations:</strong></div>
-                    <div>{{#list organizations}}{{orgrole}} - <a href="{{organization.uri}}" target="_blank">{{organization.name}}</a>{{/list}}</div>
-                    {{/if}}
+                        {{#if organizations}}
+                        <dt>Organizations:</dt>
+                        <dd>{{#list organizations}}{{#if orgrole}}{{orgrole}} - {{/if}}<a href="{{organization.uri}}" target="_blank">{{organization.name}}</a>{{/list}}</dd>
+                        {{/if}}
 
-                    {{#if researchArea}}
-                    <div><strong>Research Areas:</strong> {{#expand researchArea}}<a href="{{uri}}" target="_blank">{{name}}</a>{{/expand}}</div>
-                    {{/if}}
-					
-                    {{#if expertiseArea}}
-                    <div><strong>Expertise Areas:</strong> {{#expand expertiseArea}}<a href="{{uri}}" target="_blank">{{name}}</a>{{/expand}}</div>
-                    {{/if}}
+                        {{#if researchArea}}
+                        <dt>Research Areas:</dt><dd> {{#expand researchArea}}<a href="{{uri}}" target="_blank">{{name}}</a>{{/expand}}</dd>
+                        {{/if}}
+    					
+                        {{#if expertiseArea}}
+                        <dt>Expertise Areas:</dt><dd> {{#expand expertiseArea}}<a href="{{uri}}" target="_blank">{{name}}</a>{{/expand}}</dd>
+                        {{/if}}
 
-                    {{#if homeCountry}}
-                    <div><strong>Country:</strong> {{homeCountry.name}}</div>
-                    {{/if}}
+                        {{#if homeCountry}}
+                        <dt>Country:</dt><dd> {{homeCountry.name}}</dd>
+                        {{/if}}
+                      </dl>
+                      {{#if thumbnail}}</div></div>{{/if}}
+                      
+                      
+                        {{!-- BADGES --}}
+                        {{#if orcid}}
+                        <div style=\'display: inline-block; margin-top:.5em;\'>
+                            <div style=\'display: inline;margin-right: .5em;\'><a href="{{orcidURL orcid}}" target="_blank"><img src="{{orcidBadgeURL orcid}}" /></a></div>
+                        </div>
+                        {{/if}}
 
-                    {{!-- BADGES --}}
-                    <div>
-                        {{#if orcid}}<a href="{{orcidURL orcid}}" target="_blank"><img src="{{orcidBadgeURL orcid}}" style="margin-top: .5em;"/></a>{{/if}}
-                    </div>
-
+                      </div>
                 </div>
             </td>
-        </tr>
+          </tr>
     </script>',
     
     '<script type="text/javascript">
@@ -185,8 +190,9 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/vendo
                   .thumbnail {
                       display: inline-block;
                       width: 150px;
-                      box-shadow: none;
-                      border: none;
+                      border-radius: 3px;
+                      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+                      border: 1px;
                   }
                   
                   .row {
@@ -196,6 +202,7 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/vendo
                   
                   h3 a:link, h3 a:visited{
                     text-decoration: none !important;
+                    color: #355374 !important;
                   }
                   
                   .pagination {
@@ -215,8 +222,7 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/vendo
                   #unavco-branding {
                     height: 57px !important;
                   }
-                  
-           
+         
 
 
 
