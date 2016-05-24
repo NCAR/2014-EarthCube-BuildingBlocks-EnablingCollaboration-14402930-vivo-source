@@ -1,3 +1,5 @@
+<#include "elasticsearch-settings.ftl">
+
 ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.1/handlebars.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/vendor/jquery/1.12.3/jquery-1.12.3.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/vendor/bootstrap/js/bootstrap.min.js"></script>',
@@ -102,7 +104,7 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
 
         jQuery(document).ready(function($) {
             $(".facet-view-simple").facetview({
-                search_url: "http://localhost:9200/unavco/person/_search",
+                search_url: "${elasticsearch_base}/person/_search",
                 page_size: 10,
                 sort: [
                     {"_score" : {"order" : "desc"}},

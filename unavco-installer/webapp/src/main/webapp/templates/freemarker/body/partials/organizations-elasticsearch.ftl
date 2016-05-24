@@ -1,3 +1,5 @@
+<#include "elasticsearch-settings.ftl">
+
 ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview2/vendor/jquery/1.12.3/jquery-1.12.3.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/vendor/bootstrap/js/bootstrap.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/es.js"></script>',
@@ -11,7 +13,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
               '<script type="text/javascript">
         jQuery(document).ready(function($) {
             $(\'.facet-view-simple\').facetview({
-                search_url: \'http://localhost:9200/unavco/organization/_search\',
+                search_url: "${elasticsearch_base}/organization/_search",
                 page_size: 10,
                 page_size_dropdown: true,
                 sort: [{"_score" : {"order" : "desc"}},{"name.sort" : {"order" : "asc"}}],
@@ -36,7 +38,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 {
 
                     var doiUrl = "https://dx.doi.org/"+record["doi"];
-					          var vivoUrlRoot = \'http://localhost:8080/vivo/individual?uri=\'
+					          var vivoUrlRoot = "${url_base}";
 
                     var html = "<tr><td><div class=\'document\'>";
 				
@@ -79,7 +81,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                     // Badges
                     if (record["gridId"] || record["isni"] || record["membershipType"]) {
 
-                    html += "<br /> <div style=\'display: inline-block; margin-top:.5em;\'>";
+                    html += "<br /><div style=\'display: inline-block; margin-top:.5em;\'>";
                     if (record["membershipType"]) {
                         var membershipType = record["membershipType"];
                         if (membershipType == "Associate Member") {
@@ -88,6 +90,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                         else if (membershipType == "Member") {
                           html += "<div style=\'display: inline;margin-right: .5em;\'><img src=\'https://img.shields.io/badge/UNAVCO-" + membershipType + "-red.svg\'></div>"
                         }
+                    }
                     if (record["gridId"]) {
                       var gridId = record["gridId"];
                       html += "<div style=\'display: inline;margin-right: .5em;\'><a href=\'https://www.grid.ac/institutes/" + gridId + "\' target=\'_blank\'><img src=\'https://img.shields.io/badge/GRID ID-" + gridId + "-blue.svg\'></a></div>"
@@ -98,7 +101,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                     }
 
                         
-                    }
+                   
 
                   
 

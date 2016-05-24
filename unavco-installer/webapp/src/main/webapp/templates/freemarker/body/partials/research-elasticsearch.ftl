@@ -1,3 +1,5 @@
+<#include "elasticsearch-settings.ftl">
+
 ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview2/vendor/jquery/1.12.3/jquery-1.12.3.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/vendor/bootstrap/js/bootstrap.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/es.js"></script>',
@@ -11,7 +13,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
               '<script type="text/javascript">
         jQuery(document).ready(function($) {
             $(\'.facet-view-simple\').facetview({
-                search_url: \'http://localhost:9200/unavco/publication/_search\',
+                search_url: "${elasticsearch_base}/publication/_search",
                 page_size: 10,
                 page_size_dropdown: true,
                 sort: [{"_score" : {"order" : "desc"}},{"publicationYear" : {"order" : "desc"}}],
@@ -43,7 +45,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 {
 
                     var doiUrl = "https://dx.doi.org/"+record["doi"];
-					var vivoUrlRoot = \'http://localhost:8080/vivo/individual?uri=\'
+					var vivoUrlRoot = "${url_base}";
 
                     var html = "<tr><td><div class=\'document\'>";
 				
