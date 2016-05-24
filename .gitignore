@@ -3,6 +3,7 @@ applicationSetup.n3
 deploy.properties
 build.properties
 runtime.properties
+elasticsearch-settings.ftl
 
 #Build dir
 .build/
