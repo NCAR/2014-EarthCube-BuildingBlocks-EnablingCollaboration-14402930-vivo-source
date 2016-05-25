@@ -19,12 +19,12 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 sort: [{"_score" : {"order" : "desc"}},{"publicationYear" : {"order" : "desc"}}],
                 sharesave_link: false,
                 search_button: true,
-                default_freetext_fuzzify: "*",
                 default_facet_operator: "AND",
                 default_facet_order: "count",
                 default_facet_size: 15,
                 search_fields_multi: ["*folded","_all"],
-				pushstate: false,
+                min_score : 0.2,
+                pushstate: false,
                 facets: [
                     {\'field\': \'mostSpecificType\', \'display\': \'Type\', \'controls\': false},
                     {\'field\': \'subjectArea.name.exact\', \'display\': \'Subject Area\', \'controls\': false},
@@ -37,6 +37,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                    // {\'field\': \'isDcoPublication\', \'display\': \'Only show contributions to the DCO\'}
                 ],
                 search_sortby: [
+                    {\'display\':\'Relevance\',\'field\':["_score","publicationYear"]},
                     {\'display\':\'Title\',\'field\':\'title.exact\'},
                     {\'display\':\'Date\',\'field\':\'publicationYear\'},
                     {\'display\':\'Altmetric Score\',\'field\':\'amscore\'}

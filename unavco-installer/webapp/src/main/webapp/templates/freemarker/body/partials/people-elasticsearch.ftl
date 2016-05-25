@@ -113,7 +113,7 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                 sharesave_link: false,
                 search_button: true,
 				        page_size_dropdown: true,
-                default_freetext_fuzzify: "*",
+                //default_freetext_fuzzify: "*",
                 default_facet_operator: "AND",
                 default_facet_order: "count",
                 default_facet_size: 5,
@@ -127,6 +127,7 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
 					          {"field": "expertiseArea.name.exact", "display": "Expertise area", "open": true, "controls": false},
                 ],
                 search_sortby: [
+                    {"display":"Relevance","field":["_score","name.sort"]},
                     {"display":"Name","field":"name.sort"}
                 ],
                 // TODO FIGURE OUT WHAT THE DIFFERENCE IS 

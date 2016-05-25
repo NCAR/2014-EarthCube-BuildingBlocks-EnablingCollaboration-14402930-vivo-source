@@ -19,7 +19,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 sort: [{"_score" : {"order" : "desc"}},{"publicationYear" : {"order" : "desc"}}],
                 sharesave_link: false,
                 search_button: true,
-                default_freetext_fuzzify: "*",
+                //default_freetext_fuzzify: "*",
                 default_facet_operator: "AND",
                 default_facet_order: "count",
                 default_facet_size: 10,
@@ -31,6 +31,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                   {"field": "authors.name.exact", "size": 20, "display": "Author", "controls": false}
                 ],
                 search_sortby: [
+                    {\'display\':\'Relevance\',\'field\':["_score","publicationYear"]},
                     {\'display\':\'Title\',\'field\':\'title.exact\'},
                     {\'display\':\'Date\',\'field\':\'publicationYear\'}
                 ],

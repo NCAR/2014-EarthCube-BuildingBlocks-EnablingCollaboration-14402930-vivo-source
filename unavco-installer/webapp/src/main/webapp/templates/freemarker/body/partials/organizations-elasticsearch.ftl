@@ -19,7 +19,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 sort: [{"_score" : {"order" : "desc"}},{"name.sort" : {"order" : "asc"}}],
                 sharesave_link: false,
                 search_button: true,
-                default_freetext_fuzzify: "*",
+                //default_freetext_fuzzify: "*",
                 default_facet_operator: "AND",
                 default_facet_order: "count",
                 default_facet_size: 10,
@@ -32,6 +32,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                   //{"field": "authors.name.exact", "size": 20, "display": "Author", "controls": false}
                 ],
                 search_sortby: [
+                    {\'display\':\'Relevance\',\'field\':["_score","name.sort"]},
                     {\'display\':\'Title\',\'field\':\'name.sort\'}
                 ],
                 render_result_record: function(options, record)
