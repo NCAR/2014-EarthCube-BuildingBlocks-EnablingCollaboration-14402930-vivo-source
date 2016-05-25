@@ -22,7 +22,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 default_facet_operator: "AND",
                 default_facet_order: "count",
                 default_facet_size: 15,
-                search_fields_multi: ["*folded","_all"],
+                search_fields_multi: ["*folded","_all","*ngram"],
                 min_score : 0.2,
                 pushstate: false,
                 facets: [
