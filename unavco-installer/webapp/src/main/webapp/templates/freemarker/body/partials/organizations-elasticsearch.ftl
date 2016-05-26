@@ -57,6 +57,41 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                         html += "<dt>Location:</dt><dd> " + record["location"]["lat"] + ", " + record["location"]["lon"] + "</dd>";
                     }
 
+                    // display sub organizations
+                    if (record["subOrgs"]) {
+                        if (record["subOrgs"].length != 0) {
+                            html += "<dt>Sub-Organizations:</dt><dd> ";
+                            for (var i = 0; i < record["subOrgs"].length; i++) {
+								              if(record["subOrgs"][i]["uri"]){ 
+                                html += "<a href=\\"" + vivoUrlRoot + record["subOrgs"][i]["uri"] + "\\" >" + record["subOrgs"][i]["name"] + "</a>"; }
+								                else {
+									                html += record["subOrgs"][i]["name"]
+								                }
+                                if (i < record["subOrgs"].length - 1) {
+                                    html += "; ";
+                                }
+                            }
+                            html += "</dd><br />";
+                        }
+                    }
+
+                    // display parent organizations
+                    if (record["superOrgs"]) {
+                        if (record["superOrgs"].length != 0) {
+                            html += "<dt>Part of:</dt><dd> ";
+                            for (var i = 0; i < record["superOrgs"].length; i++) {
+								              if(record["superOrgs"][i]["uri"]){ 
+                                html += "<a href=\\"" + vivoUrlRoot + record["superOrgs"][i]["uri"] + "\\" >" + record["superOrgs"][i]["name"] + "</a>"; }
+								                else {
+									                html += record["superOrgs"][i]["name"]
+								                }
+                                if (i < record["superOrgs"].length - 1) {
+                                    html += "; ";
+                                }
+                            }
+                            html += "</dd><br />";
+                        }
+                    }
 
                     // display associated people
                     if (record["people"]) {
