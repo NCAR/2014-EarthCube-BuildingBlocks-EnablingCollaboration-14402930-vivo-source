@@ -141,7 +141,9 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                         html += "<div style=\'display: inline-block; margin-top:.5em;\'>";
                         var escapedDOI = encodeURIComponent(record["doi"]);
                         html += "<div style=\'display: inline;margin-right: .5em;\'><a href=\\"" + doiUrl + "\\" target=\\"_blank\\"><img src=\'https://img.shields.io/badge/DOI-" + escapedDOI.replace(/-/g, "--") + "-blue.svg\'></div>"
-                        html += "<div data-badge-type=\'1\' data-badge-popover=\'right\' data-link-target=\'_blank\' data-hide-no-mentions=\'true\' class=\'altmetric-embed\' data-doi=\'" + record["doi"] + "\' style=\'display: inline;margin-right: .5em;\'></div>"
+                        if(record["amscore"]) {
+                            html += "<div data-badge-type=\'1\' data-badge-popover=\'right\' data-link-target=\'_blank\' data-hide-no-mentions=\'true\' class=\'altmetric-embed\' data-doi=\'" + record["doi"] + "\' style=\'display: inline;margin-right: .5em;\'></div>"
+                        }
                     }
 
                   
