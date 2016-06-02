@@ -23,7 +23,11 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                     
                     
                         <dl class="doc_info_list">
-                          
+
+                        {{#if retirementDate}}
+                        <dt>Retired:</dt><dd> {{year retirementDate}}</dd>
+                        {{/if}}
+
                         {{#if principalInvestigators}}
                         <dt>PIs:</dt><dd> {{#expand principalInvestigators}} {{#if uri}}<a href="${url_base}{{encodeURL uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</dd>
                         {{/if}}
@@ -71,8 +75,8 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
             return encodeURIComponent(url);
         });
 
-        Handlebars.registerHelper("location", function(name) {
-            return "Test " + (name);
+        Handlebars.registerHelper("year", function(date) {
+            return new Date(date).getUTCFullYear();
         });
 
         Handlebars.registerHelper("orcidBadgeURL", function(orcid) {
