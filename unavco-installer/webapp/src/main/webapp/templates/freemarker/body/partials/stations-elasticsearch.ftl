@@ -132,6 +132,7 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                 search_fields_multi: ["*folded","_all"],
                 controls: false,
 				        pushstate: false,
+                csv_export: true,
                 facets: [
                     {"field": "principalInvestigators.name.exact", "display": "Principal Investigator", "open" : true, "controls": false},
                     {"field": "state.name.exact", "display": "State", "open" : true, "controls": false},
@@ -167,7 +168,7 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/vendo
 
                   .facet-view-simple{
                       width:100%;
-                      height:100%;
+                      //height:100%;
                       margin:0 auto 0 auto;
                   }
                   
@@ -220,10 +221,6 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/vendo
                     color: #355374 !important;
                   }
                   
-                  .pagination {
-                    margin-top: 16px !important;
-                  }
-                  
                   .facet-panel {
                     border: 2px solid;
                     border-color: #f3f3f0;
@@ -252,5 +249,4 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/vendo
 </div>
 
 </section>
-
 <div class="facet-view-simple"></div>

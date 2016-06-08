@@ -25,6 +25,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 default_facet_size: 5,
                 search_fields_multi: ["*folded","_all"],
 				        pushstate: false,
+				        csv_export: true,
                 facets: [
                   {"field": "administratingOrg.name.exact", "display": "Grant Administrator", "open" : true, "controls": false},
                   {"field": "assignedBy.name.exact", "display": "Awarding Organization", "open" : true, "controls": false},
@@ -226,10 +227,6 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                       
                       h3 a:link, h3 a:visited{
                         text-decoration: none !important;
-                      }
-                      
-                      .pagination {
-                        margin-top: 16px !important;
                       }
                       
                       .facet-panel {

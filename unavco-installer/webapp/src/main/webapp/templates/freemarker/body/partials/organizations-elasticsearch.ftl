@@ -25,6 +25,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 default_facet_size: 10,
                 search_fields_multi: ["*folded","_all"],
 				        pushstate: false,
+				        csv_export: true,
                 facets: [
                   {"field": "membershipType", "display": "UNAVCO Membership", "open" : true, "controls": false},
                   {"field": "mostSpecificType", "display": "Type", "open" : true, "controls": false}
@@ -57,6 +58,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                         html += "<dt>Location:</dt><dd> " + record["location"]["lat"] + ", " + record["location"]["lon"] + "</dd>";
                     }
 
+
                     // display sub organizations
                     if (record["subOrgs"]) {
                         if (record["subOrgs"].length != 0) {
@@ -74,7 +76,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                             html += "</dd><br />";
                         }
                     }
-
+                    
                     // display parent organizations
                     if (record["superOrgs"]) {
                         if (record["superOrgs"].length != 0) {
@@ -91,7 +93,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                             }
                             html += "</dd><br />";
                         }
-                    }
+                    }   
 
                     // display associated people
                     if (record["people"]) {
@@ -214,10 +216,6 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                       h3 a:link, h3 a:visited{
                         text-decoration: none !important;
                         color: #355374 !important;
-                      }
-                      
-                      .pagination {
-                        margin-top: 16px !important;
                       }
                       
                       .facet-panel {

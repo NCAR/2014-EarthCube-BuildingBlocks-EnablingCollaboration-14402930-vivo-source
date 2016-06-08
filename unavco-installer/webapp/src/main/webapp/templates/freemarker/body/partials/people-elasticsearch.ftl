@@ -24,7 +24,7 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                     
                         <dl class="doc_info_list">
                         {{#if (showMostSpecificType mostSpecificType)}}<dt>Role:</dt><dd>{{mostSpecificType}}</dd>{{/if}}
-                        {{#if email}}<dt>Email:</dt><dd><a href="mailto:{{email}}">{{email}}</a></dd>{{/if}}
+                        {{#if email}}<dt>Email:</dt><dd><a href="&#109;&#097;&#105;&#108;&#116;&#111;&#58;{{email}}">{{email}}</a></dd>{{/if}}
 
                         {{#if organizations}}
                         <dt>Organizations:</dt>
@@ -120,6 +120,7 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                 search_fields_multi: ["*folded","_all"],
                 controls: false,
 				        pushstate: false,
+                csv_export: true,
                 facets: [
                     {"field": "mostSpecificType.exact", "display": "UNAVCO role", "open": true, "controls": false},
                     // {"field": "organizations.organization.name.exact", "display": "Organization"},
@@ -206,10 +207,6 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/vendo
                   h3 a:link, h3 a:visited{
                     text-decoration: none !important;
                     color: #355374 !important;
-                  }
-                  
-                  .pagination {
-                    margin-top: 16px !important;
                   }
                   
                   .facet-panel {

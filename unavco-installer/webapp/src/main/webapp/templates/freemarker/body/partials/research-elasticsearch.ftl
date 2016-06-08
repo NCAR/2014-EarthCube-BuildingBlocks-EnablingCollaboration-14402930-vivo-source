@@ -19,12 +19,14 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                 sort: [{"_score" : {"order" : "desc"}},{"publicationYear" : {"order" : "desc"}}],
                 sharesave_link: false,
                 search_button: true,
+                //default_freetext_fuzzify: "*",
                 default_facet_operator: "AND",
                 default_facet_order: "count",
                 default_facet_size: 15,
                 search_fields_multi: ["*folded","_all","*ngram"],
                 min_score : 0.2,
                 pushstate: false,
+                csv_export: true,
                 facets: [
                     {\'field\': \'mostSpecificType\', \'display\': \'Type\', \'controls\': false},
                     {\'field\': \'subjectArea.name.exact\', \'display\': \'Subject Area\', \'controls\': false},
@@ -218,10 +220,6 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                       h3 a:link, h3 a:visited{
                         text-decoration: none !important;
                         color: #355374 !important;
-                      }
-                      
-                      .pagination {
-                        margin-top: 16px !important;
                       }
                       
                       .facet-panel {
