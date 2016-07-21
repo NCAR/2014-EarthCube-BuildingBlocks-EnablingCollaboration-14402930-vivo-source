@@ -14,6 +14,10 @@
     </#if>
 </#if>
 
+<#if metaTags??>
+    ${metaTags.list()}
+</#if>
+
 <title>${(title?html)!siteName!}</title>
 
 <#-- VIVO OpenSocial Extension by UCSF -->
