@@ -16,7 +16,7 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
             <td>
                 <div class="document">
                         <h3>
-                            <a class="" href="{{uri}}">{{name}}</a>
+                            <a class="" href="${url_base}{{uri}}">{{name}}</a>
                         </h3>
                         <div class="doc_info">
                         {{#if thumbnail}}<div><div class="thumbnail" style="width:25%"><img src="{{thumbnail}}"></div><div style="float:right; width:70%">{{/if}}
@@ -32,11 +32,11 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                         {{/if}}
 
                         {{#if researchArea}}
-                        <dt>Research Areas:</dt><dd> {{#expand researchArea}}<a href="{{uri}}" target="_blank">{{name}}</a>{{/expand}}</dd>
+                        <dt>Research Areas:</dt><dd> {{#expand researchArea}}<a href="${url_base}{{uri}}" target="_blank">{{name}}</a>{{/expand}}</dd>
                         {{/if}}
     					
                         {{#if expertiseArea}}
-                        <dt>Expertise Areas:</dt><dd> {{#expand expertiseArea}}<a href="{{uri}}" target="_blank">{{name}}</a>{{/expand}}</dd>
+                        <dt>Expertise Areas:</dt><dd> {{#expand expertiseArea}}<a href="${url_base}{{uri}}" target="_blank">{{name}}</a>{{/expand}}</dd>
                         {{/if}}
 
                         {{#if homeCountry}}

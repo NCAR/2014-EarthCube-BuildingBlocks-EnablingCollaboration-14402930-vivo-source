@@ -252,7 +252,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
 
 <div class="alert alert-info fade in">
    <a href="#" class="close" data-dismiss="alert" aria-label="close">&#10006;</a>
-<small>${i18n().class_group_description_publications}</small>
+<small>${i18n().class_group_description_grants}</small>
 </div>
 
 </section>
