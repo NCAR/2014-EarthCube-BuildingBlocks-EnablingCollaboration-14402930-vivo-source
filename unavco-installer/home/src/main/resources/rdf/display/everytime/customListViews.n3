@@ -11,3 +11,7 @@
 <http://purl.obolibrary.org/obo/ERO_0000070>
 <http://vitro.mannlib.cornell.edu/ontologies/display/1.1#listViewConfigFile>
 "listViewConfig-researchAreaOf.xml" .
+
+<http://vivoweb.org/ontology/core#features>
+<http://vitro.mannlib.cornell.edu/ontologies/display/1.1#listViewConfigFile>
+"listViewConfig-features.xml" .
