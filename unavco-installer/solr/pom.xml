@@ -7,17 +7,17 @@
 
     <groupId>org.vivoweb</groupId>
     <artifactId>vivo-installer-solr</artifactId>
-    <version>1.9.0-SNAPSHOT</version>
+    <version>1.9.0</version>
     <packaging>war</packaging>
 
     <parent>
         <groupId>org.vivoweb</groupId>
         <artifactId>vivo-installer</artifactId>
-        <version>1.9.0-SNAPSHOT</version>
+        <version>1.9.0</version>
         <relativePath>..</relativePath>
     </parent>
 
-    <name>Custom VIVO Install Solr App</name>
+    <name>VIVO Install Solr App</name>
 
     <profiles>
         <profile>
