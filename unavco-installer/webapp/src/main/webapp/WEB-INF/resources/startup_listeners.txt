@@ -1,8 +1,8 @@
 #
-# ServletContextListeners for Vitro, to be instantiated and run by the StartupManager.
+# ServletContextListeners for VIVO, to be instantiated and run by the StartupManager.
 # 
 # For more information, 
-#     https://wiki.duraspace.org/display/VIVO/The+StartupManager
+#     https://sourceforge.net/apps/mediawiki/vivo/index.php?title=The_StartupManager
 #
 
 edu.cornell.mannlib.vitro.webapp.servlet.setup.JvmSmokeTests
@@ -17,7 +17,7 @@ edu.cornell.mannlib.vitro.webapp.utils.developer.DeveloperSettings$Setup
 
 edu.cornell.mannlib.vitro.webapp.application.ApplicationImpl$ComponentsSetup
 
-# edu.cornell.mannlib.vitro.webapp.config.RevisionInfoSetup
+edu.cornell.mannlib.vitro.webapp.config.RevisionInfoSetup
 
 edu.cornell.mannlib.vitro.webapp.email.FreemarkerEmailFactory$Setup
 
@@ -27,6 +27,11 @@ edu.cornell.mannlib.vitro.webapp.servlet.setup.ContentModelSetup
 edu.cornell.mannlib.vitro.webapp.web.images.PlaceholderUtil$Setup
 
 edu.cornell.mannlib.vitro.webapp.servlet.setup.FileGraphSetup
+
+# Invokes process to perform updates to align with ontology changes if needed -->
+# edu.cornell.mannlib.vitro.webapp.migration.rel16.Release16Migrator
+# edu.cornell.mannlib.vitro.webapp.migration.rel17.Release17Migrator
+edu.cornell.mannlib.vitro.webapp.migration.rel18.Release18Migrator
 
 edu.cornell.mannlib.vitro.webapp.application.ApplicationImpl$ReasonersSetup
 edu.cornell.mannlib.vitro.webapp.servlet.setup.SimpleReasonerSetup
@@ -44,9 +49,20 @@ edu.cornell.mannlib.vitro.webapp.auth.policy.setup.CommonPolicyFamilySetup
 
 edu.cornell.mannlib.vitro.webapp.auth.policy.RootUserPolicy$Setup
 
+edu.cornell.mannlib.vivo.auth.policy.SelfEditorRelationshipPolicy$Setup
+
 edu.cornell.mannlib.vitro.webapp.auth.policy.RestrictHomeMenuItemEditingPolicy$Setup
 
 edu.cornell.mannlib.vitro.webapp.services.shortview.ShortViewServiceSetup
+
+edu.cornell.mannlib.vitro.webapp.visualization.setup.VisualizationSetup
+
+org.vivoweb.webapp.startup.DataGetterN3Setup
+org.vivoweb.webapp.startup.GeneratorSetup
+org.vivoweb.webapp.startup.JSONWrapperSetup
+org.vivoweb.webapp.startup.MenuManagementSetup
+org.vivoweb.webapp.startup.TemplateModelSetup
+org.vivoweb.webapp.startup.SearchResultTemplateModelSetup
 
 edu.ucsf.vitro.opensocial.OpenSocialSmokeTests
 
@@ -66,6 +82,8 @@ org.apache.commons.fileupload.servlet.FileCleanerCleanup
 # The VClassGroupCache index uses a "public" permission, so the PropertyRestrictionPolicyHelper 
 #   and the PermissionRegistry must already be set up.
 edu.cornell.mannlib.vitro.webapp.dao.jena.VClassGroupCache$Setup
+
+edu.cornell.mannlib.vivo.orcid.OrcidContextSetup
 
 # This should be near the end, because it will issue a warning if the connection to Solr times out.
 edu.cornell.mannlib.vitro.webapp.servlet.setup.SolrSmokeTest
