@@ -4,6 +4,7 @@ deploy.properties
 build.properties
 runtime.properties
 elasticsearch-settings.ftl
+googleAnalytics.ftl
 
 #Build dir
 .build/
