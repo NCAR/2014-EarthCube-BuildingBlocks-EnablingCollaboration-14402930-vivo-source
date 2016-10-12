@@ -1,9 +1,9 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
-<#-- Custom object property statement view for faux property "positions". See the PropertyConfig.3 file for details. 
-    
+<#-- Custom object property statement view for faux property "positions". See the PropertyConfig.3 file for details.
+
      This template must be self-contained and not rely on other variables set for the individual page, because it
-     is also used to generate the property statement during a deletion.  
+     is also used to generate the property statement during a deletion.
  -->
 
 <#import "lib-sequence.ftl" as s>
@@ -14,14 +14,14 @@
 <#-- Use a macro to keep variable assignments local; otherwise the values carry over to the
      next statement -->
 <#macro showPosition statement>
-    
+
     <#local posTitle>
         <#if statement.positionTitle?has_content || statement.hrJobTitle?has_content>
             <span itemprop="jobTitle">${statement.positionTitle!statement.hrJobTitle!}</span>
         </#if>
     </#local>
-    
-    
+
+
     <#local linkedIndividual>
         <#if statement.org??>
             <span itemprop="worksFor" itemscope itemtype="http://schema.org/Organization">
@@ -37,11 +37,11 @@
     <#local middleOrganization>
         <#if statement.middleOrg??>
             <span itemprop="worksFor" itemscope itemtype="http://schema.org/Organization">
-                <a itemprop="name" href="${profileUrl(statement.uri("middleOrg"))}" title="${i18n().middle_organization}">${statement.middleOrgName!}</a>
+                <a href="${profileUrl(statement.uri("middleOrg"))}" title="${i18n().middle_organization}"><span itemprop="name">${statement.middleOrgName!}</span></a>
             </span>
         </#if>
     </#local>
-    
+
     <@s.join [ posTitle!, linkedIndividual, middleOrganization! ]/>  <@dt.yearIntervalSpan "${statement.dateTimeStart!}" "${statement.dateTimeEnd!}" />
 
 </#macro>
