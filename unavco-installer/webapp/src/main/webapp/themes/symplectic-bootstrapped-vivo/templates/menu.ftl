@@ -43,11 +43,11 @@
 	<#if flash?has_content>
 		<#if flash?starts_with(i18n().menu_welcomestart) >
 			<section  id="welcome-msg-container" role="container">
-				<section  id="welcome-message" role="alert">${flash}</section>
+				<section  id="welcome-message" role="alert"><div class="alert alert-success">${flash}</div></section>
 			</section>
 		<#else>
 			<section id="flash-message" role="alert">
-				${flash}
+			<div class="alert alert-info">	${flash} </div>
 			</section>
 		</#if>
 	</#if>
