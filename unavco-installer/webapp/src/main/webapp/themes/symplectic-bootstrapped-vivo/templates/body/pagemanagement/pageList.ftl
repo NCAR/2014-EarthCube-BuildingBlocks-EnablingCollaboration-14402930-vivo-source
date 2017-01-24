@@ -67,7 +67,7 @@
       <input type="hidden" name="typeOfNew" value="http://vitro.mannlib.cornell.edu/ontologies/display/1.1#Page">
       <input type="hidden" name="switchToDisplayModel" value="1">
       <input type="hidden" name="editForm" value="edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.generators.ManagePageGenerator" role="input">
- 	<input id="submit" value="${i18n().add_page}" role="button" type="submit" >
+ 	<input class="btn btn-success" id="submit" value="${i18n().add_page}" role="button" type="submit" >
   </form>
   <br />
  <p style="margin-top:10px">${i18n().use_capitalized} <a id="menuMgmtLink" href="${urls.base}/individual?uri=http%3A%2F%2Fvitro.mannlib.cornell.edu%2Fontologies%2Fdisplay%2F1.1%23DefaultMenu&switchToDisplayModel=true&previous=pageManagement" title="">${i18n().menu_orering}</a> ${i18n().to_order_menu_items}</p>
@@ -78,10 +78,10 @@
         confirmPageDeletion: '${i18n().confirm_page_deletion}'
     };
 </script>
-${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.8.9.custom.css" />',
+${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />',
 				'<link rel="stylesheet" href="${urls.base}/css/menupage/pageList.css" />')}
 
-${scripts.add('<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.8.9.custom.min.js"></script>')}
+${scripts.add('<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/customFormUtils.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/browserUtils.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/pageDeletion.js"></script>')}

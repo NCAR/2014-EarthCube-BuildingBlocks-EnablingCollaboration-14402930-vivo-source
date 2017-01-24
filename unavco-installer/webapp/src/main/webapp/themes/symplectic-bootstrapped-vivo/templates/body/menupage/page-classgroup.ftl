@@ -8,22 +8,20 @@
 
       <#assign classGroupDescription = "class_group_description_" + classGroupUri?replace("http://vivoweb.org/ontology#vitroClassGroup", "")>
       <#if !i18n()[classGroupDescription]?starts_with("ERROR: Text bundle")>
-         
+
           <div style="clear:both"></div>
             <div id="class-group-description">
 
               ${i18n()[classGroupDescription]}
-                      
+
           </div>
       </#if>
     </section>
 
-     
-         
+
+
     <#include "menupage-browse.ftl">
-    
-    ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/css/menupage/menupage.css" />')}
-    
+
     <#include "menupage-scripts.ftl">
 <#else>
     ${noDataNotification}

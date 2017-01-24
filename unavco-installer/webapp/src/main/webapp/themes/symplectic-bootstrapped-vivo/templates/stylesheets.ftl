@@ -10,5 +10,8 @@
 <link rel="stylesheet" href="${urls.theme}/css/homepage.css" />
 <link rel="stylesheet" href="${urls.theme}/css/individual.css" />
 
+${stylesheets.list()}
+
+
 <#--temporary until edit controller can include this when needed -->
-<#--<link rel="stylesheet" href="${urls.base}/css/edit.css" />-->
+<#--<link rel="stylesheet" href="${urls.base}/css/edit.css" /> -->

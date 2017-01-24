@@ -7,8 +7,8 @@
             <properties>
                 <app-name>vivo</app-name>
 
-                <vivo-dir>/usr/local/vivo/home</vivo-dir>
-                <tomcat-dir>/usr/local/apache-tomcat-8.0.24</tomcat-dir>
+                <vivo-dir>/usr/local/vivo-test/home</vivo-dir>
+                <tomcat-dir>/usr/local/apache-tomcat-8.5.6</tomcat-dir>
                 <vivo-installer-dir>../unavco-installer</vivo-installer-dir>
 
                 <default-theme>wilma_unavco</default-theme>

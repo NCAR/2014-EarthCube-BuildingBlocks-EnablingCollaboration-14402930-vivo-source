@@ -74,7 +74,7 @@ ul#unavco-header-nav a:active {
 ul#unavco-header-nav a.log-out {
     padding-left: 10px;
 }
-.header {
+#branding > div.header {
   background: #08253b url(../images/header-background.png) no-repeat center center;
   background-size: cover;
   padding: 0;
@@ -270,6 +270,7 @@ These are helper classes to add margin gaps where needed
 ***********************************/
 .footer {
   padding: 35px 30px 36px;
+  margin-top: 50px;
   border-top: 1px solid #000000;
   background-color: #1b1b1b;
   text-align: center;
@@ -341,4 +342,12 @@ These are helper classes to add margin gaps where needed
   font-size: 1em;
   margin-left: 0;
   font-weight: bold;
+}
+
+table.form-background td {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+table.form-background td form {
+    padding : 0.2em;
 }
