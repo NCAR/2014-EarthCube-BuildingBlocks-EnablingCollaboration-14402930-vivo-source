@@ -17,30 +17,30 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
                             <a class="" href="${url_base}{{uri}}">{{name}}</a>
                         </h4>
                         <div class="doc_info">
-                        {{#if thumbnail}}<div><div class="thumbnail" style="width:25%"><img src="{{thumbnail}}"></div><div style="float:right; width:70%">{{/if}}
+                        {{#if thumbnail}}<div class="row"><div class="thumbnail col-lg-4 col-md-3 col-sm-2 col-xs-12"><img src="{{thumbnail}}"></div><div class="col-lg-8 col-md-9 col-sm-10 col-xs-12">{{/if}}
 
 
-                        <dl class="doc_info_list row">
-                        {{#if (showMostSpecificType mostSpecificType)}}<dt class="col-xs-3">Role:</dt><dd class="col-xs-9">{{mostSpecificType}}</dd>{{/if}}
-                        {{#if email}}<dt>Email:</dt><dd><a href="&#109;&#097;&#105;&#108;&#116;&#111;&#58;{{email}}">{{email}}</a></dd>{{/if}}
+
+                        {{#if (showMostSpecificType mostSpecificType)}}<div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Role:</div><div class="col-lg-9 col-sm-9">{{mostSpecificType}}</div></div>{{/if}}
+                        {{#if email}}<div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Email:</div><div class="col-lg-9 col-sm-9"><a href="&#109;&#097;&#105;&#108;&#116;&#111;&#58;{{email}}">{{email}}</a></div></div>{{/if}}
 
                         {{#if organizations}}
-                        <dt>Organizations:</dt>
-                        <dd>{{#list organizations}}{{#if orgrole}}{{orgrole}} - {{/if}}<a href="{{organization.uri}}" target="_blank">{{organization.name}}</a>{{/list}}</dd>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Organizations:</div>
+                        <div class="col-lg-9 col-sm-9">{{#list organizations}}{{#if orgrole}}{{orgrole}} - {{/if}}<a href="{{organization.uri}}" target="_blank">{{organization.name}}</a>{{/list}}</div></div>
                         {{/if}}
 
                         {{#if researchArea}}
-                        <dt>Research Areas:</dt><dd> {{#expand researchArea}}<a href="${url_base}{{uri}}" target="_blank">{{name}}</a>{{/expand}}</dd>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Research Areas:</div> <div class="col-lg-9 col-sm-9">{{#expand researchArea}}<a href="${url_base}{{uri}}" target="_blank">{{name}}</a>{{/expand}}</div></div>
                         {{/if}}
 
                         {{#if expertiseArea}}
-                        <dt>Expertise Areas:</dt><dd> {{#expand expertiseArea}}<a href="${url_base}{{uri}}" target="_blank">{{name}}</a>{{/expand}}</dd>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Expertise Areas:</div> <div class="col-lg-9 col-sm-9"> {{#expand expertiseArea}}<a href="${url_base}{{uri}}" target="_blank">{{name}}</a>{{/expand}}</div></div>
                         {{/if}}
 
                         {{#if homeCountry}}
-                        <dt>Country:</dt><dd> {{homeCountry.name}}</dd>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Country:</div> <div class="col-lg-9 col-sm-9"> {{homeCountry.name}}</div></div>
                         {{/if}}
-                      </dl>
+
                       {{#if thumbnail}}</div></div>{{/if}}
 
 
@@ -191,7 +191,7 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/css/f
 
                   .thumbnail {
                       display: inline-block;
-                      width: 150px;
+                      // width: 150px;
                       border-radius: 3px;
                       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
                       border: 1px;

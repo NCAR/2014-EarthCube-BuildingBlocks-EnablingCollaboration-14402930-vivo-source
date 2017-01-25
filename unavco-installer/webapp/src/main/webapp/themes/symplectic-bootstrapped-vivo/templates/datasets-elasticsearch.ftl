@@ -1,6 +1,7 @@
 <#include "elasticsearch-settings.ftl">
 
-${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview2/es.js"></script>',
+${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.1/handlebars.min.js"></script>',
+              '<script type="text/javascript" src="${urls.base}/js/facetview2/es.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/bootstrap3.facetview.theme.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/facetview2/jquery.facetview2.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/js.cookie.js"></script>',
@@ -8,9 +9,101 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                Cookies.set("alert-box-research", "closed", { path: "/" });});});
                jQuery(function( $ ){if( Cookies.get("alert-box-research") === "closed" ){$(".alert").hide();}});
                </script>',
+               '<script id="dataset-template" type="text/x-handlebars-template">
+       <tr>
+           <td>
+               <div class="document">
+                       <h4>
+                           <a class="" href="${url_base}{{uri}}">{{title}}</a>
+                       </h4>
+                       <div class="doc_info">
+
+                       {{#if dataTypes}}
+                       <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Dataset Type:</div>
+                       <div class="col-lg-9 col-sm-9">{{#expand dataTypes}} {{#if uri}}<a href="${url_base}{{encodeURL uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                       {{/if}}
+
+                       {{#if authors}}
+                       <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Authors:</div>
+                       <div class="col-lg-9 col-sm-9">{{#expand authors}} {{#if uri}}<a href="${url_base}{{encodeURL uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                       {{/if}}
+
+                       {{#if publicationYear}}
+                       <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Publication Year:</div><div class="col-lg-9 col-sm-9"> {{year publicationYear}}</div>
+                       {{/if}}
+
+                       {{#if citations}}
+                       <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Related documents::</div> <div class="col-lg-9 col-sm-9"> {{#expand citations}}<a href="${url_base}{{uri}}" target="_blank">{{name}}</a>{{/expand}}</div></div>
+                       {{/if}}
+
+                       {{#if stations}}
+                       <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Related stations::</div> <div class="col-lg-9 col-sm-9"> {{#expand stations}}<a href="${url_base}{{uri}}" target="_blank">{{name}}</a>{{/expand}}</div></div>
+                       {{/if}}
+
+                       {{#if homeCountry}}
+                       <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Country:</div> <div class="col-lg-9 col-sm-9"> {{homeCountry.name}}</div></div>
+                       {{/if}}
+
+                       {{!-- BADGES --}}
+                       {{#if doi}}
+                       <div style=\'display: inline-block; margin-top:.5em;\'>
+                           <div style=\'display: inline;margin-right: .5em;\'><a href="{{doiURL doi}}" target="_blank"><img src="{{doiBadgeURL doi}}" /></a></div>
+                       </div>
+                       {{/if}}
+
+                     </div>
+               </div>
+           </td>
+         </tr>
+   </script>',
+
+   '<script type="text/javascript">
+
+       Handlebars.registerHelper("doiURL", function(doi) {
+           return "https://doi.org/"+doi;
+       });
+
+       Handlebars.registerHelper("encodeURL", function(url) {
+           return encodeURIComponent(url);
+       });
+
+       Handlebars.registerHelper("year", function(date) {
+           return new Date(date).getUTCFullYear();
+       });
+
+       Handlebars.registerHelper("doiBadgeURL", function(doi) {
+           var escapedDOI = encodeURIComponent(doi).replace(/-/g, "--");
+           return "https://img.shields.io/badge/DOI-" + escapedDOI + "-blue.svg";
+       });
+
+       Handlebars.registerHelper("expand", function(items, options) {
+           var out = "";
+           var j = items.length - 1;
+           for(var i = 0; i < items.length; i++) {
+               out += options.fn(items[i]);
+               if(i < j) {
+                   out += "; ";
+               }
+           }
+           return out;
+       });
+
+       Handlebars.registerHelper("list", function(items, options) {
+           var out = "<ul class=\'list-unstyled\'>";
+           for(var i=0, l=items.length; i<l; i++) {
+               out = out + "<li>" + options.fn(items[i]) + "</li>";
+           }
+           return out + "</ul>";
+       });
+
+       var source = $("#dataset-template").html();
+       var template = Handlebars.compile(source);
+
+   </script>',
+
               '<script type="text/javascript">
         jQuery(document).ready(function($) {
-            $(\'.facet-view-simple\').facetview({
+            $(".facet-view-simple").facetview({
                 search_url: "${elasticsearch_base}/dataset/_search",
                 page_size: 10,
                 page_size_dropdown: true,
@@ -30,122 +123,22 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                   {"field": "authors.name.exact", "size": 20, "display": "Author", "controls": false}
                 ],
                 search_sortby: [
-                    {\'display\':\'Relevance\',\'field\':["_score","publicationYear"]},
-                    {\'display\':\'Title\',\'field\':\'title.exact\'},
-                    {\'display\':\'Date\',\'field\':\'publicationYear\'}
+                    {"display":"Relevance","field":["_score","publicationYear"]},
+                    {"display":"Title","field":"title.exact"},
+                    {"display":"Date","field":"publicationYear"}
                 ],
                 render_result_record: function(options, record)
-                {
+                  {
+                      return template(record).trim();
+                  },
+                  selected_filters_in_facet: true,
+                                show_filter_field : true,
+                                show_filter_logic: true,
 
-                    var doiUrl = "https://dx.doi.org/"+record["doi"];
-					var vivoUrlRoot = "${url_base}";
+                            });
+                        });
 
-                    var html = "<tr><td><div class=\'document\'>";
-
-					// title and link to vivo page
-                    html += "<h4><a href=\\""+ vivoUrlRoot + record["uri"] + "\\" >" + record["title"] + "</a></h4><div class=\'doc_info\'>";
-
-                    // Record info
-                    html += "<dl class=\'doc_info_list\'>";
-
-                    // display dataTypes
-                    if (record["dataTypes"]) {
-                        html += "<dt>Dataset Type:</dt><dd>";
-                        if (record["dataTypes"].length == 0) {
-                            html += \'N/A\'
-                        } else {
-                            for (var i = 0; i < record["dataTypes"].length; i++) {
-                                html += "<a href=\'" + vivoUrlRoot + record["dataTypes"][i]["uri"] + "\' >" + record["dataTypes"][i]["name"] + "</a>";
-                                if (i < record["dataTypes"].length - 1) {
-                                    html += "; ";
-                                }
-                            }
-                        }
-                        html += "</dd>";
-                    }
-
-                    // display authors
-                    if (record["authors"]) {
-                        if (record["authors"].length != 0) {
-                            html += "<dt>Authors:</dt><dd>";
-                            for (var i = 0; i < record["authors"].length; i++) {
-								if(record["authors"][i]["uri"]){
-                                html += "<a href=\\"" + vivoUrlRoot + record["authors"][i]["uri"] + "\\" >" + record["authors"][i]["name"] + "</a>"; }
-								else {
-									html += record["authors"][i]["name"]
-								}
-                                if (i < record["authors"].length - 1) {
-                                    html += "; ";
-                                }
-                            }
-                            html += "</dd>";
-                        }
-                    }
-
-                    // display publicationYear
-                    if (record["publicationYear"]) {
-						          pubYear = new Date(record["publicationYear"]).getUTCFullYear();
-                        html += "<dt>Publication Date:</dt><dd>" + pubYear + "</dd>";
-                    }
-
-
-                // display citations
-               if (record["citations"]) {
-                   html += "<dt>Related documents:</dt><dd>";
-                   if (record["citations"].length == 0) {
-                       html += \'N/A\'
-                   } else {
-                       for (var i = 0; i < record["citations"].length; i++) {
-                           html += "<a href=\'" + vivoUrlRoot + record["citations"][i]["uri"] + "\' >" + record["citations"][i]["name"] + "</a>";
-                           if (i < record["citations"].length - 1) {
-                               html += "; ";
-                           }
-                       }
-                   }
-                   html += "</dd>";
-               }
-
-
-                   // display related stations
-               if (record["stations"]) {
-                 html += "<dt>Related stations:</dt><dd>";
-                 if (record["stations"].length == 0) {
-                     html += "N/A"
-                 } else {
-                   for (var i = 0; i < record["stations"].length; i++) {
-                       html += "<a href=\'" + vivoUrlRoot + record["stations"][i]["uri"] + "\' >" + record["stations"][i]["name"] + "</a>";
-                       if (i < record["stations"].length - 1) {
-                           html += "; ";
-                       }
-                   }
-                 }
-                 html += "</dd>";
-               }
-
-                    html += "</dl>"
-
-               // Badges
-
-               if (record["doi"]) {
-                   html += "<div style=\'display: inline-block; margin-top:.5em;\'>";
-                   var escapedDOI = encodeURIComponent(record["doi"]);
-                   html += "<div style=\'display: inline;margin-right: .5em;\'><a href=\\"" + doiUrl + "\\" target=\\"_blank\\"><img src=\'https://img.shields.io/badge/DOI-" + escapedDOI.replace(/-/g, "--") + "-blue.svg\'></div>"
-               }
-
-
-
-
-               html += "</div></div></div></td></tr>";
-               return html;
-                },
-                selected_filters_in_facet: true,
-                show_filter_field : true,
-                show_filter_logic: true,
-
-            });
-        });
-
-    </script>')}
+                    </script>')}
 
     ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/css/facetview.css" />',
                       '<link rel="stylesheet" href="${urls.base}/js/facetview2/css/browsers.css" />',
