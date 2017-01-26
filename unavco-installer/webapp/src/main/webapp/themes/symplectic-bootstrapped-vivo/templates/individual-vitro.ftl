@@ -1,5 +1,6 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 <#import "lib-microformats.ftl" as mf>
+<#include "individual-lightboxscripts.ftl">
 
 <#--Number of labels present-->
 <#if !labelCount??>
@@ -12,16 +13,28 @@
 <#--Number of distinct languages represented, with no language tag counting as a language, across labels-->
 <#if !languageCount??>
 	<#assign languageCount = 1>
-</#if>	
+</#if>
+
+<#assign individualImage>
+	<@p.image 	individual=individual
+					propertyGroups=propertyGroups
+					namespaces=namespaces
+					editable=editable
+					showPlaceholder="with_add_link" />
+</#assign>
 
 <#-- Default individual profile page template -->
 <#--@dumpAll /-->
 <div class="row">
-	<div class="col-md-12">
+	<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
+			<div class="col-md-8 col-sm-8 col-xs-12">
+	<#else>
+			<div class="col-md-12 col-sm-12 col-xs-12">
+	</#if>
 		<section id="individual-intro" class="vcard" role="region" <@mf.sectionSchema individual/>>
-			<section id="share-contact" role="region">
+
 				<#-- Image -->
-				<#assign individualImage>
+				<#-- <#assign individualImage>
 				<@p.image individual=individual
 					propertyGroups=propertyGroups
 					namespaces=namespaces
@@ -33,7 +46,7 @@
 					<#assign infoClass = 'class="withThumb"'/>
 				</#if>
 				<div id="photo-wrapper">${individualImage}</div>
-			</section>
+			</section> -->
 			<!-- start section individual-info -->
 			<section id="individual-info" ${infoClass!} role="region">
 				<#include "individual-adminPanel.ftl">
@@ -47,35 +60,66 @@
 						<h2>${relatedSubject.relatingPredicateDomainPublic} for ${relatedSubject.name}</h2>
 						<p>
 							<a href="${relatedSubject.url}" title="${i18n().return_to(relatedSubject.name)}">&larr; ${i18n().return_to(relatedSubject.name)}</a>
-						</p>                
-					<#else>                
-						<h1 class="fn h2" itemprop="name">
+						</p>
+					<#else>
+						<h2>
+							<#if classSpecificIcon??>
+								${classSpecificIcon!}
+							<#else>
+									<span class="class-icon glyphicon glyphicon-asterisk"></span>
+							</#if>
+
 							<#-- Label of object -->
 							<@p.label individual editable labelCount localesCount languageCount/>
-						</h1>
+
 						<#--  Most-specific types -->
 						<@p.mostSpecificTypes individual />
-						<span id="iconControlsVitro" class="glyphicon glyphicon-link" title="${individual.uri}"></span>
+						<#-- This isn't linked to anything right now.... so commenting out -->
+						<#-- <span id="iconControlsVitro" class="glyphicon glyphicon-link" title="${individual.uri}"></span>--></h2>
 					</#if>
 				</header>
-						
-			<#if individualProductExtension??>
-				${individualProductExtension}
-			<#else>
-					</section> <!-- individual-info -->
-				</section> <!-- individual-intro -->
-			</#if>
+
+				<#if individualProductExtension??>
+					${individualProductExtension}
+				</#if>
+
 	</div>
+					</section> <!-- individual-info -->
+			<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
+					<div class="col-md-4 col-sm-4 col-xs-12">
+					<section class="share-contact" role="region">
+			</#if>
+
+						<!-- Image -->
+						<#if ( individualImage?contains('<img class="img-rounded">') )>
+								<#assign infoClass = 'class="withThumb"'/>
+						</#if>
+
+						<div id="photo-wrapper">
+							${individualImage}
+						</div>
+
+					<#if sideIndividualProductExtension??>
+						${sideIndividualProductExtension}
+					</#if>
+
+
+					<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
+			</div>
+		</section>
+					</#if>
+	</section> <!-- individual-intro-->
+
 </div>
-<#assign nameForOtherGroup = "${i18n().other}"> 
+<#assign nameForOtherGroup = "${i18n().other}">
 
 <!-- Property group menu or tabs -->
-<#-- 
+<#--
 	With release 1.6 there are now two types of property group displays: the original property group
 	 menu and the horizontal tab display, which is the default. If you prefer to use the property
 	 group menu, simply substitute the include statement below with the one that appears after this
 	 comment section.
-	 
+
 	 <#include "individual-property-group-menus.ftl">
 -->
 

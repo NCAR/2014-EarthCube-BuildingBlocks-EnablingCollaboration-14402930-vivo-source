@@ -26,15 +26,15 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
 
                         {{#if organizations}}
                         <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Organizations:</div>
-                        <div class="col-lg-9 col-sm-9">{{#list organizations}}{{#if orgrole}}{{orgrole}} - {{/if}}<a href="{{organization.uri}}" target="_blank">{{organization.name}}</a>{{/list}}</div></div>
+                        <div class="col-lg-9 col-sm-9">{{#list organizations}}{{#if orgrole}}{{orgrole}} - {{/if}}<a href="${url_base}{{organization.uri}}">{{organization.name}}</a>{{/list}}</div></div>
                         {{/if}}
 
                         {{#if researchArea}}
-                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Research Areas:</div> <div class="col-lg-9 col-sm-9">{{#expand researchArea}}<a href="${url_base}{{uri}}" target="_blank">{{name}}</a>{{/expand}}</div></div>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Research Areas:</div> <div class="col-lg-9 col-sm-9">{{#expand researchArea}}<a href="${url_base}{{uri}}">{{name}}</a>{{/expand}}</div></div>
                         {{/if}}
 
                         {{#if expertiseArea}}
-                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Expertise Areas:</div> <div class="col-lg-9 col-sm-9"> {{#expand expertiseArea}}<a href="${url_base}{{uri}}" target="_blank">{{name}}</a>{{/expand}}</div></div>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Expertise Areas:</div> <div class="col-lg-9 col-sm-9"> {{#expand expertiseArea}}<a href="${url_base}{{uri}}">{{name}}</a>{{/expand}}</div></div>
                         {{/if}}
 
                         {{#if homeCountry}}

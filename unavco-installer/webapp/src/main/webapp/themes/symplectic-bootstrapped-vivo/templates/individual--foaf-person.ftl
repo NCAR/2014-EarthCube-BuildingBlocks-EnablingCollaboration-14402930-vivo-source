@@ -31,7 +31,7 @@
 				<#if (title.statements?size < 1) >
 					<@p.addLinkWithLabel title editable />
 				<#elseif editable>
-					<h2>${title.name?capitalize!}</h2>
+					${title.name?capitalize!}
 					<@p.verboseDisplay title />
 				</#if>
 				<#list title.statements as statement>
@@ -45,7 +45,7 @@
 		<#--</#if> -->
 		<#-- If preferredTitle is unpopulated, display mostSpecificTypes -->
 		<#if ! (title.statements)?has_content>
-	              <#--	<@p.mostSpecificTypes individual /> -->
+	              	<@p.mostSpecificTypes individual />
 		</#if>
 </#assign>
 
@@ -53,9 +53,45 @@
 <#include "individual-orcidInterface.ftl">
 
 	<div class="row person-content">
-		<div class="container">
+		<div class="row container">
 			<#-- <section itemscope itemtype="http://schema.org/Person" id="individual-intro" class="vcard person" role="region"> -->
-			<div class="col-md-5 col-sm-5 col-xs-12">
+			<div class="col-md-8 col-sm-8 col-xs-12">
+				<section id="individual-info" ${infoClass!} role="region">
+					<#include "individual-adminPanel.ftl">
+					<header>
+						<h2>
+							<span class="class-icon glyphicon glyphicon-user"></span>
+
+							${foafFullName}
+						</h2>
+							<#if relatedSubject??>
+								<h2>${relatedSubject.relatingPredicateDomainPublic} ${i18n().indiv_foafperson_for} ${relatedSubject.name}</h2>
+								<p>
+									<a href="${relatedSubject.url}" title="${i18n().indiv_foafperson_return}">&larr; ${i18n().indiv_foafperson_return} ${relatedSubject.name}</a>
+								</p>
+							</#if>
+							<!-- Positions -->
+							<#include "individual-custom-positions.ftl">
+					</header>
+
+
+				<!-- Overview -->
+				 <#-- <#include "individual-overview.ftl">	-->
+
+					<!-- Research Areas -->
+					<#include "individual-custom-researchAreas.ftl">
+
+					<!-- Expertise -->
+	        <#include "individual-expertise.ftl">
+
+					<!-- Geographic Focus -->
+					<#-- <#include "individual-custom-geographicFocus.ftl"> -->
+
+					<#include "individual-openSocial.ftl">
+				</section>
+
+	    </div>
+			<div class="col-md-4 col-sm-4 col-xs-12">
 				<section itemscope itemtype="http://schema.org/Person" id="individual-intro" class="vcard person" role="region">
 					<section class="share-contact" role="region">
 						<!-- Image -->
@@ -74,9 +110,7 @@
 						<div id="photo-wrapper">
 							${individualImage}
 						</div>
-						<h2>
-							${foafFullName}
-						</h2>
+
 
 						<!-- Contact Info -->
 				<#--<div id="individual-tools-people">
@@ -101,37 +135,6 @@
 					</section>
 				</section>
 			</div>
-		<div class="col-md-7 col-sm-7 col-xs-12">
-			<section id="individual-info" ${infoClass!} role="region">
-				<#include "individual-adminPanel.ftl">
-				<header>
-						<#if relatedSubject??>
-							<h2>${relatedSubject.relatingPredicateDomainPublic} ${i18n().indiv_foafperson_for} ${relatedSubject.name}</h2>
-							<p>
-								<a href="${relatedSubject.url}" title="${i18n().indiv_foafperson_return}">&larr; ${i18n().indiv_foafperson_return} ${relatedSubject.name}</a>
-							</p>
-						</#if>
-						<!-- Positions -->
-						<#include "individual-custom-positions.ftl">
-				</header>
-
-
-			<!-- Overview -->
-			 <#-- <#include "individual-overview.ftl">	-->
-
-				<!-- Research Areas -->
-				<#include "individual-custom-researchAreas.ftl">
-
-				<!-- Expertise -->
-        <#include "individual-expertise.ftl">
-
-				<!-- Geographic Focus -->
-				<#-- <#include "individual-custom-geographicFocus.ftl"> -->
-
-				<#include "individual-openSocial.ftl">
-			</section>
-
-    </div>
 </div>
 <#-- </section>
 	</div> --> <#-- this is closed in individual-foaf-property-group-tabs -->

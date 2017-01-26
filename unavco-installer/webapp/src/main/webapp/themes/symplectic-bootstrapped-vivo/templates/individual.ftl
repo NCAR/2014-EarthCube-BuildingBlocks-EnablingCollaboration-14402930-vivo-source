@@ -15,12 +15,20 @@
     ${departmentalGrantsExtension!}
     <!--PREINDIVIDUAL OVERVIEW.FTL-->
     <#include "individual-vocabularyService.ftl">
-    <#include "individual-webpage.ftl">
     <#include "individual-overview.ftl">
     ${affiliatedResearchAreas!}
         </section> <!-- #individual-info -->
     </section> <!-- #individual-intro -->
     <!--postindividual overiew ftl-->
+</#assign>
+
+<#assign sideIndividualProductExtension>
+    <!--Image stuff goes... here?-->
+        <!--And maybe... location???
+        <h5>Quick info</h5>
+    <#include "individual-custom-webpage.ftl">-->
+    ${sideClassSpecificExtension!}
+
 </#assign>
 
 <#if individual.conceptSubclass() >

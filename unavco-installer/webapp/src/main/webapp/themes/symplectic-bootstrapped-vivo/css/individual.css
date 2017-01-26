@@ -30,6 +30,24 @@ Homepage colours
 /*################################################################################
 Styling for the left hand side contact info column on the individual person page
 ################################################################################*/
+#individual-info h2 {
+  font-style: italic;
+}
+
+.class-icon {
+  color: #cc2927;
+  vertical-align: top;
+}
+
+.display-title{
+    font-size: .825em;
+    color: #5e6363;
+    border-left: 1px solid #a6b1b0;
+    padding-left: 10px;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
 .share-contact {
   background: #ececec;
   padding: 0.8em;
@@ -37,7 +55,7 @@ Styling for the left hand side contact info column on the individual person page
   border: 1px solid #d3d3d3;
   border-radius: 3px;
 }
-.share-contact .img circle {
+.share-contact .img-rounded {
   box-shadow: 0 2px 5px #afafaf;
 }
 .share-contact ul {
@@ -51,7 +69,6 @@ Styling for the left hand side contact info column on the individual person page
 }
 .share-contact h5 {
   font-size: 18px;
-  margin: 2em 0 1em 0;
 }
 .share-contact .emails-container {
   margin: 1em 0;
@@ -151,7 +168,7 @@ li.list-group-item {
 #individual-hasResearchArea {
   padding-left: 0;
   font-size: 14px;
-  margin: 8px auto;
+  margin: 15px auto;
 }
 #individual-hasResearchArea .list-group-item {
   padding: 7px 10px 0 0;
@@ -190,7 +207,7 @@ This is styling for the individual object pages i.e. Publications, grants etc
 }
 /* The tab content of objects */
 .individual-objects ul.nav-tabs {
-  margin: auto auto 0 auto;
+  margin: 15px auto 0 auto;
   border-bottom: 0;
 }
 .individual-objects .tab-content .property-list .list-group-item {
