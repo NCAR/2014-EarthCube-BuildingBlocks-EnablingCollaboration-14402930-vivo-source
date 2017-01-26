@@ -102,11 +102,11 @@
 <script>
 	var individualLocalName = "${individual.localName}";
 	var propertyGroupSize = "${propertyGroups.all?size}"
+	var theme_url = "${urls.theme}"
 </script>
 
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/css/individual/individual-property-groups.css" />')}
 ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/amplify/amplify.store.min.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.theme}/js/propertyGroupControls-bs.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.theme}/js/showcase.js""></script>')}
-${scripts.add('<script type="text/javascript" src="${urls.theme}/js/resultsNav.js""></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.theme}/js/readshare.js""></script>')}

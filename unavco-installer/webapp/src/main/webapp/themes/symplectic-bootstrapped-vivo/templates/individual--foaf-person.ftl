@@ -1,6 +1,7 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
- 
+
 <#include "individual-setup.ftl">
+<#include "individual-lightboxscripts.ftl">
 <#import "lib-vivo-properties.ftl" as vp>
 <#--Number of labels present-->
 <#if !labelCount??>
@@ -51,42 +52,29 @@
 <#--add the VIVO-ORCID interface -->
 <#include "individual-orcidInterface.ftl">
 
-<#--################################################################################################## 
-Add divs and wrapper to create funnelback basket controls. MUST BE REMOVED BEFORE COMMIT TO VIVO 
-##################################################################################################-->
-	<div class="row search-basket">
-			<div class="container">
-				<div class="col-md-12">
-					<ul id="basket-controls">
-					</ul>
-				</div>
-			</div>
-	</div>
-<#-- end of funnelback basket -->
-
 	<div class="row person-content">
 		<div class="container">
 			<#-- <section itemscope itemtype="http://schema.org/Person" id="individual-intro" class="vcard person" role="region"> -->
-			<div class="col-md-3 col-sm-4 col-xs-12">
+			<div class="col-md-5 col-sm-5 col-xs-12">
 				<section itemscope itemtype="http://schema.org/Person" id="individual-intro" class="vcard person" role="region">
-					<section class="share-contact" role="region"> 
-						<!-- Image -->           
+					<section class="share-contact" role="region">
+						<!-- Image -->
 						<#assign individualImage>
 							<@p.image 	individual=individual
 											propertyGroups=propertyGroups
 											namespaces=namespaces
 											editable=editable
-											showPlaceholder="always" />
+											showPlaceholder="never" />
 						</#assign>
 
-						<#if ( individualImage?contains('<img class="img-circle">') )>
+						<#if ( individualImage?contains('<img class="img-rounded">') )>
 								<#assign infoClass = 'class="withThumb"'/>
 						</#if>
 
 						<div id="photo-wrapper">
 							${individualImage}
 						</div>
-						<h2 class="hidden-sm hidden-md hidden-lg">
+						<h2>
 							${foafFullName}
 						</h2>
 
@@ -96,7 +84,7 @@ Add divs and wrapper to create funnelback basket controls. MUST BE REMOVED BEFOR
 								<img id="uriIcon" title="${individual.uri}" src="${urls.images}/individual/uriIcon.gif" alt="${i18n().uri_icon}"/>
 								<#if checkNamesResult?has_content >
 									<img id="qrIcon"  src="${urls.images}/individual/qr_icon.png" alt="${i18n().qr_icon}" />
-									<sp an id="qrCodeImage" class="hidden">${qrCodeLinkedImage!} 
+									<sp an id="qrCodeImage" class="hidden">${qrCodeLinkedImage!}
 										<a class="qrCloseLink" href="#"  title="${i18n().qr_code}">
 											${i18n().close_capitalized}
 										</a>
@@ -105,16 +93,16 @@ Add divs and wrapper to create funnelback basket controls. MUST BE REMOVED BEFOR
 							</span>
 						</div> -->
 						<#include "individual-custom-contactInfo.ftl">
-						<#include "individual-custom-webpage.ftl"> 
+						<#include "individual-custom-webpage.ftl">
 						<#include "individual-custom-visualizationFoafPerson.ftl">
 						<#-- Moved Geographic focus under the profile page -->
 						<#include "individual-custom-geographicFocus.ftl">
 						<!-- Websites -->
 					</section>
 				</section>
-			</div> 
-		<div class="col-md-9 col-sm-8 col-xs-12">
-			<section id="individual-info" ${infoClass!} role="region"> 
+			</div>
+		<div class="col-md-7 col-sm-7 col-xs-12">
+			<section id="individual-info" ${infoClass!} role="region">
 				<#include "individual-adminPanel.ftl">
 				<header>
 						<#if relatedSubject??>
@@ -122,47 +110,48 @@ Add divs and wrapper to create funnelback basket controls. MUST BE REMOVED BEFOR
 							<p>
 								<a href="${relatedSubject.url}" title="${i18n().indiv_foafperson_return}">&larr; ${i18n().indiv_foafperson_return} ${relatedSubject.name}</a>
 							</p>
-						<#else>                
-							<h2 class="vcard foaf-person hidden-xs">
-								 ${foafFullName}
-							</h2>
 						</#if>
 						<!-- Positions -->
 						<#include "individual-custom-positions.ftl">
 				</header>
-	
-			 
+
+
 			<!-- Overview -->
-			 <#-- <#include "individual-overview.ftl">	-->  
-			
+			 <#-- <#include "individual-overview.ftl">	-->
+
 				<!-- Research Areas -->
 				<#include "individual-custom-researchAreas.ftl">
+
+				<!-- Expertise -->
+        <#include "individual-expertise.ftl">
 
 				<!-- Geographic Focus -->
 				<#-- <#include "individual-custom-geographicFocus.ftl"> -->
 
 				<#include "individual-openSocial.ftl">
 			</section>
-		
+
+    </div>
+</div>
 <#-- </section>
 	</div> --> <#-- this is closed in individual-foaf-property-group-tabs -->
 
-<#assign nameForOtherGroup = "${i18n().other}"> 
+<#assign nameForOtherGroup = "${i18n().other}">
 
 <#-- Ontology properties -->
 <#if !editable>
 	<#-- We don't want to see the first name and last name unless we might edit them. -->
-	<#assign skipThis = propertyGroups.pullProperty("http://xmlns.com/foaf/0.1/firstName")!> 
-	<#assign skipThis = propertyGroups.pullProperty("http://xmlns.com/foaf/0.1/lastName")!> 
+	<#assign skipThis = propertyGroups.pullProperty("http://xmlns.com/foaf/0.1/firstName")!>
+	<#assign skipThis = propertyGroups.pullProperty("http://xmlns.com/foaf/0.1/lastName")!>
 </#if>
 
 <!-- Property group menu or tabs -->
-<#-- 
+<#--
 		 With release 1.6 there are now two types of property group displays: the original property group
 		 menu and the horizontal tab display, which is the default. If you prefer to use the property
 		 group menu, simply substitute the include statement below with the one that appears after this
 		 comment section.
-		 
+
 		 <#include "individual-property-group-menus.ftl">
 -->
 <#-- <#include "individual-property-group-tabs.ftl"> -->
@@ -202,7 +191,7 @@ Add divs and wrapper to create funnelback basket controls. MUST BE REMOVED BEFOR
 
 		 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />')}
 ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/tiny_mce/tiny_mce.js"></script>',
-									'<script type="text/javascript" src="${urls.base}/js/jquery_plugins/qtip/jquery.qtip-1.0.0-rc3.min.js"></script>',
+									'<script type="text/javascript" src="${urls.base}/js/jquery_plugins/qtip/jquery.qtip.min.js"></script>',
 									'<script type="text/javascript" src="${urls.base}/js/jquery_plugins/jquery.truncator.js"></script>',
 									'<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>')}
 

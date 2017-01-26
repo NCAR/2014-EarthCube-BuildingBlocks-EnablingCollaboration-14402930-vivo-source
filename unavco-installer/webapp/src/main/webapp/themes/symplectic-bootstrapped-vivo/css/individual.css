@@ -56,10 +56,12 @@ Styling for the left hand side contact info column on the individual person page
 .share-contact .emails-container {
   margin: 1em 0;
 }
-.share-contact a.email {
+.share-contact a.email,
+.share-contact a.telephone {
   word-break: break-word;
   color: #222222;
   font-size: 15px;
+  text-align: left;
 }
 .share-contact .individual-urls .list-group-item {
   border: none;
@@ -75,6 +77,7 @@ Styling for the left hand side contact info column on the individual person page
 .share-contact #mapofscience_link_container,
 .share-contact #coinvestigator_link_container {
   margin: 12px 0 8px 0;
+  display: inline-block;
 }
 .share-contact #coauthorship_link_container .collaboratorship-link a,
 .share-contact #mapofscience_link_container .collaboratorship-link a,

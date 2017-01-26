@@ -42,7 +42,6 @@ $.getJSON( "https://api.crossref.org/v1/works/http://dx.doi.org/"+doi,
                   readcubeWidget =  '<iframe src="https://www.readcube.com/articles/' + doi + '?ssl=1" class="embed-responsive-item"></iframe>'
                   readcube = 0;
                   publisher = data.message.publisher;
-                  console.log(publisher);
                   if (publisher.includes('PLoS') || publisher.includes('PeerJ') ||publisher.includes('Nature') || publisher.includes('Wiley') || publisher.includes('Springer') ){
                       $(".nav-tabs").children().filter(':last').after($('<li/>',{id: 'readcubeTab'}));
                       $('#readcubeTab').append( $('<a/>', {

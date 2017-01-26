@@ -6,40 +6,37 @@
 <#assign primaryEmail = propertyGroups.pullProperty("http://purl.obolibrary.org/obo/ARG_2000028","http://www.w3.org/2006/vcard/ns#Work")!>
 <#assign addlEmail = propertyGroups.pullProperty("http://purl.obolibrary.org/obo/ARG_2000028","http://www.w3.org/2006/vcard/ns#Email")!>
 
-<#-- <#if phone?has_content || primaryEmail?has_content || addlEmail?has_content >
+ <#if phone?has_content || primaryEmail?has_content || addlEmail?has_content >
     <h5 class="contactInfoHeading">
         ${i18n().contact_info}
     </h5>
-</#if> -->
+</#if>
 
 <#-- Wrapped the emails in a div so we can style them together -->
-<div class="emailsContainer">
-    <h4>
-        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-    </h4>
-    <#-- Primary Email -->    
-    <@emailLinks "primaryEmail" primaryEmail />
+<#if primaryEmail?has_content || addlEmail?has_content>
+    <div class="row emailsContainer">
 
-    <#-- Additional Emails --> 
-    <@emailLinks "email" addlEmail />
-</div>
-  
-<#-- Phone --> 
+        <#-- Primary Email -->
+        <@emailLinks "primaryEmail" primaryEmail />
+
+        <#-- Additional Emails -->
+        <@emailLinks "email" addlEmail />
+    </div>
+</#if>
+
+<#-- Phone -->
 
 <#if phone?has_content> <#-- true when the property is in the list, even if not populated (when editing) -->
     <@p.addLinkWithLabel phone editable />
     <#if phone.statements?has_content> <#-- if there are any statements -->
-        <ul id="individual-phone" role="list" <#if editable>style="list-style:none;margin-left:0;"</#if>>
-            <h4>
-                <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
-            </h4>
+        <div class="row individual-phone" <#if editable>style="list-style:none;margin-left:0;"</#if>>
             <#list phone.statements as statement>
-                <li role="listitem">
-                    <span itemprop="telephone">${statement.number!}</span>
+                <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4 glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                    <a itemprop="telephone" class="col-lg-8 col-md-8 col-sm-8 col-xs-8 telephone" href="tel:${statement.number!}" title="telephone">${statement.number!}</a>
                     <@p.editingLinks "${phone.localName}" "${phone.name}" statement editable phone.rangeUri />
-                </li>
+                </span>
             </#list>
-        </ul>
+        </div>
     </#if>
 </#if>
 
@@ -50,20 +47,21 @@
     <#else>
         <#local listId = "additional-emails">
         <#local label = "${i18n().additional_emails_capitalized}">
-    </#if>     
+    </#if>
     <#if email?has_content> <#-- true when the property is in the list, even if not populated (when editing) -->
         <@p.addLinkWithLabel email editable label/>
         <#if email.statements?has_content> <#-- if there are any statements -->
-            <ul id="${listId}" class="individual-emails" role="list" <#if editable>style="list-style:none;margin-left:0;"</#if>>
+
+            <div id="${listId}" class="individual-emails" <#if editable>style="list-style:none;margin-left:0;"</#if>>
                 <#list email.statements as statement>
-                    <li role="listitem">
-                        <a itemprop="email" class="email" href="mailto:${statement.emailAddress!}" title="${i18n().email}">
+                    <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4 glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        <a itemprop="email" class="col-lg-8 col-md-8 col-sm-8 col-xs-8 email" href="mailto:${statement.emailAddress!}" title="${i18n().email}">
                             ${statement.emailAddress!}
                         </a>
                         <@p.editingLinks "${email.localName}" "${email.name}" statement editable email.rangeUri />
-                    </li>
+                    </span>
                 </#list>
-            </ul>
+            </div>
         </#if>
     </#if>
 </#macro>

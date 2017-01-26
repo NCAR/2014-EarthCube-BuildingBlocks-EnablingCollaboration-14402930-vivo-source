@@ -4,8 +4,8 @@ var i18nStrings = {
     allCapitalized: '${i18n().all_capitalized}',
 };
 </script>
-<!--<script type="text/javascript" src="${urls.base}/js/jquery.js"></script>-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="${urls.base}/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="${urls.base}/js/jquery-migrate-1.4.1.js"></script>
 <script type="text/javascript" src="${urls.base}/js/vitroUtils.js"></script>
 <script src="${urls.theme}/js/bootstrap.min.js"></script>
 <script src="${urls.theme}/js/publicationTableFilter.js"></script>
@@ -14,4 +14,4 @@ var i18nStrings = {
 <!--[if lt IE 9]>
 <script type="text/javascript" src="${urls.base}/js/html5.js"></script>
 <![endif]-->
-${headScripts.list()} 
+${headScripts.list()}
