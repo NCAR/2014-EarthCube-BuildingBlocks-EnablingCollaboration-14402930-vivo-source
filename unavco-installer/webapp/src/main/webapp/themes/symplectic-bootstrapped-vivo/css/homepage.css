@@ -3,8 +3,8 @@
  ============================================================================================ */
 /* The colour of the header and footer */
 /* Complimentary to the base, used in section backgrounds on the homepage */
-/*======================================= 
-Homepage colours 
+/*=======================================
+Homepage colours
 =========================================*/
 /* The colours of the large icons beneath the search on the homepage */
 /* About our data section */
@@ -29,6 +29,17 @@ Add a custom homepage background to hero class here
 }
 .theme-showcase .navbar .container {
   width: auto;
+}
+.navbar.transparent.navbar-inverse {
+  background: rgba(0,0,0,0.6);
+}
+/* link */
+.navbar.transparent.navbar-inverse .navbar-nav > li > a {
+    color: #d9dedd;
+}
+/* title */
+.navbar.transparent.navbar-inverse .navbar-brand {
+    color: #d9dedd;
 }
 .jumbotron {
   background-color: transparent;

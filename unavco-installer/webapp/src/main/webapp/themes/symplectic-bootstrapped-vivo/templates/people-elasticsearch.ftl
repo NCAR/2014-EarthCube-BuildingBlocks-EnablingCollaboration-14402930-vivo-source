@@ -1,11 +1,6 @@
 <#include "elasticsearch-settings.ftl">
 
-${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.1/handlebars.min.js"></script>',
-              '<script type="text/javascript" src="${urls.base}/js/facetview2/es.js"></script>',
-              '<script type="text/javascript" src="${urls.base}/js/facetview2/bootstrap3.facetview.theme.js"></script>',
-                '<script type="text/javascript" src="${urls.base}/js/facetview2/jquery.facetview2.js"></script>',
-                '<script type="text/javascript" src="${urls.base}/js/js.cookie.js"></script>',
-                '<script type="text/javascript">jQuery(function( $ ){$(".close").click(function( e ){e.preventDefault();
+${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close").click(function( e ){e.preventDefault();
                  Cookies.set("alert-box-people", "closed", { path: "/" });});});
                  jQuery(function( $ ){if( Cookies.get("alert-box-people") === "closed" ){$(".alert").hide();}});
                  </script>',
@@ -146,85 +141,6 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
 
     </script>')}
 
-${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/css/facetview.css" />',
-                  '<link rel="stylesheet" href="${urls.base}/js/facetview2/css/browsers.css" />',
-                  '<link rel="stylesheet" href="${urls.base}/js/facetview2/css/style.css" />',
-                  ' <style type="text/css">
-
-                  .facet-view-simple{
-                      width:100%;
-                      height:100%;
-                      margin:0 auto 0 auto;
-                      font-size: 14px;
-                  }
-
-                  .facet-view-simple a {
-                      text-decoration: none
-                  }
-
-                  .facetview_freetext.span4 {
-                     width: 290px;
-                     height: 10px;
-                  }
-
-                  legend {
-                      display: none;
-                  }
-
-                  #wrapper-content {
-                  //  padding: 0px !important;
-                    width: 970px !important;
-
-                  }
-
-                  input {
-                      -webkit-box-shadow: none;
-                      box-shadow: none;
-                  }
-
-                  .person-info {
-                      display: inline-block;
-                      vertical-align: top;
-                      // clear: left;
-                      margin-left: 0 !important;
-                  }
-
-                  .thumbnail {
-                      display: inline-block;
-                      // width: 150px;
-                      border-radius: 3px;
-                      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-                      border: 1px;
-                  }
-
-                  .row {
-                      // background-color: #fff !important;
-                      margin: 0 !important;
-                  }
-
-                  h4 a:link, h4 a:visited{
-                    text-decoration: none !important;
-                    color: #355374 !important;
-                  }
-
-                  .facet-panel {
-                    border: 2px solid;
-                    border-color: #f3f3f0;
-                  }
-
-                  ul#main-nav {
-                  width: 970px !important;
-                  height: 48px !important;
-                  }
-
-                  #unavco-branding {
-                    height: 57px !important;
-                  }
-
-
-
-
-              </style>')}
 <section id="menupage-intro" role="region">
 <h2>${page.title}</h2>
 <div style="clear:both"></div>

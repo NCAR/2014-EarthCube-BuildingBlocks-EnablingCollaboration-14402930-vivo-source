@@ -32,6 +32,37 @@
 
 		<#-- Hero image with search on top -->
 		<div class="row hero">
+			<nav class="navbar transparent navbar-inverse" style="margin-bottom: 0;">
+				<div class="container-fluid">
+					<div class="navbar-header" style="margin: 0px;"> 	<#-- because row hero also has a -15 margin, rethink this maybe -->
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand hidden-sm hidden-md hidden-lg">Browse</a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin: 0;">
+						<ul class="nav navbar-nav">
+
+							<#list menu.items as item>
+								<li>
+									<a href="${item.url}" title="${item.linkText} ${i18n().menu_item}"
+										<#if item.active> class="active"</#if>>
+											${item.linkText}
+									</a>
+								</li>
+							</#list>
+
+
+
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
+
 			<div class="theme-showcase">
 				<div class="col-md-12">
 					<div class="container" role="main">

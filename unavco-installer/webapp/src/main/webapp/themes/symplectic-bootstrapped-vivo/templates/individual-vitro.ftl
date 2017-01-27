@@ -26,11 +26,7 @@
 <#-- Default individual profile page template -->
 <#--@dumpAll /-->
 <div class="row">
-	<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
-			<div class="col-md-8 col-sm-8 col-xs-12">
-	<#else>
-			<div class="col-md-12 col-sm-12 col-xs-12">
-	</#if>
+	<div class="col-md-12 col-sm-12 col-xs-12">
 		<section id="individual-intro" class="vcard" role="region" <@mf.sectionSchema individual/>>
 
 				<#-- Image -->
@@ -78,7 +74,13 @@
 						<#-- <span id="iconControlsVitro" class="glyphicon glyphicon-link" title="${individual.uri}"></span>--></h2>
 					</#if>
 				</header>
-
+			</div> <#-- end of top row -->
+			<div class="row">
+				<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+				<#else>
+						<div class="col-md-12 col-sm-12 col-xs-12">
+				</#if>
 				<#if individualProductExtension??>
 					${individualProductExtension}
 				</#if>
@@ -86,10 +88,10 @@
 	</div>
 					</section> <!-- individual-info -->
 			<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
-					<div class="col-md-4 col-sm-4 col-xs-12">
-					<section class="share-contact" role="region">
-			</#if>
+					<div class="col-md-4 col-sm-4 col-xs-12 share-contact">
 
+			</#if>
+			<#if individualImage?trim?has_content>
 						<!-- Image -->
 						<#if ( individualImage?contains('<img class="img-rounded">') )>
 								<#assign infoClass = 'class="withThumb"'/>
@@ -98,7 +100,7 @@
 						<div id="photo-wrapper">
 							${individualImage}
 						</div>
-
+			</#if>
 					<#if sideIndividualProductExtension??>
 						${sideIndividualProductExtension}
 					</#if>
@@ -106,7 +108,6 @@
 
 					<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
 			</div>
-		</section>
 					</#if>
 	</section> <!-- individual-intro-->
 
@@ -152,7 +153,8 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/jquery_pl
 
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/imageUpload/imageUploadUtils.js"></script>',
 			  '<script type="text/javascript" src="${urls.base}/js/individual/moreLessController.js"></script>',
-			  '<script type="text/javascript" src="${urls.base}/js/individual/individualUriRdf.js"></script>')}
+			  '<script type="text/javascript" src="${urls.base}/js/individual/individualUriRdf.js"></script>',
+				'<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>')}
 <script type="text/javascript" src="${urls.theme}/js/readers.js"></script>
 <script type="text/javascript">
 	i18n_confirmDelete = "${i18n().confirm_delete}"
