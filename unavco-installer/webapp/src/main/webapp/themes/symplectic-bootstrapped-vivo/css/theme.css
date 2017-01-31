@@ -74,6 +74,11 @@ ul#unavco-header-nav a:active {
 ul#unavco-header-nav a.log-out {
     padding-left: 10px;
 }
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
 #branding > div.header {
   background: #08253b url(../images/header-background.png) no-repeat center center;
   background-size: cover;

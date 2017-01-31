@@ -73,18 +73,18 @@
 
 						<form
 							id="search-homepage"
-							action="${urls.search}"
-							name="search"
 							role="search"
-							method="post"
+							action='esearch'
+							method="get"
+							name="search"
 						>
 							<div class="input-group input-group-lg">
 								<input
 									type="text"
 									class="form-control"
-									name="querytext"
-									value="${querytext!}"
-									placeholder="Find people or research..."
+									name="query_in"
+									value="${query_in!}"
+									placeholder="Find people, data, or research..."
 								/>
 								<div class="input-group-btn">
 									<button type="submit" class="btn btn-default btn-lg sympl-search" role="submit">
@@ -110,8 +110,8 @@
 		<#-- Moved menu nav below hero search
 		<#include "menu.ftl"> -->
 		<#-- The large icons below hero search -->
+		<#--
 		<div class="row icons-home">
-			<#-- Take third of viewport for each icon on medium devices -->
 			<div class="col-md-4">
 				<a href="/s/search.html?collection=vivo-lilliput&form=lilliputsimple#collaborator" id="icon1">
 					<span class="glyphicon glyphicon-user"></span>
@@ -131,7 +131,7 @@
 			 </a>
 			</div>
 		</div>
-
+-->
 		<div class="row explore">
 		<#-- This section abandons the randomizer for faculty/depts in favour of a static approach so that institutions have better control over which ones they showcase. A script could still be deployed to explout the id's to change the departments with page load -->
 			<div class="container">
@@ -139,34 +139,34 @@
 				<#--The title row extends the full width -->
 				<div class="col-md-12">
 					<h2 class="h1">Explore our experts</h2>
-					<p> Explore OpenVIVO experts by Subject Area</p>
+					<p> Explore Connect UNAVCO by Subject Area</p>
 				</div>
 
 				<#-- The second row is split in two columns of 1:2 -->
 				<div class="col-md-4">
-					<a href="/s/search.html?query=linked+data&collection=vivo-lilliput&form=lilliputsimple" class="explore-panel" id="ph1">
-						<span>Linked Data</span>
+					<a href='${urls.base}/people?source=%7B"query"%3A%7B"filtered"%3A%7B"filter"%3A%7B"bool"%3A%7B"must"%3A%5B%7B"term"%3A%7B"researchArea.name.exact"%3A"Geodesy"%7D%7D%5D%7D%7D%2C"query"%3A%7B"match_all"%3A%7B%7D%7D%7D%7D%2C"sort"%3A%5B%7B"_score"%3A%7B"order"%3A"desc"%7D%7D%2C%7B"name.sort"%3A%7B"order"%3A"asc"%7D%7D%5D%2C"from"%3A0%2C"size"%3A10%2C"facets"%3A%7B"mostSpecificType.exact"%3A%7B"terms"%3A%7B"field"%3A"mostSpecificType.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"researchArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"researchArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"expertiseArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"expertiseArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%7D%7D' class="explore-panel" id="ph1">
+						<span>Geodesy</span>
 					</a>
 				</div>
 				<div class="col-md-8">
-					<a href="/s/search.html?query=data+curation&collection=vivo-lilliput&form=lilliputsimple" class="explore-panel" id="ph2">
-						<span>Data Curation</span>
+					<a href='${urls.base}/people?source=%7B"query"%3A%7B"filtered"%3A%7B"filter"%3A%7B"bool"%3A%7B"must"%3A%5B%7B"term"%3A%7B"researchArea.name.exact"%3A"Education"%7D%7D%5D%7D%7D%2C"query"%3A%7B"match_all"%3A%7B%7D%7D%7D%7D%2C"sort"%3A%5B%7B"_score"%3A%7B"order"%3A"desc"%7D%7D%2C%7B"name.sort"%3A%7B"order"%3A"asc"%7D%7D%5D%2C"from"%3A0%2C"size"%3A10%2C"facets"%3A%7B"mostSpecificType.exact"%3A%7B"terms"%3A%7B"field"%3A"mostSpecificType.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"researchArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"researchArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"expertiseArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"expertiseArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%7D%7D' class="explore-panel" id="ph2">
+						<span>Education</span>
 					</a>
 				</div>
 
 				<#-- The third row is split in two columns of 1:1  -->
 				<div class="col-md-6">
-					<a href="/s/search.html?query=semantic+web&collection=vivo-lilliput&form=lilliputsimple" class="explore-panel" id="ph3">
-						<span>Semantic Web</span>
+					<a href='${urls.base}/people?source=%7B%22query%22%3A%7B%22filtered%22%3A%7B%22filter%22%3A%7B%22bool%22%3A%7B%22must%22%3A%5B%7B%22term%22%3A%7B%22expertiseArea.name.exact%22%3A%22Software%20development%22%7D%7D%5D%7D%7D%2C%22query%22%3A%7B%22match_all%22%3A%7B%7D%7D%7D%7D%2C%22sort%22%3A%5B%7B%22_score%22%3A%7B%22order%22%3A%22desc%22%7D%7D%2C%7B%22name.sort%22%3A%7B%22order%22%3A%22asc%22%7D%7D%5D%2C%22from%22%3A0%2C%22size%22%3A10%2C%22facets%22%3A%7B%22mostSpecificType.exact%22%3A%7B%22terms%22%3A%7B%22field%22%3A%22mostSpecificType.exact%22%2C%22size%22%3A105%2C%22order%22%3A%22count%22%7D%7D%2C%22researchArea.name.exact%22%3A%7B%22terms%22%3A%7B%22field%22%3A%22researchArea.name.exact%22%2C%22size%22%3A105%2C%22order%22%3A%22count%22%7D%7D%2C%22expertiseArea.name.exact%22%3A%7B%22terms%22%3A%7B%22field%22%3A%22expertiseArea.name.exact%22%2C%22size%22%3A105%2C%22order%22%3A%22count%22%7D%7D%7D%7D' class="explore-panel" id="ph3">
+						<span>Software Development</span>
 					</a>
 				</div>
 				<div class="col-md-6">
-					<a href="/s/search.html?query=Ontology&collection=vivo-lilliput&form=lilliputsimple" class="explore-panel" id="ph4">
-						<span>Ontologies</span>
+					<a href='people?source=%7B"query"%3A%7B"filtered"%3A%7B"filter"%3A%7B"bool"%3A%7B"must"%3A%5B%7B"term"%3A%7B"expertiseArea.name.exact"%3A"Modeling"%7D%7D%5D%7D%7D%2C"query"%3A%7B"match_all"%3A%7B%7D%7D%7D%7D%2C"sort"%3A%5B%7B"_score"%3A%7B"order"%3A"desc"%7D%7D%2C%7B"name.sort"%3A%7B"order"%3A"asc"%7D%7D%5D%2C"from"%3A0%2C"size"%3A10%2C"facets"%3A%7B"mostSpecificType.exact"%3A%7B"terms"%3A%7B"field"%3A"mostSpecificType.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"researchArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"researchArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"expertiseArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"expertiseArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%7D%7D' class="explore-panel" id="ph4">
+						<span>Modeling</span>
 					</a>
 				</div>
 				<div class="col-md-12">
-					<a class="btn btn-default pull-right" href="${urls.base}/research#http://www.w3.org/2004/02/skos/core#Concept">
+					<a class="btn btn-default pull-right" href="${urls.base}/expertise">
 						View all...
 					</a>
 				</div>
@@ -179,7 +179,7 @@
 				<div class="col-md-12">
 					<h2 class="h1">Meet our experts</h2>
 					<div class="gap20"></div>
-					<p>The OpenVIVO community is dedicated to changing the nature of scholarship, Meet some of our experts ready to share thier knowledge.</p>
+					<p>The UNAVCO community is dedicated to changing the nature of scholarship, Meet some of our experts ready to share thier knowledge.</p>
 					<!-- Use bootstrap carousel to showcase faculty members, edited in lib-home-page.ftl and homePageUtils.js -->
 					<@lh.facultyMbrHtml />
 				</div>
@@ -194,10 +194,10 @@
 				<div class="col-md-6">
 					<h2 class="h1">About our data</h2>
 					<div class="gap20"></div>
-						<p>This expert database contains a copy of the <a href="http://openvivo.org/data/">OpenVIVO data set</a> under cc-by 4.0 license, snapshot as at 19 July 2016</p>
+						<p>This database is an aggregation of many different sources.</p>
 						<div class="gap30"></div>
 						<button type="button" class="btn btn-default">
-						<a href="http://bootstrap-vivo-beta.symplectic.co.uk/vivo/individual?uri=http%3A%2F%2Fopenvivo.org%2Fa%2Fdoi10.6084%2Fm9.figshare.3175072">Read more about OpenVIVO</a>
+						<a href="${urls.base}/about">Read more about Connect UNAVCO</a>
 						</button>
 				</div>
 				<div class="col-md-6" id="research-classes">

@@ -14,29 +14,31 @@
 			<div class="container">
 				<div class="row">
 
-					<div class="col-md-6 col-sm-6 hidden-xs logo-sm">
+					<div class="col-md-6 col-sm-6 hidden-xs logo-sm vcenter">
 						<img src="${urls.theme}/images/Connect-UNAVCO-logo.png" alt="Institution Logo-beta" />
-					</div>
-					<div class="col-xs-12 visible-xs-block">
+					</div><!--
+					--><div class="col-xs-12 visible-xs-block">
 						<img src="${urls.theme}/images/Connect-UNAVCO-logo.png" alt="Institution Logo" />
-					</div>
-					<div class="col-md-6 col-sm-6 hidden-xs">
+					</div><!--
+					--><div class="col-md-6 col-sm-6 hidden-xs vcenter">
 
 						<section id="search" role="region">
 									<form
+                    enctype='application/json'
 										class="navbar-form navbar-right"
 										role="search"
-										action="${urls.search}"
-										method="post"
+										action='esearch'
+										method="get"
 										name="search"
+                    id="search"
 									>
 										<div class="form-group">
 											<input
 												type="text"
 												class="form-control"
-												name="querytext"
+												name="query_in"
 												class="search-vivo"
-												value="${querytext!}"
+												value="${query_in!}"
 												placeholder="Find @ UNAVCO"
 											>
 										</div>
