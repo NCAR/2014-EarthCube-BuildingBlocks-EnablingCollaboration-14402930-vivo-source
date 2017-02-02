@@ -24,13 +24,11 @@
 
 						<section id="search" role="region">
 									<form
-                    enctype='application/json'
 										class="navbar-form navbar-right"
 										role="search"
 										action='esearch'
 										method="get"
 										name="search"
-                    id="search"
 									>
 										<div class="form-group">
 											<input
@@ -39,7 +37,7 @@
 												name="query_in"
 												class="search-vivo"
 												value="${query_in!}"
-												placeholder="Find @ UNAVCO"
+												placeholder="Search @ UNAVCO"
 											>
 										</div>
 
@@ -63,18 +61,18 @@
 									<form
 										class="navbar-form navbar-right"
 										role="search"
-										action="${urls.search}"
-										method="post"
+										action="esearch"
+										method="get"
 										name="search"
 									>
 										<div class="form-group">
 											<input
 												type="text"
 												class="form-control"
-												name="querytext"
+												name="query_in"
 												class="search-vivo"
-												value="${querytext!}"
-												placeholder="Search Connect UNAVCO"
+												value="${query_in!}"
+												placeholder="Search @ UNAVCO"
 											>
 										</div>
 

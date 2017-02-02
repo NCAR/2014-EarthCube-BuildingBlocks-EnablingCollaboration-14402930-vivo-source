@@ -8,15 +8,70 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
         <tr>
             <td>
                 <div class="document">
-                        <h4>
-                            <a class="" href="${url_base}{{uri}}">{{label}}</a>
-                        </h4>
+                        <div class="doc_info_list row"><h4>
+                        {{#if type}}
+                                    <div class="col-lg-12 col-sm-12">
+                                          <span class="label label-primary-transparent">{{capitalize type}}</span>
+                                    </div>
+                        {{/if}}
+                              <div class="col-lg-12 col-sm-12"><a class="" href="${url_base}{{uri}}">{{label}}</a></div>
+                        </div>
                         <div class="doc_info">
                         {{#if thumbnail}}<div class="row"><div class="thumbnail col-lg-4 col-md-3 col-sm-2 col-xs-12"><img src="{{thumbnail}}"></div><div class="col-lg-8 col-md-9 col-sm-10 col-xs-12">{{/if}}
 
+                        {{#if (showMostSpecificType mostSpecificType)}}<div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Type:</div><div class="col-lg-9 col-sm-9">{{mostSpecificType}}</div></div>{{/if}}
+
+                        <!-- Research-specific fields -->
+                        {{#if publicationYear}}<div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Publication year:</div><div class="col-lg-9 col-sm-9">{{year publicationYear}}</div></div>{{/if}}
+                        {{#if authors}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Authors:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand authors}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if publishedIn}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Published in:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand publishedIn}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if subjectArea}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Subject Areas:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand subjectArea}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if presentedAt}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Presented at:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand presentedAt}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        <!-- Station-specific fields -->
+                        {{#if retirementDate}}<div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Retired:</div><div class="col-lg-9 col-sm-9">{{year retirementDate}}</div></div>{{/if}}
+
+                        {{#if principalInvestigators}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">PIs:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand principalInvestigators}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if state}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">State:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand state}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if country}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Country:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand country}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if continent}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Continent:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand continent}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if relatedDatasets}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Related Datasets:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand relatedDatasets}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
 
 
-                        {{#if (showMostSpecificType mostSpecificType)}}<div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Role:</div><div class="col-lg-9 col-sm-9">{{mostSpecificType}}</div></div>{{/if}}
                         {{#if email}}<div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Email:</div><div class="col-lg-9 col-sm-9"><a href="&#109;&#097;&#105;&#108;&#116;&#111;&#58;{{email}}">{{email}}</a></div></div>{{/if}}
 
                         {{#if organizations}}
@@ -46,6 +101,12 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                         </div>
                         {{/if}}
 
+                        {{#if doi}}
+                        <div style=\'display: inline-block; margin-top:.5em;\'>
+                            <div style=\'display: inline;margin-right: .5em;\'><a href="{{doiURL doi}}" target="_blank"><img src="{{doiBadgeURL doi}}" /></a></div>
+                        </div>
+                        {{/if}}
+
                       </div>
                 </div>
             </td>
@@ -64,6 +125,9 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
             return "https://img.shields.io/badge/ORCID-" + escapedORCID + "-green.svg";
         });
 
+        Handlebars.registerHelper("orcidURL", function(orcid) {
+            return "http://orcid.org/"+orcid;
+        });
 
         Handlebars.registerHelper("showMostSpecificType", function(mostSpecificType) {
             return (mostSpecificType && mostSpecificType != "Person");
@@ -87,6 +151,23 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                 out = out + "<li>" + options.fn(items[i]) + "</li>";
             }
             return out + "</ul>";
+        });
+
+        Handlebars.registerHelper("capitalize", function(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        });
+
+        Handlebars.registerHelper("year", function(date) {
+            return new Date(date).getUTCFullYear();
+        });
+
+        Handlebars.registerHelper("doiURL", function(doi) {
+            return "https://doi.org/"+doi;
+        });
+
+        Handlebars.registerHelper("doiBadgeURL", function(doi) {
+            var escapedDOI = encodeURIComponent(doi).replace(/-/g, "--");
+            return "https://img.shields.io/badge/DOI-" + escapedDOI + "-blue.svg";
         });
 
         var source = $("#person-template").html();
