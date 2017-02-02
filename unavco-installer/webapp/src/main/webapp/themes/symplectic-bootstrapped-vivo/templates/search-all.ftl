@@ -43,6 +43,45 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                             <div class="col-lg-9 col-sm-9">{{#expand presentedAt}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
                         {{/if}}
 
+                        <!-- Grant-specific fields -->
+                        {{#if principalInvestigator}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">PI:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand principalInvestigator}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if coPrincipalInvestigators}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">CoPIs:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand coPrincipalInvestigators}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if administratingOrg}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Organization:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand administratingOrg}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if assignedBy}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Awarding Organization:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand assignedBy}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if startDate}}<div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Start date:</div><div class="col-lg-9 col-sm-9">{{year startDate}}</div></div>{{/if}}
+
+                        <!-- Dataset-specific fields -->
+                        {{#if dataTypes}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Dataset Type:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand dataTypes}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if citations}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Related Documents:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand citations}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if stations}}
+                            <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Related Stations:</div>
+                            <div class="col-lg-9 col-sm-9">{{#expand stations}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
+                        {{/if}}
+
                         <!-- Station-specific fields -->
                         {{#if retirementDate}}<div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Retired:</div><div class="col-lg-9 col-sm-9">{{year retirementDate}}</div></div>{{/if}}
 
@@ -71,7 +110,7 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                             <div class="col-lg-9 col-sm-9">{{#expand relatedDatasets}} {{#if uri}}<a href="${url_base}{{uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
                         {{/if}}
 
-
+                        <!-- Person-specific fields -->
                         {{#if email}}<div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Email:</div><div class="col-lg-9 col-sm-9"><a href="&#109;&#097;&#105;&#108;&#116;&#111;&#58;{{email}}">{{email}}</a></div></div>{{/if}}
 
                         {{#if organizations}}
@@ -91,7 +130,22 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                         <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Country:</div> <div class="col-lg-9 col-sm-9"> {{homeCountry.name}}</div></div>
                         {{/if}}
 
-                      {{#if thumbnail}}</div></div>{{/if}}
+                        <!-- Organization-specific fields -->
+                        {{#if location}}<div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Location:</div><div class="col-lg-9 col-sm-9">{{location.lat}}, {{location.lon}}</div></div>{{/if}}
+
+                        {{#if subOrgs}}
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Sub-Organizations:</div> <div class="col-lg-9 col-sm-9"> {{#expand subOrgs}}<a href="${url_base}{{uri}}">{{name}}</a>{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if superOrgs}}
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Super-Organizations:</div> <div class="col-lg-9 col-sm-9"> {{#expand subOrgs}}<a href="${url_base}{{uri}}">{{name}}</a>{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if people}}
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">People:</div> <div class="col-lg-9 col-sm-9"> {{#expand people}}<a href="${url_base}{{uri}}">{{name}}</a>{{/expand}}</div></div>
+                        {{/if}}
+
+                        {{#if thumbnail}}</div></div>{{/if}}
 
 
                         {{!-- BADGES --}}
@@ -104,6 +158,38 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                         {{#if doi}}
                         <div style=\'display: inline-block; margin-top:.5em;\'>
                             <div style=\'display: inline;margin-right: .5em;\'><a href="{{doiURL doi}}" target="_blank"><img src="{{doiBadgeURL doi}}" /></a></div>
+                        </div>
+                        {{/if}}
+
+                        {{#if sponsorAwardId}}
+                        <div style=\'display: inline-block; margin-top:.5em;\'>
+                            <div style=\'display: inline;margin-right: .5em;\'><img src="{{awardBadgeURL sponsorAwardId}}" /></a></div>
+                        </div>
+                        {{/if}}
+
+                        {{#ifCond membershipType "Member"}}
+                        <div style="display: inline-block; margin-top:.5em;">
+                            <div style="display: inline;margin-right: .5em;"><img src="{{badgeURL "UNAVCO" membershipType "red"}}" /></a></div>
+                            </div>
+                        {{/ifCond}}
+
+                        {{#ifCond membershipType "Associate Member"}}
+                        <div style="display: inline-block; margin-top:.5em;">
+                            <div style="display: inline;margin-right: .5em;"><img src="{{badgeURL "UNAVCO" membershipType "66ccff"}}" /></a></div>
+                            </div>
+                        {{/ifCond}}
+
+
+
+                        {{#if gridId}}
+                        <div style="display: inline-block; margin-top:.5em;">
+                            <div style="display: inline;margin-right: .5em;"><img src="{{badgeURL "GRID ID" gridId "blue"}}" /></a></div>
+                        </div>
+                        {{/if}}
+
+                        {{#if isni}}
+                        <div style="display: inline-block; margin-top:.5em;">
+                            <div style="display: inline;margin-right: .5em;"><img src="{{badgeURL "ISNI" isni "lightgrey"}}" /></a></div>
                         </div>
                         {{/if}}
 
@@ -120,13 +206,19 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
         });
 
 
+        Handlebars.registerHelper("badgeURL", function(prefix, id, color) {
+            var escapedID = encodeURIComponent(id).replace(/-/g, "--");
+            return "https://img.shields.io/badge/" + prefix + "-" + escapedID + "-" + color + ".svg";
+        });
+
         Handlebars.registerHelper("orcidBadgeURL", function(orcid) {
             var escapedORCID = encodeURIComponent(orcid).replace(/-/g, "--");
             return "https://img.shields.io/badge/ORCID-" + escapedORCID + "-green.svg";
         });
 
-        Handlebars.registerHelper("orcidURL", function(orcid) {
-            return "http://orcid.org/"+orcid;
+        Handlebars.registerHelper("awardBadgeURL", function(award) {
+            var escapedAward = encodeURIComponent(award).replace(/-/g, "--");
+            return "https://img.shields.io/badge/ID-" + escapedAward + "-blue.svg";
         });
 
         Handlebars.registerHelper("showMostSpecificType", function(mostSpecificType) {
@@ -170,6 +262,13 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
             return "https://img.shields.io/badge/DOI-" + escapedDOI + "-blue.svg";
         });
 
+        Handlebars.registerHelper("ifCond", function(v1, v2, options) {
+            if(v1 === v2) {
+              return options.fn(this);
+            }
+            return options.inverse(this);
+        });
+
         var source = $("#person-template").html();
         var template = Handlebars.compile(source);
 
@@ -190,7 +289,7 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                 sharesave_link: false,
                 search_button: true,
 				        page_size_dropdown: true,
-                //default_freetext_fuzzify: "*",
+                default_freetext_fuzzify: "*",
                 default_facet_operator: "AND",
                 q: query_in,
                 default_facet_order: "count",
