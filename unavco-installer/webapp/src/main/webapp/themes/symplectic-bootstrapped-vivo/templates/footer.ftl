@@ -41,16 +41,6 @@
 							</a>
 						</li>
 
-						<li role="listitem">
-							<a
-								href="/vivo/research"
-								target="_blank"
-								title="${i18n().menu_support}"
-							>
-								Browse Research
-							</a>
-						</li>
-
             <#if user.loggedIn>
 							<#if user.hasSiteAdminAccess>
 							<li role="listitem">
@@ -87,18 +77,18 @@
 
 				<p class="copyright">
 					<#if copyright??>
-					       <#--	&copy;${copyright.year?c} -->
+					      	&copy;${copyright.year?c}
 
 						<#if copyright.url??>
-							<#-- <a
+							 <a
 								href="${copyright.url}"
 								title="${i18n().menu_copyright}"
 							>
 							${copyright.text}
-							</a> -->
+							</a>
 
 						<#else>
-							<#-- ${copyright.text} -->
+							 ${copyright.text}
 						</#if>
 
 						| <a
@@ -112,7 +102,6 @@
 					</#if>
 					${i18n().menu_powered} <a class="powered-by-vivo" href="http://vivoweb.org" target="_blank" title="${i18n().menu_powered} VIVO"><strong>VIVO</strong>
 					</a>
-						 | Designed by <a href="http://symplectic.co.uk" title="Experts in Research Information">Symplectic</a>
 					<#if user.hasRevisionInfoAccess>
 						 | ${i18n().menu_version} <a href="${version.moreInfoUrl}" title="${i18n().menu_version}">${version.label}</a>
 					</#if>

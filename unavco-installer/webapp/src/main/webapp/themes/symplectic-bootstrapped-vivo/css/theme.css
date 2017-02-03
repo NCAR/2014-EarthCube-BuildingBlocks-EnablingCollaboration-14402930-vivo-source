@@ -311,7 +311,7 @@ These are helper classes to add margin gaps where needed
   margin: auto 10px auto auto;
 }
 .footer p.copyright {
-  color: #222222;
+  color: #797979;
   font-size: 0.9em;
   margin: 1em auto auto auto;
 }
@@ -355,4 +355,26 @@ table.form-background td {
 }
 table.form-background td form {
     padding : 0.2em;
+}
+
+.footer #footer-nav .dropdown-menu li a {
+      color: #000;
+}
+
+.footer #footer-nav .dropdown-menu li {
+      color: #000;
+      margin-right: 0px;
+      display: list-item;
+}
+
+.verticalfieldlabel {
+  background-color: #DEDEDF;
+  line-height: 1.5em ;
+  font-size: 11pt ;
+  font-style: normal ;
+}
+
+.editingForm td {
+  font-size: 11pt ;
+  padding: 3px;
 }

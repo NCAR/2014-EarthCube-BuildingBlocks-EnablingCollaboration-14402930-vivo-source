@@ -294,7 +294,7 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                 q: query_in,
                 default_facet_order: "count",
                 default_facet_size: 6,
-                search_fields_multi: ["*folded","_all"],
+                // search_fields_multi: ["*folded","_all"],
                 controls: false,
 				        pushstate: true,
                 csv_export: true,
