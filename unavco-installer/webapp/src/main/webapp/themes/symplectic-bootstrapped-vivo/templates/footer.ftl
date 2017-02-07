@@ -49,20 +49,22 @@
 								>
 									${i18n().identity_admin}</a></li>
 							</#if>
-							<li>
-							<ul class="footer-dropdown">
-									<li id="footer-user-menu"><a href="#footer-user-menu" title="${i18n().identity_user}">${user.loginName}</a>
-											<ul class="footer-sub_menu">
+							<li role="listitem">
+							<div class="dropdown">
+					  <a class="dropdown-toggle" type="button" data-toggle="dropdown" title="${i18n().identity_user}">${user.loginName}
+					  <span class="caret"></span></a>
+
+
+											<ul class="dropdown-menu">
 													 <#if user.hasProfile>
-															 <li role="listitem"><a href="${user.profileUrl}" title="${i18n().identity_myprofile}">${i18n().identity_myprofile}</a></li>
+															 <li><a href="${user.profileUrl}" title="${i18n().identity_myprofile}">${i18n().identity_myprofile}</a></li>
 													 </#if>
 													 <#if urls.myAccount??>
-															 <li role="listitem"><a href="${urls.myAccount}" title="${i18n().identity_myaccount}">${i18n().identity_myaccount}</a></li>
+															 <li><a href="${urls.myAccount}" title="${i18n().identity_myaccount}">${i18n().identity_myaccount}</a></li>
 													 </#if>
-													 <li role="listitem"><a href="${urls.logout}" title="${i18n().menu_logout}">${i18n().menu_logout}</a></li>
+													 <li ><a href="${urls.logout}" title="${i18n().menu_logout}">${i18n().menu_logout}</a></li>
 											</ul>
-									</li>
-							 </ul>
+										</div>
 					 </li>
 
 

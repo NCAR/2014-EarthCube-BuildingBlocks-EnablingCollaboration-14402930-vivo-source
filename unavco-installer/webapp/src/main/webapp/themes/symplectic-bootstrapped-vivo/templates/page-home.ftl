@@ -22,6 +22,8 @@
 			<#include "custom-geoFocusMapScripts.ftl">
 		</#if>
 		<script type="text/javascript" src="${urls.theme}/js/homePageUtils.js?version=x"></script>
+		<script type="text/javascript" src="${urls.base}/js/d3.min.js"></script>
+		<script type="text/javascript" src="${urls.base}/js/visualization/d3.layout.cloud.js"></script>
 	</head>
 
 	<#-- REMOVE <body class="${bodyClasses!}" onload="${bodyOnload!}">-->
@@ -142,37 +144,16 @@
 					<p> Explore Connect UNAVCO by Subject Area</p>
 				</div>
 
-				<#-- The second row is split in two columns of 1:2 -->
-				<div class="col-md-4">
-					<a href='${urls.base}/people?source=%7B"query"%3A%7B"filtered"%3A%7B"filter"%3A%7B"bool"%3A%7B"must"%3A%5B%7B"term"%3A%7B"researchArea.name.exact"%3A"Geodesy"%7D%7D%5D%7D%7D%2C"query"%3A%7B"match_all"%3A%7B%7D%7D%7D%7D%2C"sort"%3A%5B%7B"_score"%3A%7B"order"%3A"desc"%7D%7D%2C%7B"name.sort"%3A%7B"order"%3A"asc"%7D%7D%5D%2C"from"%3A0%2C"size"%3A10%2C"facets"%3A%7B"mostSpecificType.exact"%3A%7B"terms"%3A%7B"field"%3A"mostSpecificType.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"researchArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"researchArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"expertiseArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"expertiseArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%7D%7D' class="explore-panel" id="ph1">
-						<span>Geodesy</span>
-					</a>
-				</div>
-				<div class="col-md-8">
-					<a href='${urls.base}/people?source=%7B"query"%3A%7B"filtered"%3A%7B"filter"%3A%7B"bool"%3A%7B"must"%3A%5B%7B"term"%3A%7B"researchArea.name.exact"%3A"Education"%7D%7D%5D%7D%7D%2C"query"%3A%7B"match_all"%3A%7B%7D%7D%7D%7D%2C"sort"%3A%5B%7B"_score"%3A%7B"order"%3A"desc"%7D%7D%2C%7B"name.sort"%3A%7B"order"%3A"asc"%7D%7D%5D%2C"from"%3A0%2C"size"%3A10%2C"facets"%3A%7B"mostSpecificType.exact"%3A%7B"terms"%3A%7B"field"%3A"mostSpecificType.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"researchArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"researchArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"expertiseArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"expertiseArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%7D%7D' class="explore-panel" id="ph2">
-						<span>Education</span>
-					</a>
+				<div class="col-md-12">
+					<#include "wordCloudTerms.ftl">
+						<div id="wordMap">
+						</div>
 				</div>
 
-				<#-- The third row is split in two columns of 1:1  -->
-				<div class="col-md-6">
-					<a href='${urls.base}/people?source=%7B%22query%22%3A%7B%22filtered%22%3A%7B%22filter%22%3A%7B%22bool%22%3A%7B%22must%22%3A%5B%7B%22term%22%3A%7B%22expertiseArea.name.exact%22%3A%22Software%20development%22%7D%7D%5D%7D%7D%2C%22query%22%3A%7B%22match_all%22%3A%7B%7D%7D%7D%7D%2C%22sort%22%3A%5B%7B%22_score%22%3A%7B%22order%22%3A%22desc%22%7D%7D%2C%7B%22name.sort%22%3A%7B%22order%22%3A%22asc%22%7D%7D%5D%2C%22from%22%3A0%2C%22size%22%3A10%2C%22facets%22%3A%7B%22mostSpecificType.exact%22%3A%7B%22terms%22%3A%7B%22field%22%3A%22mostSpecificType.exact%22%2C%22size%22%3A105%2C%22order%22%3A%22count%22%7D%7D%2C%22researchArea.name.exact%22%3A%7B%22terms%22%3A%7B%22field%22%3A%22researchArea.name.exact%22%2C%22size%22%3A105%2C%22order%22%3A%22count%22%7D%7D%2C%22expertiseArea.name.exact%22%3A%7B%22terms%22%3A%7B%22field%22%3A%22expertiseArea.name.exact%22%2C%22size%22%3A105%2C%22order%22%3A%22count%22%7D%7D%7D%7D' class="explore-panel" id="ph3">
-						<span>Software Development</span>
-					</a>
-				</div>
-				<div class="col-md-6">
-					<a href='people?source=%7B"query"%3A%7B"filtered"%3A%7B"filter"%3A%7B"bool"%3A%7B"must"%3A%5B%7B"term"%3A%7B"expertiseArea.name.exact"%3A"Modeling"%7D%7D%5D%7D%7D%2C"query"%3A%7B"match_all"%3A%7B%7D%7D%7D%7D%2C"sort"%3A%5B%7B"_score"%3A%7B"order"%3A"desc"%7D%7D%2C%7B"name.sort"%3A%7B"order"%3A"asc"%7D%7D%5D%2C"from"%3A0%2C"size"%3A10%2C"facets"%3A%7B"mostSpecificType.exact"%3A%7B"terms"%3A%7B"field"%3A"mostSpecificType.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"researchArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"researchArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%2C"expertiseArea.name.exact"%3A%7B"terms"%3A%7B"field"%3A"expertiseArea.name.exact"%2C"size"%3A105%2C"order"%3A"count"%7D%7D%7D%7D' class="explore-panel" id="ph4">
-						<span>Modeling</span>
-					</a>
-				</div>
-				<div class="col-md-12">
-					<a class="btn btn-default pull-right" href="${urls.base}/expertise">
-						View all...
-					</a>
-				</div>
 
 			</div>
 		</div>
+
 
 		<div class="row faculty-home">
 			<div class="container">

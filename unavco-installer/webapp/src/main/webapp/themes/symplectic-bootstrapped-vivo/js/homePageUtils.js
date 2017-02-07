@@ -1,39 +1,40 @@
 /* $This file is distributed under the terms of the license in /doc/license.txt$ */
 
 $(document).ready(function(){
-    
+
     $.extend(this, urlsBase);
     $.extend(this, facultyMemberCount);
     $.extend(this, i18nStrings);
 
     var retryCount = 0;
-    
+
     // this will ensure that the hidden classgroup input is cleared if the back button is used
     // to return to th ehome page from the search results
-    $('input[name="classgroup"]').val("");    
+    $('input[name="classgroup"]').val("");
 
-    getFacultyMembers();  
-    buildAcademicDepartments(); 
+    getFacultyMembers();
+    buildAcademicDepartments();
+    buildWordMap();
 
     if ( $('section#home-geo-focus').length == 0 ) {
         $('section#home-stats').css("display","inline-block").css("margin-top","20px");
-    } 
-        
+    }
+
     function getFacultyMembers() {
         var individualList = "";
 
-        if ( facultyMemberCount > 0 ) {        
+        if ( facultyMemberCount > 0 ) {
             // determine the row at which to start the search query
             var rowStart = Math.floor((Math.random()*facultyMemberCount));
             var diff;
             var pageSize = 8; // the number of faculty to display on the home page
-            
+
             // could have fewer than 4 in a test or dev environment
             if ( facultyMemberCount < pageSize ) {
                 pageSize = facultyMemberCount;
             }
 
-            // in case the random number is equal to or within 3 of the facultyMemberCount 
+            // in case the random number is equal to or within 3 of the facultyMemberCount
             // subtract 1 from the facultyMemberCount because the search rows begin at 0, not 1
             if ( (rowStart + (pageSize-1)) > (facultyMemberCount-1) ) {
                 diff = (rowStart + (pageSize-1)) - (facultyMemberCount-1);
@@ -53,7 +54,7 @@ $(document).ready(function(){
             url += "&page=" + rowStart + "&pageSize=" + pageSize;
 
             $.getJSON(url, function(results) {
-            
+
                 if ( results == null || results.individuals.length == 0 ) {
                     if ( retryCount < 5 ) {
                         retryCount = retryCount + 1;
@@ -64,7 +65,7 @@ $(document).ready(function(){
                         $('div#tempSpacing').hide();
                         $('div#research-faculty-mbrs ul#facultyThumbs').append(individualList);
                     }
-                } 
+                }
                 else {
                     var vclassName = results.vclass.name;
                     $.each(results.individuals, function(i, item) {
@@ -84,7 +85,7 @@ $(document).ready(function(){
                             active = " active";
                         }
                         $('div#research-faculty-mbrs').append(
-                       '<div class="item' + active +'">' + 
+                       '<div class="item' + active +'">' +
                             '<a href="'+ facultyProfile + '" class="faculty-mbrs" title="View Profile">' +
                                 imageLine +
                                 '<h3>' + facultyName + '</h3>' +
@@ -92,17 +93,17 @@ $(document).ready(function(){
                             '</a>' +
                         '</div>'
                         );
-                      
+
                     });
                     $('div#tempSpacing').hide();
-                    
-                
+
+
                     $.each($('div#research-faculty-mbrs div.item a.faculty-mbrs '), function() {
                         if ( $(this).children('img').length == 0 ) {
                             var imgHtml = "<img class='img-circle' width='160' alt='" + i18nStrings.placeholderImage + "' src='" + urlsBase + "/images/placeholders/person.bordered.thumbnail.jpg'>";
                             $(this).prepend(imgHtml);
                         }
-                        else { 
+                        else {
                             $(this).children('img').load( function() {
                                 adjustImageHeight($(this));
                             });
@@ -110,7 +111,7 @@ $(document).ready(function(){
                     });
                     var viewMore = "<ul id='viewMoreFac' style='list-style:none;margin:0;padding:0;'><li><a href='"
                                 + urlsBase
-                                + "/people#http://xmlns.com/foaf/0.1/Person' alt='" 
+                                + "/people#http://xmlns.com/foaf/0.1/Person' alt='"
                                 + i18nStrings.viewAllFaculty + "'>"
                                 + i18nStrings.viewAllString + "</a></li?</ul>";
                     $('div#research-faculty-mbrs').append(viewMore);
@@ -140,7 +141,7 @@ $(document).ready(function(){
         var deptNbr = academicDepartments.length;
         var html = "<ul>";
         var index = Math.floor((Math.random()*deptNbr)+1)-1;
-        
+
         if ( deptNbr == 0 ) {
             html = "<ul style='list-style:none'><p><li style='padding-top:0.3em'>"
                    + i18nStrings.noDepartmentsFound + "</li></p></ul>";
@@ -157,8 +158,8 @@ $(document).ready(function(){
                 //Check to see if this index hasn't already been employed
                 if(!indexFound) {
                 	//if this index hasn't already been employed then utilize it
-                	 html += "<li><a href='" + urlsBase + "/individual?uri=" 
-                     + academicDepartments[index].uri + "'>" 
+                	 html += "<li><a href='" + urlsBase + "/individual?uri="
+                     + academicDepartments[index].uri + "'>"
                      + academicDepartments[index].name + "</a></li>";
                 	 //add this index to the set of already used indices
                 	 indicesUsed[index] = true;
@@ -169,20 +170,77 @@ $(document).ready(function(){
         }
         else {
             for ( var i=0;i<deptNbr;i++) {
-                html += "<li><a href='" + urlsBase + "/individual?uri=" 
-                        + academicDepartments[i].uri + "'>" 
+                html += "<li><a href='" + urlsBase + "/individual?uri="
+                        + academicDepartments[i].uri + "'>"
                         + academicDepartments[i].name + "</a></li>";
             }
         }
         if ( deptNbr > 0 ) {
             html += "</ul><ul style='list-style:none'>"
-                    + "<li class='v-all' style='font-size:0.9em;text-align:right;padding: 6px 16px 0 0'><a href='" 
-                    + urlsBase 
-                    + "/organizations#http://vivoweb.org/ontology/core#AcademicDepartment' alt='" 
-                    + i18nStrings.viewAllDepartments + "'>" 
+                    + "<li class='v-all' style='font-size:0.9em;text-align:right;padding: 6px 16px 0 0'><a href='"
+                    + urlsBase
+                    + "/organizations#http://vivoweb.org/ontology/core#AcademicDepartment' alt='"
+                    + i18nStrings.viewAllDepartments + "'>"
                     + i18nStrings.viewAllString + "</a></li></ul>";
         }
         $('div#academic-depts').html(html);
+    };
+
+    // build a word cloud from the research area and expertise list using d3
+    function buildWordMap() {
+      var fill = d3.scale.linear()
+          .domain([0, 0.4, 1])
+          .range(["#000000", "#395d7f", "#62b6d7"]);
+    var width = $('#wordMap').width();
+    var height = 400
+
+    var layout = d3.layout.cloud()
+    .size([width, height])
+    .words(word_list)
+    .padding(.5)
+    .rotate(0)
+  //  .rotate(function() { return ~~(Math.random() * 1.2) * 90; })
+    .font("Impact")
+    .fontSize(function(d) { return 10*Math.sqrt(d.size); })
+    .on("end", draw);
+
+    layout.start();
+
+    function draw(words) {
+    d3.select("#wordMap").append("svg")
+    .attr("width", layout.size()[0])
+    .attr("height", layout.size()[1])
+    .append("g")
+    .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+    .selectAll("text")
+    .data(words)
+    .enter().append("text")
+    .style("font-size", function(d) { return d.size + "px"; })
+    .style("font-family", "Impact")
+    .style("fill", function(d, i) { return fill(Math.random()); })
+    .attr("text-anchor", "middle")
+    .attr("transform", function(d) {
+      return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+    })
+    .text(function(d) { return d.text; })
+    .on("click", function (d){
+            window.location = urlsBase+"/individual?uri="+d.uri;
+        });
+
+
+    var vahtml = "<ul style='list-style:none'>"
+            + "<li style='font-size:0.9em;text-align:right;padding: 6px 16px 0 0'><a href='"
+            + urlsBase
+            + "/expertise' alt='"
+            + "view expertise and research index'>"
+            + i18nStrings.viewAllString + "</a></li></ul>";
+
+
+    $("div#wordMap").append(vahtml);
+
     }
-    
-}); 
+
+    }
+
+
+});
