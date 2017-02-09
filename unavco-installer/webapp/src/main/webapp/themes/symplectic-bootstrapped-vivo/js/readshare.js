@@ -4,7 +4,7 @@ $('div[data-doi]').each(function( index ) {
    doi = $( this ).attr("data-doi");
    $( this ).parent().prev().append('<span>'+doi+'&nbsp;</span>')
    if (doi.includes('figshare')){
-          $( this ).parent().prev().append('<span><img src="https://figshare.com/assets/public/global/favicon//favicon-16x16.png" width="20"/></span>')
+          $( this ).parent().prev().append('<span><img src="' + theme_url + '/images/figshare-favicon-16x16.png" width="20"/></span>')
        }
 
     $.getJSON( "https://api.crossref.org/v1/works/http://dx.doi.org/"+doi,
