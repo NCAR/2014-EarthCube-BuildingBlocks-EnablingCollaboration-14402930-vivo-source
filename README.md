@@ -53,9 +53,10 @@ Before you start Tomcat, be sure to edit runtime.properties and applicationSetup
 
 
 ##UNAVCO-specific notes
-UNAVCO uses an expanded ontology to capture geodesy-related concepts. The local ontology is included as earthcollab.n3, but this will change when a permanent namespace for the ontology is established. One extension is the 'Station' concept. Here is RDF for the station concept:
+UNAVCO uses an expanded ontology to capture geodesy-related concepts. The local ontology is included as earthcollab.n3. One extension is the 'Station' concept. Here is RDF for the station concept:
 
-    @prefix ec:    <http://vivo.unavco.org/vivo/ontology/vlocal#> .
+    
+    @prefix ec:    <https://library.ucar.edu/earthcollab/schema#> .
     @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
     @prefix obo:   <http://purl.obolibrary.org/obo/> .
     @prefix owl:   <http://www.w3.org/2002/07/owl#> .
@@ -76,7 +77,7 @@ UNAVCO uses an expanded ontology to capture geodesy-related concepts. The local 
 
 and a little more RDF to tell VIVO to use a custom template that adds a map to the station's page:
 
-    @prefix ec:    <http://vivo.unavco.org/vivo/ontology/vlocal#> .
+    @prefix ec:      <https://library.ucar.edu/earthcollab/schema#> .
     @prefix vitro:   <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
     @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
      
@@ -87,6 +88,8 @@ and a little more RDF to tell VIVO to use a custom template that adds a map to t
 Instructions on where to put that RDF are at https://wiki.duraspace.org/display/VIVO/Class-specific+templates+for+profile+pages. The map will only show up if a station has wgs84:lat and wgs84:long attributes. 
 
 Because some of the UNAVCO-specific modifications are baked into the template, blindly cloning this repository and loading in your data probably won't yield ideal results. Feel free to leave a comment on the issue tracker (https://github.com/NCAR/2014-EarthCube-BuildingBlocks-EnablingCollaboration-14402930-vivo-source/issues).
+
+UNAVCO's implementation uses Elasticsearch instead of Solr for browsing and searching. Code and info is available [here](https://github.com/gneissone/connect-unavco-elasticsearch). The Elasticsearch response is displayed using a modified version of [facetview2](https://github.com/gneissone/facetview2/). Point the facetview freemarker templates (e.g. research-elasticsearch.ftl) toward Elasticsearch in elasticsearch-settings.ftl. 
 
 ##For more information on how to set up the three-tiered build
 The original three-tiered build template is available here: https://github.com/lawlesst/vivo-project-template
