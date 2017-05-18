@@ -1,11 +1,11 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
-<#-- Custom object property statement view for faux property "selected publications". See the PropertyConfig.3 file for details. 
-    
+<#-- Custom object property statement view for faux property "selected publications". See the PropertyConfig.3 file for details.
+
      This template must be self-contained and not rely on other variables set for the individual page, because it
-     is also used to generate the property statement during a deletion.  
+     is also used to generate the property statement during a deletion.
  -->
- 
+
 <#import "lib-sequence.ftl" as s>
 <#import "lib-datetime.ftl" as dt>
 
@@ -22,7 +22,7 @@
         if ( $('h3#relatedBy-Authorship').attr('class').length == 0 ) {
             $('h3#relatedBy-Authorship').addClass('hiddenPubs');
         }
-        $('span.hideThis').parent().remove(); 
+        $('span.hideThis').parent().remove();
     </script>
 <#else>
     <#local citationDetails>
@@ -100,7 +100,7 @@
     </#local>
 
     <#local altmetric>
-         <#if statement.doi??>    
+         <#if statement.doi??>
                 <div data-badge-popover="left" data-badge-type="donut" data-doi="${statement.doi!}" data-hide-no-mentions="true" class="altmetric-embed">   </div>
          </#if>
     </#local>
@@ -118,13 +118,13 @@
     </#local>
 
      <td> <@dt.yearSpan "${statement.dateTime!}" /> </td>
-     <td class="citation-data"> ${resourceTitle} ${citationDetails} <@dt.yearSpan "${statement.dateTime!}" /><br/>
+     <td style ="word-break:break-word;" class="citation-data"> ${resourceTitle} ${citationDetails}
          <#if statement.figshareArticleId??>
              <div class="embed-responsive embed-responsive-4by3">
              <iframe src="https://widgets.figshare.com/articles/${statement.figshareArticleId}/embed?show_title=1" class="embed-responsive-item"></iframe>
              </div>
          </#if>
       </td>
-     <td> ${altmetric}</td>
+     <td style ="word-break:break-all;"> ${altmetric}</td>
 </#if>
 </#macro>

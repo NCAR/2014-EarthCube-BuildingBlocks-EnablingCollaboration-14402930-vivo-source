@@ -28,8 +28,8 @@
 
     <#if errorMessage?has_content>
         <section id="error-alert" role="alert"><div class="alert alert-warning">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          <span class="sr-only">Error:</span>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">${strings.alt_error_alert}</span>
             ${errorMessage}</div>
         </section>
     </#if>
@@ -43,17 +43,18 @@
     </#if>
 
     <#if confirmMessage?has_content>
-        <section id="account-feedback" role="alert"><div class="alert alert-success">
-          <span class="glyphicon glyphicon-ok"></span>
-            ${confirmMessage}</div>
-        </section>
+      <section  class="account-feedback" role="alert"><div class="alert alert-success">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          <span class="sr-only">${strings.alt_confirmation}</span>
+          ${confirmMessage}</div>
+      </section>
     </#if>
 
 <section id="my-account" role="region">
+    <#if showProxyPanel?? >
+        <div class="col-md-6">
+    </#if>
     <form id="main-form" method="POST" action="${formUrls.myAccount}" class="form-horizontal" role="my account">
-        <#if showProxyPanel?? >
-            <#include "userAccounts-myProxiesPanel.ftl">
-        </#if>
 
         <div class="form-group">
             <label class="control-label col-sm-3" for="email-address">${strings.email_address}<span class="requiredHint"> *</span></label>
@@ -91,6 +92,12 @@
 
         <p class="requiredHint">* ${strings.required_fields}</p>
     </form>
+    <#if showProxyPanel?? >
+        </div>
+      <div class="col-md-6">
+          <#include "userAccounts-myProxiesPanel.ftl">
+      </div>
+    </#if>
 </section>
 
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/css/account/account.css" />')}

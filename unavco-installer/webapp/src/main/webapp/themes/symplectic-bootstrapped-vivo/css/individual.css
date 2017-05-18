@@ -160,7 +160,7 @@ li.list-group-item {
 }
 @media (max-width: 420px) {
   #individualNavTabsContent #relatedBy-Authorship-List.property-list .table.table-hover tr.publicationTableRow td {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 #individual-personInPosition {
