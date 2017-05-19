@@ -4,7 +4,9 @@
     Macros and functions for working with properties and property lists
 ------------------------------------------------------------------------------>
 
-<#-- Return true iff there are statements for this property -->
+<#import "lib-generator-classes.ftl" as generators />
+
+<#-- Return true if there are statements for this property -->
 <#function hasStatements propertyGroups propertyName>
 
     <#local property = propertyGroups.getProperty(propertyName)!>
@@ -74,28 +76,12 @@
     <#list subclasses as subclass>
         <#local subclassName = subclass.name!>
         <#if subclassName?has_content>
-               <#if property.template == "propStatement-authorInAuthorship.ftl">
-                 <h4>${subclassName?capitalize}</h4>
-                 <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#publicationFilterDiv">
-                 Filter
-                 </button>
-                <div class="collapse" id="publicationFilterDiv">
-                    <div class="form-group">
-                        <input type="text" id="publicationFilter" placeholder="Narrow results..." class="form-control" aria-label="Filter publications">
-                    </div>
-                </div>
-                   <table class="table table-hover">
-                       <th>Year</th>
-                       <th>Title</th>
-                       <th>Altmetric</th>
-                       <@objectPropertyList property editable subclass.statements template />
-                   </table>
-                <#else>
-                   <ul class="list-group">
-                       <@objectPropertyList property editable subclass.statements template />
-                   </ul>
-                </#if>
-          <#--  </li> -->
+            <li class="list-group-item subclass" role="listitem">
+                <h4>${subclassName?capitalize}</h4>
+                <ul class="list-unstyled subclass-property-list">
+                    <@objectPropertyList property editable subclass.statements template />
+                </ul>
+            </li>
         <#else>
             <#-- If not in a real subclass, the statements are in a dummy subclass with an
                  empty name. List them in the top level ul, not nested. -->
@@ -115,15 +101,9 @@ Assumes property is non-null. -->
 </#macro>
 
 <#macro objectPropertyList property editable statements=property.statements template=property.template>
-    <#if property.template == "propStatement-authorInAuthorship.ftl" >
-        <#list statements as statement>
-          <@propertyListItemTable property statement editable><#include "${template}"></@propertyListItemTable>
-        </#list>
-    <#else>
         <#list statements as statement>
           <@propertyListItem property statement editable><#include "${template}"></@propertyListItem>
         </#list>
-    </#if>
 </#macro>
 
 <#-- Some properties usually display without a label. But if there's an add link,
@@ -177,27 +157,13 @@ name will be used as the label. -->
     <h4 id="${property.localName}" title="${property.publicDescription!}">${label}  <@verboseDisplay property /></h4>
 </#macro>
 
-
-<#macro propertyListItemTable property statement editable >
-    <#if property.rangeUri?? >
-        <#local rangeUri = property.rangeUri />
-    <#else>
-        <#local rangeUri = "" />
-    </#if>
-    <tr class="publicationTableRow" role="listitem">
-        <#nested>
-        <@editingLinks "${property.localName}" "${property.name}" statement editable rangeUri/>
-    </tr>
-
-</#macro>
-
 <#macro propertyListItem property statement editable >
     <#if property.rangeUri?? >
         <#local rangeUri = property.rangeUri />
     <#else>
         <#local rangeUri = "" />
     </#if>
-    <li class="list-group-item" role="listitem">
+    <li class="list-group-item listitem" role="listitem">
         <#nested>
         <@editingLinks "${property.localName}" "${property.name}" statement editable rangeUri/>
     </li>
@@ -339,7 +305,7 @@ name will be used as the label. -->
     	<#if editable>
     		<#assign imageAlt = "${i18n().manage}" />
     		<#assign linkTitle = "${i18n().manage_list_of_labels}">
-    		<#assign labelLink= "${urls.base}/editRequestDispatch?subjectUri=${individualUri}&editForm=edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.generators.ManageLabelsGenerator&predicateUri=${labelPropertyUri}${extraParameters}">
+    		<#assign labelLink= "${urls.base}/editRequestDispatch?subjectUri=${individualUri}&editForm=${generators.ManageLabelsGenerator}&predicateUri=${labelPropertyUri}${extraParameters}">
     	<#else>
 			<#assign linkTitle = "${i18n().view_list_of_labels}">
 			<#assign imageAlt = "${i18n().view}" />
@@ -371,5 +337,9 @@ name will be used as the label. -->
 
 <#--Property group names may have spaces in them, replace spaces with underscores for html id/hash-->
 <#function createPropertyGroupHtmlId propertyGroupName>
-	<#return propertyGroupName?replace(" ", "_")>
+    <#local groupName = propertyGroupName?replace(" ", "_")>
+    <#local groupName = groupName?replace("/", "-slash-")>
+    <#local groupName = groupName?replace(",", "-comma-")>
+    <#local groupName = groupName?replace("&", "-and-")>
+    <#return groupName>
 </#function>

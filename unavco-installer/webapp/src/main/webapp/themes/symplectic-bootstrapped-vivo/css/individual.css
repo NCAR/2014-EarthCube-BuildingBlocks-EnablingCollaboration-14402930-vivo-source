@@ -141,10 +141,12 @@ li.list-group-item {
   margin: 0;
   padding: 0;
 }
-#individualNavTabsContent #relatedBy-Authorship-List.property-list .list-group-item {
-  border: none;
-  padding: 1em 0;
+#individualNavTabsContent #relatedBy-Authorship-List.property-list .list-group-item .listitem {
+  border-top-color: #c3c3c3;
+  border-top-width: thin;
+  border-top-style: dotted;
 }
+
 #individualNavTabsContent #relatedBy-Authorship-List.property-list h4 {
   display: inline-block;
   vertical-align: middle;

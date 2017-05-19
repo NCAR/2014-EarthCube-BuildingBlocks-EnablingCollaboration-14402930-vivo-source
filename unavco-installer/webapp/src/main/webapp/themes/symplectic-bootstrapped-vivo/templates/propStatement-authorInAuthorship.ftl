@@ -117,14 +117,18 @@
         </#if>
     </#local>
 
-     <td> <@dt.yearSpan "${statement.dateTime!}" /> </td>
-     <td style ="word-break:break-word;" class="citation-data"> ${resourceTitle} ${citationDetails}
+     <div class="row">
+
+      <div class="col-md-1 col-sm-2 col-xs-12"> <@dt.yearSpan "${statement.dateTime!}" /> </div>
+     <div class="col-md-10 col-sm-8 col-xs-12 citation-data" style ="word-break:break-word;"> ${resourceTitle} ${citationDetails}
          <#if statement.figshareArticleId??>
              <div class="embed-responsive embed-responsive-4by3">
              <iframe src="https://widgets.figshare.com/articles/${statement.figshareArticleId}/embed?show_title=1" class="embed-responsive-item"></iframe>
              </div>
          </#if>
-      </td>
-     <td style ="word-break:break-all;"> ${altmetric}</td>
+      </div>
+     <div class="col-md-1 col-sm-2 col-xs-12" style ="word-break:break-all;">${altmetric}</div>
+
+   </div>
 </#if>
 </#macro>
