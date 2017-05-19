@@ -25,93 +25,95 @@
 
 <#-- Default individual profile page template -->
 <#--@dumpAll /-->
-<div class="row">
-	<div class="col-md-12 col-sm-12 col-xs-12">
-		<section id="individual-intro" class="vcard" role="region" <@mf.sectionSchema individual/>>
 
-				<#-- Image -->
-				<#-- <#assign individualImage>
-				<@p.image individual=individual
-					propertyGroups=propertyGroups
-					namespaces=namespaces
-					editable=editable
-					showPlaceholder="with_add_link" />
-				</#assign>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<section id="individual-intro" class="vcard" role="region" <@mf.sectionSchema individual/>>
 
-				<#if ( individualImage?contains('<img class="individual-photo"') )>
-					<#assign infoClass = 'class="withThumb"'/>
-				</#if>
-				<div id="photo-wrapper">${individualImage}</div>
-			</section> -->
-			<!-- start section individual-info -->
-			<section id="individual-info" ${infoClass!} role="region">
-				<#include "individual-adminPanel.ftl">
+						<#-- Image -->
+						<#-- <#assign individualImage>
+						<@p.image individual=individual
+							propertyGroups=propertyGroups
+							namespaces=namespaces
+							editable=editable
+							showPlaceholder="with_add_link" />
+						</#assign>
 
-				<#if individualProductExtensionPreHeader??>
-					${individualProductExtensionPreHeader}
-				</#if>
+						<#if ( individualImage?contains('<img class="individual-photo"') )>
+							<#assign infoClass = 'class="withThumb"'/>
+						</#if>
+						<div id="photo-wrapper">${individualImage}</div>
+					</section> -->
+					<!-- start section individual-info -->
+					<section id="individual-info" ${infoClass!} role="region">
+						<#include "individual-adminPanel.ftl">
 
-				<header class="individual-objectHeader">
-					<#if relatedSubject??>
-						<h2>${relatedSubject.relatingPredicateDomainPublic} for ${relatedSubject.name}</h2>
-						<p>
-							<a href="${relatedSubject.url}" title="${i18n().return_to(relatedSubject.name)}">&larr; ${i18n().return_to(relatedSubject.name)}</a>
-						</p>
-					<#else>
-						<h2>
-							<#if classSpecificIcon??>
-								${classSpecificIcon!}
-							<#else>
-									<span class="class-icon glyphicon glyphicon-asterisk"></span>
-							</#if>
-
-							<#-- Label of object -->
-							<@p.label individual editable labelCount localesCount languageCount/>
-
-						<#--  Most-specific types -->
-						<@p.mostSpecificTypes individual />
-						<#-- This isn't linked to anything right now.... so commenting out -->
-						<#-- <span id="iconControlsVitro" class="glyphicon glyphicon-link" title="${individual.uri}"></span>--></h2>
-					</#if>
-				</header>
-			</div> <#-- end of top row -->
-			<div class="row">
-				<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
-						<div class="col-md-8 col-sm-8 col-xs-12">
-				<#else>
-						<div class="col-md-12 col-sm-12 col-xs-12">
-				</#if>
-				<#if individualProductExtension??>
-					${individualProductExtension}
-				</#if>
-
-	</div>
-					</section> <!-- individual-info -->
-			<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
-					<div class="col-md-4 col-sm-4 col-xs-12 share-contact">
-
-			</#if>
-			<#if individualImage?trim?has_content>
-						<!-- Image -->
-						<#if ( individualImage?contains('<img class="img-rounded">') )>
-								<#assign infoClass = 'class="withThumb"'/>
+						<#if individualProductExtensionPreHeader??>
+							${individualProductExtensionPreHeader}
 						</#if>
 
-						<div id="photo-wrapper">
-							${individualImage}
-						</div>
-			</#if>
-					<#if sideIndividualProductExtension??>
-						${sideIndividualProductExtension}
-					</#if>
+						<header class="individual-objectHeader">
+							<#if relatedSubject??>
+								<h2>${relatedSubject.relatingPredicateDomainPublic} for ${relatedSubject.name}</h2>
+								<p>
+									<a href="${relatedSubject.url}" title="${i18n().return_to(relatedSubject.name)}">&larr; ${i18n().return_to(relatedSubject.name)}</a>
+								</p>
+							<#else>
+								<h2>
+									<#if classSpecificIcon??>
+										${classSpecificIcon!}
+									<#else>
+											<span class="class-icon glyphicon glyphicon-asterisk"></span>
+									</#if>
 
+									<#-- Label of object -->
+									<@p.label individual editable labelCount localesCount languageCount/>
 
-					<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
+								<#--  Most-specific types -->
+								<@p.mostSpecificTypes individual />
+								<#-- This isn't linked to anything right now.... so commenting out -->
+								<#-- <span id="iconControlsVitro" class="glyphicon glyphicon-link" title="${individual.uri}"></span>--></h2>
+							</#if>
+						</header>
+					</div> <#-- end of top row -->
+
+						<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
+								<div class="col-md-8 col-sm-8 col-xs-12">
+						<#else>
+								<div class="col-md-12 col-sm-12 col-xs-12">
+						</#if>
+						<#if individualProductExtension??>
+							${individualProductExtension}
+						</#if>
+
 			</div>
-					</#if>
-	</section> <!-- individual-intro-->
+		</section> <!-- individual-info -->
+					<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
+							<div class="col-md-4 col-sm-4 col-xs-12 share-contact">
 
-</div>
+					</#if>
+					<#if individualImage?trim?has_content>
+								<!-- Image -->
+								<#if ( individualImage?contains('<img class="img-rounded">') )>
+										<#assign infoClass = 'class="withThumb"'/>
+								</#if>
+
+								<div id="photo-wrapper">
+									${individualImage}
+								</div>
+					</#if>
+							<#if sideIndividualProductExtension??>
+								${sideIndividualProductExtension}
+							</#if>
+
+
+							<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
+					</div>
+							</#if>
+			</section> <!-- individual-intro -->
+
+		</div>
+
 <#assign nameForOtherGroup = "${i18n().other}">
 
 <!-- Property group menu or tabs -->

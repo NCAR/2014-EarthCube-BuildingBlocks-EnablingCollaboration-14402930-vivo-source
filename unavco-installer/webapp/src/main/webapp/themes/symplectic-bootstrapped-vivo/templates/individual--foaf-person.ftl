@@ -53,89 +53,91 @@
 <#include "individual-orcidInterface.ftl">
 
 	<div class="row person-content">
-		<div class="row container">
-			<#-- <section itemscope itemtype="http://schema.org/Person" id="individual-intro" class="vcard person" role="region"> -->
-			<div class="col-md-8 col-sm-8 col-xs-12">
-				<section id="individual-info" ${infoClass!} role="region">
-					<#include "individual-adminPanel.ftl">
-					<header>
-						<h2>
-							<span class="class-icon glyphicon glyphicon-user"></span>
+		<div class="container">
+				<div class="row">
+					<#-- <section itemscope itemtype="http://schema.org/Person" id="individual-intro" class="vcard person" role="region"> -->
+					<div class="col-md-8 col-sm-8 col-xs-12">
+						<section id="individual-info" ${infoClass!} role="region">
+							<#include "individual-adminPanel.ftl">
+							<header>
+								<h2>
+									<span class="class-icon glyphicon glyphicon-user"></span>
 
-							${foafFullName}
-						</h2>
-							<#if relatedSubject??>
-								<h2>${relatedSubject.relatingPredicateDomainPublic} ${i18n().indiv_foafperson_for} ${relatedSubject.name}</h2>
-								<p>
-									<a href="${relatedSubject.url}" title="${i18n().indiv_foafperson_return}">&larr; ${i18n().indiv_foafperson_return} ${relatedSubject.name}</a>
-								</p>
-							</#if>
-							<!-- Positions -->
-							<#include "individual-custom-positions.ftl">
-					</header>
-
-
-				<!-- Overview -->
-				 <#-- <#include "individual-overview.ftl">	-->
-
-					<!-- Research Areas -->
-					<#include "individual-custom-researchAreas.ftl">
-
-					<!-- Expertise -->
-	        <#include "individual-expertise.ftl">
-
-					<!-- Geographic Focus -->
-					<#-- <#include "individual-custom-geographicFocus.ftl"> -->
-
-					<#include "individual-openSocial.ftl">
-				</section>
-
-	    </div>
-			<div class="col-md-4 col-sm-4 col-xs-12">
-				<section itemscope itemtype="http://schema.org/Person" id="individual-intro" class="vcard person" role="region">
-					<section class="share-contact" role="region">
-						<!-- Image -->
-						<#assign individualImage>
-							<@p.image 	individual=individual
-											propertyGroups=propertyGroups
-											namespaces=namespaces
-											editable=editable
-											showPlaceholder="never" />
-						</#assign>
-
-						<#if ( individualImage?contains('<img class="img-rounded">') )>
-								<#assign infoClass = 'class="withThumb"'/>
-						</#if>
-
-						<div id="photo-wrapper">
-							${individualImage}
-						</div>
+									${foafFullName}
+								</h2>
+									<#if relatedSubject??>
+										<h2>${relatedSubject.relatingPredicateDomainPublic} ${i18n().indiv_foafperson_for} ${relatedSubject.name}</h2>
+										<p>
+											<a href="${relatedSubject.url}" title="${i18n().indiv_foafperson_return}">&larr; ${i18n().indiv_foafperson_return} ${relatedSubject.name}</a>
+										</p>
+									</#if>
+									<!-- Positions -->
+									<#include "individual-custom-positions.ftl">
+							</header>
 
 
-						<!-- Contact Info -->
-				<#--<div id="individual-tools-people">
-							<span id="iconControlsLeftSide">
-								<img id="uriIcon" title="${individual.uri}" src="${urls.images}/individual/uriIcon.gif" alt="${i18n().uri_icon}"/>
-								<#if checkNamesResult?has_content >
-									<img id="qrIcon"  src="${urls.images}/individual/qr_icon.png" alt="${i18n().qr_icon}" />
-									<sp an id="qrCodeImage" class="hidden">${qrCodeLinkedImage!}
-										<a class="qrCloseLink" href="#"  title="${i18n().qr_code}">
-											${i18n().close_capitalized}
-										</a>
-									</span>
+						<!-- Overview -->
+						 <#-- <#include "individual-overview.ftl">	-->
+
+							<!-- Research Areas -->
+							<#include "individual-custom-researchAreas.ftl">
+
+							<!-- Expertise -->
+			        <#include "individual-expertise.ftl">
+
+							<!-- Geographic Focus -->
+							<#-- <#include "individual-custom-geographicFocus.ftl"> -->
+
+							<#include "individual-openSocial.ftl">
+						</section>
+
+			    </div>
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<section itemscope itemtype="http://schema.org/Person" id="individual-intro" class="vcard person" role="region">
+							<section class="share-contact" role="region">
+								<!-- Image -->
+								<#assign individualImage>
+									<@p.image 	individual=individual
+													propertyGroups=propertyGroups
+													namespaces=namespaces
+													editable=editable
+													showPlaceholder="never" />
+								</#assign>
+
+								<#if ( individualImage?contains('<img class="img-rounded">') )>
+										<#assign infoClass = 'class="withThumb"'/>
 								</#if>
-							</span>
-						</div> -->
-						<#include "individual-custom-contactInfo.ftl">
-						<#include "individual-custom-webpage.ftl">
-						<#include "individual-custom-visualizationFoafPerson.ftl">
-						<#-- Moved Geographic focus under the profile page -->
-						<#include "individual-custom-geographicFocus.ftl">
-						<!-- Websites -->
-					</section>
-				</section>
-			</div>
-</div>
+
+								<div id="photo-wrapper">
+									${individualImage}
+								</div>
+
+
+								<!-- Contact Info -->
+						<#--<div id="individual-tools-people">
+									<span id="iconControlsLeftSide">
+										<img id="uriIcon" title="${individual.uri}" src="${urls.images}/individual/uriIcon.gif" alt="${i18n().uri_icon}"/>
+										<#if checkNamesResult?has_content >
+											<img id="qrIcon"  src="${urls.images}/individual/qr_icon.png" alt="${i18n().qr_icon}" />
+											<sp an id="qrCodeImage" class="hidden">${qrCodeLinkedImage!}
+												<a class="qrCloseLink" href="#"  title="${i18n().qr_code}">
+													${i18n().close_capitalized}
+												</a>
+											</span>
+										</#if>
+									</span>
+								</div> -->
+								<#include "individual-custom-contactInfo.ftl">
+								<#include "individual-custom-webpage.ftl">
+								<#include "individual-custom-visualizationFoafPerson.ftl">
+								<#-- Moved Geographic focus under the profile page -->
+								<#include "individual-custom-geographicFocus.ftl">
+								<!-- Websites -->
+							</section>
+						</section>
+					</div>
+		  </div>
+  </div>
 <#-- </section>
 	</div> --> <#-- this is closed in individual-foaf-property-group-tabs -->
 

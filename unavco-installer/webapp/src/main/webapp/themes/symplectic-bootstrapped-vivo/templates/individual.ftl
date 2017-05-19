@@ -23,10 +23,10 @@
 </#assign>
 
 <#assign sideIndividualProductExtension>
-    <!--Image stuff goes... here?-->
-        <!--And maybe... location???
-        <h5>Quick info</h5>
-    <#include "individual-custom-webpage.ftl">-->
+    <!-- Image stuff goes... here? -->
+        <!-- And maybe... location??? -->
+      <#--  <h5>Quick info</h5> -->
+  <#--  <#include "individual-custom-webpage.ftl"> -->
     ${sideClassSpecificExtension!}
 
 </#assign>

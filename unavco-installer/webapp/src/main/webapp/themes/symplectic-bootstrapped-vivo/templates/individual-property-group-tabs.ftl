@@ -7,6 +7,7 @@
 <#assign tabCount = 1 >
 <#assign sectionCount = 1 >
 <!-- ${propertyGroups.all?size} -->
+
 <div class="row individual-objects">
 	<div class="col-md-12">
 		<ul class="nav nav-tabs user-nav" role="tablist" id="individualNavTabs">
@@ -109,6 +110,7 @@
 		</div>
 	</div>
 </div>
+
 <script>
 		var individualLocalName = "${individual.localName}";
   	var propertyGroupSize = "${propertyGroups.all?size}"
