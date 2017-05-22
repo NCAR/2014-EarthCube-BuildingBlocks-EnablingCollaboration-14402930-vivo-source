@@ -12,7 +12,7 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                             <a class="" href="${url_base}{{uri}}">{{name}}</a>
                         </h4>
                         <div class="doc_info">
-                        {{#if thumbnail}}<div class="row"><div class="thumbnail col-lg-4 col-md-3 col-sm-2 col-xs-12"><img src="{{thumbnail}}"></div><div class="col-lg-8 col-md-9 col-sm-10 col-xs-12">{{/if}}
+                        {{#if thumbnail}}<div class="row"><div class="thumbnail col-lg-4 col-md-3 col-sm-2 col-xs-12"><img src="{{thumbnail}}"></div><div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">{{/if}}
 
 
 

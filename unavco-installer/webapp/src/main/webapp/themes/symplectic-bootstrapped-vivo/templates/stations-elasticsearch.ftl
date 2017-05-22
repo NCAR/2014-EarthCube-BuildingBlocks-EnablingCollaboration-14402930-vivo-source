@@ -12,36 +12,32 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                             <a class="" href="${url_base}{{uri}}">{{name}}</a>
                         </h4>
                         <div class="doc_info">
-                        {{#if thumbnail}}<div><div class="thumbnail" style="width:25%"><img src="{{thumbnail}}"></div><div style="float:right; width:70%">{{/if}}
-
-
-                        <dl class="doc_info_list">
+                        {{#if thumbnail}}<div class="row"><div class="thumbnail col-lg-4 col-md-3 col-sm-2 col-xs-12"><img src="{{thumbnail}}"></div><div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">{{/if}}
 
                         {{#if retirementDate}}
-                        <dt>Retired:</dt><dd> {{year retirementDate}}</dd>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Retired:</div> <div class="col-lg-9 col-sm-7"> {{year retirementDate}}</div></div>
                         {{/if}}
 
                         {{#if principalInvestigators}}
-                        <dt>PIs:</dt><dd> {{#expand principalInvestigators}} {{#if uri}}<a href="${url_base}{{encodeURL uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</dd>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">PIs:</div> <div class="col-lg-9 col-sm-7"> {{#expand principalInvestigators}} {{#if uri}}<a href="${url_base}{{encodeURL uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
                         {{/if}}
 
                         {{#if state}}
-                        <dt>State:</dt><dd> {{#expand state}} {{#if uri}}<a href="${url_base}{{encodeURL uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</dd>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">State:</div> <div class="col-lg-9 col-sm-7"> {{#expand state}} {{#if uri}}<a href="${url_base}{{encodeURL uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
                         {{/if}}
 
                         {{#if country}}
-                        <dt>Country:</dt><dd> {{#expand country}} {{#if uri}}<a href="${url_base}{{encodeURL uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</dd>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Country:</div> <div class="col-lg-9 col-sm-7"> {{#expand country}} {{#if uri}}<a href="${url_base}{{encodeURL uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
                         {{/if}}
 
                         {{#if continent}}
-                        <dt>Continent:</dt><dd> {{#expand continent}} {{#if uri}}<a href="${url_base}{{encodeURL uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</dd>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Continent:</div> <div class="col-lg-9 col-sm-7"> {{#expand continent}} {{#if uri}}<a href="${url_base}{{encodeURL uri}}">{{name}}</a>{{else}}{{name}}{{/if}}{{/expand}}</div></div>
                         {{/if}}
 
                         {{#if relatedDatasets}}
-                        <dt>Related datasets:</dt><dd> {{#expand relatedDatasets}}<a href="${url_base}{{uri}}">{{name}}</a>{{/expand}}</dd>
+                        <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Related datasets:</div> <div class="col-lg-9 col-sm-7"> {{#expand relatedDatasets}}<a href="${url_base}{{uri}}">{{name}}</a>{{/expand}}</div></div>
                         {{/if}}
 
-                      </dl>
                       {{#if thumbnail}}</div></div>{{/if}}
 
 
