@@ -6,7 +6,7 @@
 
 <#import "lib-generator-classes.ftl" as generators />
 
-<#-- Return true if there are statements for this property -->
+<#-- Return true iff there are statements for this property -->
 <#function hasStatements propertyGroups propertyName>
 
     <#local property = propertyGroups.getProperty(propertyName)!>
@@ -262,17 +262,40 @@ name will be used as the label. -->
     <#local thumbUrl = individual.thumbUrl!>
     <#-- Don't assume that if the mainImage property is populated, there is a thumbnail image (though that is the general case).
          If there's a mainImage statement but no thumbnail image, treat it as if there is no image. -->
+
     <#if (mainImage.statements)?has_content && thumbUrl?has_content>
         <a class="image-link" href="${individual.imageUrl}" title="${i18n().alt_thumbnail_photo}">
-        	<img class="img-rounded" src="${thumbUrl}" title="${i18n().click_to_view_larger}" alt="${individual.name}" width="${imageWidth!}" />
+          <div id="photo-wrapper" class="img-rounded" title="${i18n().click_to_view_larger}" alt="${individual.name}">
+          </div>
         </a>
+
+        ${stylesheets.add(' <style type="text/css">
+              #photo-wrapper {
+                height: 200px;
+                background-image: url("${thumbUrl}");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+              }
+        </style>')}
+
         <@editingLinks "${mainImage.localName}" "" mainImage.first() editable />
     <#else>
-        <#local imageLabel><@addLinkWithLabel mainImage editable "${i18n().photo}" /></#local>
-        ${imageLabel}
-        <#if showPlaceholder == "always" || (showPlaceholder="with_add_link" && imageLabel?has_content)>
-            <img class="img-rounded" src="${placeholderImageUrl(individual.uri)}" title = "${i18n().no_image}" alt="${i18n().placeholder_image}" width="${imageWidth!}" />
-        </#if>
+        <div class="img-rounded" id="photo-wrapper" title = "${i18n().no_image}" alt="${i18n().placeholder_image}">
+            <#local imageLabel><@addLinkWithLabel mainImage editable "${i18n().photo}" /></#local>
+            ${imageLabel}
+            <#if showPlaceholder == "always" || (showPlaceholder="with_add_link" && imageLabel?has_content)>
+                ${stylesheets.add(' <style type="text/css">
+                      #photo-wrapper {
+                        height: 200px;
+                        background-image: url("${placeholderImageUrl(individual.uri)}");
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-position: 50% 50%;
+                      }
+                </style>')}
+            </#if>
+        </div>
     </#if>
 </#macro>
 

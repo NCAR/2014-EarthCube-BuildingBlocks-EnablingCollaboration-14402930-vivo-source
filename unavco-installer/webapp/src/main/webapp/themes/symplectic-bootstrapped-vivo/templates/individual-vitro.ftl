@@ -26,6 +26,8 @@
 <#-- Default individual profile page template -->
 <#--@dumpAll /-->
 
+<div class="row">
+	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<section id="individual-intro" class="vcard" role="region" <@mf.sectionSchema individual/>>
@@ -77,19 +79,11 @@
 						</header>
 					</div> <#-- end of top row -->
 
-						<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
-								<div class="col-md-8 col-sm-8 col-xs-12">
-						<#else>
-								<div class="col-md-12 col-sm-12 col-xs-12">
-						</#if>
-						<#if individualProductExtension??>
-							${individualProductExtension}
-						</#if>
-
-			</div>
-		</section> <!-- individual-info -->
+					<#-- Side box -->
 					<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
-							<div class="col-md-4 col-sm-4 col-xs-12 share-contact">
+							<div class="col-md-4 col-sm-4 col-xs-12 col-sm-push-8">
+								<section id="individual-intro" role="region">
+									<section class="share-contact" role="region">
 
 					</#if>
 					<#if individualImage?trim?has_content>
@@ -98,9 +92,8 @@
 										<#assign infoClass = 'class="withThumb"'/>
 								</#if>
 
-								<div id="photo-wrapper">
 									${individualImage}
-								</div>
+
 					</#if>
 							<#if sideIndividualProductExtension??>
 								${sideIndividualProductExtension}
@@ -108,11 +101,28 @@
 
 
 							<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
+						</section>
 					</div>
 							</#if>
+
+						<#-- Maps for stations, etc. -->
+						<#if sideClassSpecificExtension?? || individualImage?trim?has_content>
+								<div class="col-md-8 col-sm-8 col-xs-12 col-sm-pull-4">
+						<#else>
+								<div class="col-md-12 col-sm-12 col-xs-12">
+						</#if>
+						<#if individualProductExtension??>
+							${individualProductExtension}
+						</#if>
+
+								</div>
+		</section> <!-- individual-info -->
+
 			</section> <!-- individual-intro -->
 
 		</div>
+</div>
+</div>
 
 <#assign nameForOtherGroup = "${i18n().other}">
 

@@ -13,7 +13,7 @@ var urlsBase = "${urls.base}";
 
   <#assign classSpecificExtension>
 
-    <div id="map-wrapper" style="margin-bottom:20px;" ${mapWrapperClass!}>
+    <div id="map-wrapper" ${mapWrapperClass!}>
         <#include "individual-map.ftl">
     </div>
 

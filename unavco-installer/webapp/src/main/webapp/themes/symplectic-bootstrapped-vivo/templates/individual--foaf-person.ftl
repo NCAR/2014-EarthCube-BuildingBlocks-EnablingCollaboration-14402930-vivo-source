@@ -56,7 +56,7 @@
 		<div class="container">
 				<div class="row">
 					<#-- <section itemscope itemtype="http://schema.org/Person" id="individual-intro" class="vcard person" role="region"> -->
-					<div class="col-md-8 col-sm-8 col-xs-12">
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<section id="individual-info" ${infoClass!} role="region">
 							<#include "individual-adminPanel.ftl">
 							<header>
@@ -71,28 +71,13 @@
 											<a href="${relatedSubject.url}" title="${i18n().indiv_foafperson_return}">&larr; ${i18n().indiv_foafperson_return} ${relatedSubject.name}</a>
 										</p>
 									</#if>
-									<!-- Positions -->
-									<#include "individual-custom-positions.ftl">
+
 							</header>
-
-
-						<!-- Overview -->
-						 <#-- <#include "individual-overview.ftl">	-->
-
-							<!-- Research Areas -->
-							<#include "individual-custom-researchAreas.ftl">
-
-							<!-- Expertise -->
-			        <#include "individual-expertise.ftl">
-
-							<!-- Geographic Focus -->
-							<#-- <#include "individual-custom-geographicFocus.ftl"> -->
-
-							<#include "individual-openSocial.ftl">
 						</section>
+					</div>
 
-			    </div>
-					<div class="col-md-4 col-sm-4 col-xs-12">
+
+					<div class="col-md-4 col-sm-4 col-xs-12 col-sm-push-8">
 						<section itemscope itemtype="http://schema.org/Person" id="individual-intro" class="vcard person" role="region">
 							<section class="share-contact" role="region">
 								<!-- Image -->
@@ -101,16 +86,15 @@
 													propertyGroups=propertyGroups
 													namespaces=namespaces
 													editable=editable
-													showPlaceholder="never" />
+													showPlaceholder="with_add_link" />
 								</#assign>
 
 								<#if ( individualImage?contains('<img class="img-rounded">') )>
 										<#assign infoClass = 'class="withThumb"'/>
 								</#if>
 
-								<div id="photo-wrapper">
 									${individualImage}
-								</div>
+
 
 
 								<!-- Contact Info -->
@@ -136,6 +120,27 @@
 							</section>
 						</section>
 					</div>
+
+					<div class="col-md-8 col-sm-8 col-xs-12 col-sm-pull-4">
+							<section id="individual-info" ${infoClass!} role="region">
+						<!-- Overview -->
+						 <#-- <#include "individual-overview.ftl">	-->
+						 <!-- Positions -->
+						 <#include "individual-custom-positions.ftl">
+							<!-- Research Areas -->
+							<#include "individual-custom-researchAreas.ftl">
+
+							<!-- Expertise -->
+			        <#include "individual-expertise.ftl">
+
+							<!-- Geographic Focus -->
+							<#-- <#include "individual-custom-geographicFocus.ftl"> -->
+
+							<#include "individual-openSocial.ftl">
+
+						</section>
+			    </div>
+
 		  </div>
   </div>
 <#-- </section>
