@@ -281,10 +281,10 @@ name will be used as the label. -->
 
         <@editingLinks "${mainImage.localName}" "" mainImage.first() editable />
     <#else>
-        <div class="img-rounded" id="photo-wrapper" title = "${i18n().no_image}" alt="${i18n().placeholder_image}">
             <#local imageLabel><@addLinkWithLabel mainImage editable "${i18n().photo}" /></#local>
             ${imageLabel}
             <#if showPlaceholder == "always" || (showPlaceholder="with_add_link" && imageLabel?has_content)>
+              <div class="img-rounded" id="photo-wrapper" title = "${i18n().no_image}" alt="${i18n().placeholder_image}"></div>
                 ${stylesheets.add(' <style type="text/css">
                       #photo-wrapper {
                         height: 200px;
@@ -294,8 +294,8 @@ name will be used as the label. -->
                         background-position: 50% 50%;
                       }
                 </style>')}
+
             </#if>
-        </div>
     </#if>
 </#macro>
 
