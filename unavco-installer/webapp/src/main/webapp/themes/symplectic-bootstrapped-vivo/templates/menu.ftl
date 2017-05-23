@@ -19,8 +19,35 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <div class="col-sm-12">
 
+            <form
+              class="navbar-form hidden-sm hidden-lg hidden-md"
+              role="search"
+              action='esearch'
+              method="get"
+              name="search"
+            >
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control hidden-sm hidden-lg hidden-md"
+                  name="query_in"
+                  class="search-vivo"
+                  value="${query_in!}"
+                  placeholder="Search @ UNAVCO"
+                >
+                <span class="input-group-btn">
+
+                  <#-- Button for submitting search has been repeated with btn-block and hidden on lg and md devices to fix mobile support -->
+                  <button type="submit" class="btn btn-default hidden-sm hidden-lg hidden-md">
+                    <span class="glyphicon glyphicon-search" role="submit"></span>
+                  </button>
+                </span></div>
+          </form>
+
+    </div>
+      <ul class="nav navbar-nav">
 				<#list menu.items as item>
 					<li>
 						<a href="${item.url}" title="${item.linkText} ${i18n().menu_item}"
@@ -29,7 +56,6 @@
 						</a>
 					</li>
 				</#list>
-
 
 
     </div><!-- /.navbar-collapse -->

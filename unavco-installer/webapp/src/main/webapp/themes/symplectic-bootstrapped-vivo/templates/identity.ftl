@@ -55,7 +55,7 @@
 
 
 					</div>
-					<div class="col-xs-12  visible-xs-block" >
+		<#--			<div class="col-xs-12  visible-xs-block" >
 
 						<section id="search" role="region">
 									<form
@@ -74,21 +74,21 @@
 												value="${query_in!}"
 												placeholder="Search @ UNAVCO"
 											>
-										</div>
+										</div> -->
 
 									<#-- Search button for search form in navbar -->
-									<button type="submit" class="btn btn-default sympl-search hidden-xs">
+						<#--			<button type="submit" class="btn btn-default sympl-search hidden-xs">
 										<span class="glyphicon glyphicon-search" role="submit"></span>
-									</button>
+									</button> -->
 
 									<#-- Button for submitting search has been repeated with btn-block and hidden on lg and md devices to fix mobile support -->
-									<button type="submit" class="btn btn-default btn-block sympl-search hidden-sm hidden-lg hidden-md">
+					<#--				<button type="submit" class="btn btn-default btn-block sympl-search hidden-sm hidden-lg hidden-md">
 										<span class="glyphicon glyphicon-search" role="submit"></span>
 									</button>
 								</form>
 				    </section>
 
-					</div>
+					</div> -->
 
 				</div>
 			</div>
