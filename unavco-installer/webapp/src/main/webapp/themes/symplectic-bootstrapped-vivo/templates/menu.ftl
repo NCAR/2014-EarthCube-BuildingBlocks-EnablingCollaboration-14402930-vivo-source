@@ -24,7 +24,7 @@
             <form
               class="navbar-form hidden-sm hidden-lg hidden-md"
               role="search"
-              action='esearch'
+              action='${urls.base}/esearch'
               method="get"
               name="search"
             >
@@ -35,11 +35,10 @@
                   name="query_in"
                   class="search-vivo"
                   value="${query_in!}"
-                  placeholder="Search @ UNAVCO"
+                  
                 >
                 <span class="input-group-btn">
 
-                  <#-- Button for submitting search has been repeated with btn-block and hidden on lg and md devices to fix mobile support -->
                   <button type="submit" class="btn btn-default hidden-sm hidden-lg hidden-md">
                     <span class="glyphicon glyphicon-search" role="submit"></span>
                   </button>

@@ -26,7 +26,7 @@
 									<form
 										class="navbar-form navbar-right"
 										role="search"
-										action='esearch'
+										action='${urls.base}/esearch'
 										method="get"
 										name="search"
 									>
@@ -37,7 +37,7 @@
 												name="query_in"
 												class="search-vivo"
 												value="${query_in!}"
-												placeholder="Search @ UNAVCO"
+												
 											>
 										</div>
 
@@ -55,40 +55,6 @@
 
 
 					</div>
-		<#--			<div class="col-xs-12  visible-xs-block" >
-
-						<section id="search" role="region">
-									<form
-										class="navbar-form navbar-right"
-										role="search"
-										action="esearch"
-										method="get"
-										name="search"
-									>
-										<div class="form-group">
-											<input
-												type="text"
-												class="form-control"
-												name="query_in"
-												class="search-vivo"
-												value="${query_in!}"
-												placeholder="Search @ UNAVCO"
-											>
-										</div> -->
-
-									<#-- Search button for search form in navbar -->
-						<#--			<button type="submit" class="btn btn-default sympl-search hidden-xs">
-										<span class="glyphicon glyphicon-search" role="submit"></span>
-									</button> -->
-
-									<#-- Button for submitting search has been repeated with btn-block and hidden on lg and md devices to fix mobile support -->
-					<#--				<button type="submit" class="btn btn-default btn-block sympl-search hidden-sm hidden-lg hidden-md">
-										<span class="glyphicon glyphicon-search" role="submit"></span>
-									</button>
-								</form>
-				    </section>
-
-					</div> -->
 
 				</div>
 			</div>

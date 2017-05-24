@@ -31,15 +31,15 @@
 						</a>
 					</h3>
 				<#elseif rangeClass == "Name" && property.statements?has_content && editable >
-					<h3 id="${property.localName}" title="${property.publicDescription!}" class="panel-title">${property.name?capitalize}  <@p.verboseDisplay property /> </h3>
+					<h3 id="${property.localName}" title="${property.publicDescription!}" class="panel-title">${property.name}  <@p.verboseDisplay property /> </h3>
 				<#elseif rangeClass == "Title" && property.statements?has_content && editable >
-					<h3 id="${property.localName}" title="${property.publicDescription!}" class="panel-title">${property.name?capitalize}  <@p.verboseDisplay property /> </h3>
+					<h3 id="${property.localName}" title="${property.publicDescription!}" class="panel-title">${property.name}  <@p.verboseDisplay property /> </h3>
 				<#elseif rangeClass == "Authorship" && !individual.editable && (property.domainUri)?? && property.domainUri?contains("Person")>
-					<h3 id="${property.localName}-${rangeClass}" title="${property.publicDescription!}" class="panel-title">${property.name?capitalize} <@p.addLink property editable /> <@p.verboseDisplay property /> </h3>
+					<h3 id="${property.localName}-${rangeClass}" title="${property.publicDescription!}" class="panel-title">${property.name} <@p.addLink property editable /> <@p.verboseDisplay property /> </h3>
 				<#elseif rangeClass == "ResearcherRole" && !individual.editable>
-					<h3 id="${property.localName}-${rangeClass}" title="${property.publicDescription!}" class="panel-title">${property.name?capitalize} <@p.addLink property editable /> <@p.verboseDisplay property /> </h3>
+					<h3 id="${property.localName}-${rangeClass}" title="${property.publicDescription!}" class="panel-title">${property.name} <@p.addLink property editable /> <@p.verboseDisplay property /> </h3>
 				<#else>
-					<h3 id="${property.localName}" title="${property.publicDescription!}" class="panel-title">${property.name?capitalize} <@p.addLink property editable /> <@p.verboseDisplay property /> </h3>
+					<h3 id="${property.localName}" title="${property.publicDescription!}" class="panel-title">${property.name} <@p.addLink property editable /> <@p.verboseDisplay property /> </h3>
 				</#if>
 				<#-- List the statements for each property -->
 					<#assign limit = property.getDisplayLimit()!5 />

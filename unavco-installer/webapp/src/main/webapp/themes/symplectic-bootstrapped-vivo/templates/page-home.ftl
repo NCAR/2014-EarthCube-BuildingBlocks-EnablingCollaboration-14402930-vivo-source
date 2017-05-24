@@ -61,7 +61,7 @@
 								<form
 									id="search-homepage"
 									role="search"
-									action='esearch'
+									action='${urls.base}/esearch'
 									method="get"
 									name="search"
 								>
