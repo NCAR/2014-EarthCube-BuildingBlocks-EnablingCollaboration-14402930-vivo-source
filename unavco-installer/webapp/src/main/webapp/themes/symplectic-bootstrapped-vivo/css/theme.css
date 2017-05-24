@@ -377,3 +377,6 @@ table.form-background td form {
   font-size: 11pt ;
   padding: 3px;
 }
+.navbar-default .navbar-collapse {
+  margin: 0px;
+}

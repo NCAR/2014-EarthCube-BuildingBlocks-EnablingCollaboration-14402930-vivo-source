@@ -32,6 +32,13 @@ Add a custom homepage background to hero class here
 }
 .navbar.transparent.navbar-inverse {
   background: rgba(0,0,0,0.6);
+  margin: 0px;
+}
+.navbar-inverse .navbar-collapse {
+  margin: 0px;
+}
+.container-fluid>.navbar-header {
+  margin: 0px;
 }
 /* link */
 .navbar.transparent.navbar-inverse .navbar-nav > li > a {

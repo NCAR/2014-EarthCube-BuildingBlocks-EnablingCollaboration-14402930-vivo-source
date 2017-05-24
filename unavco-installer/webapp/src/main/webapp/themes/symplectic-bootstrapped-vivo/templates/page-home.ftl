@@ -19,10 +19,11 @@
 		<#-- Hero image with search on top -->
 		<div class="container-fluid">
 				<div class="row hero">
-					<nav class="navbar transparent navbar-inverse" style="margin-bottom: 0;">
+					<nav class="navbar transparent navbar-inverse">
 						<div class="container-fluid">
-							<div class="navbar-header" style="margin: 0px;"> 	<#-- because row hero also has a -15 margin, rethink this maybe -->
-								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<#-- because row hero also has a -15 margin, rethink this maybe -->
+							<div class="navbar-header" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+								<button type="button" class="navbar-toggle collapsed">
 									<span class="sr-only">Toggle navigation</span>
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
@@ -32,7 +33,7 @@
 							</div>
 
 							<!-- Collect the nav links, forms, and other content for toggling -->
-							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin: 0;">
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 								<ul class="nav navbar-nav">
 
 									<#list menu.items as item>
