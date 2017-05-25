@@ -216,6 +216,7 @@ This is styling for the individual object pages i.e. Publications, grants etc
   border-bottom: 0;
 }
 .individual-objects .tab-content .property-list .list-group-item {
-  //float: left;
+  // float: left;
   margin-right: 10px;
+  word-break: break-word;
 }

@@ -101,7 +101,9 @@
 
     <#local altmetric>
          <#if statement.doi??>
-                <div data-badge-popover="left" data-badge-type="donut" data-doi="${statement.doi!}" data-hide-no-mentions="true" class="altmetric-embed">   </div>
+                <div data-badge-popover="right" data-badge-type="donut" data-doi="${statement.doi!}" data-hide-no-mentions="true" class="altmetric-embed">   </div>
+
+
          </#if>
     </#local>
     <#local resourceTitle>

@@ -69,6 +69,15 @@
              doesn't necessarily use property.statements and property.template -->
         <@objectPropertyList property editable property.statements template />
     </#if>
+
+    <#if template == "propStatement-authorInAuthorship.ftl">
+        <#-- Adjust the popover direction based on window size -->
+        <script type="text/javascript">
+            if ($(document).width() > 768){
+              $('.altmetric-embed').attr('data-badge-popover','left')
+            }
+         </script>
+    </#if>
 </#macro>
 
 <#macro collatedObjectPropertyList property editable template=property.template >

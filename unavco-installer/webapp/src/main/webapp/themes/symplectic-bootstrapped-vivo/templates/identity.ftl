@@ -16,11 +16,11 @@
 
 					<div class="col-md-6 col-sm-6 hidden-xs logo-sm vcenter">
 						<a href="${urls.base}"><img src="${urls.theme}/images/Connect-UNAVCO-logo.png" alt="Institution Logo-beta" /></a>
-					</div>
-					<div class="col-xs-12 visible-xs-block">
+					</div><!--
+					--><div class="col-xs-12 visible-xs-block">
 						<a href="${urls.base}"><img src="${urls.theme}/images/Connect-UNAVCO-logo.png" alt="Institution Logo" /></a>
-					</div>
-					<div class="col-md-6 col-sm-6 hidden-xs vcenter">
+					</div><!--
+					--><div class="col-md-6 col-sm-6 hidden-xs vcenter">
 
 						<section id="search" role="region">
 									<form
