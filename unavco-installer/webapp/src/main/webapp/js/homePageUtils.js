@@ -1,24 +1,24 @@
 /* $This file is distributed under the terms of the license in /doc/license.txt$ */
 
 $(document).ready(function(){
-    
+
     $.extend(this, urlsBase);
     $.extend(this, facultyMemberCount);
     $.extend(this, i18nStrings);
 
     var retryCount = 0;
-    
+
     // this will ensure that the hidden classgroup input is cleared if the back button is used
     // to return to th ehome page from the search results
-    $('input[name="classgroup"]').val("");    
+    $('input[name="classgroup"]').val("");
 
     buildMembers();
     buildWordMap();
 
     if ( $('section#home-geo-focus').length == 0 ) {
         $('section#home-stats').css("display","inline-block").css("margin-top","20px");
-    } 
-        
+    }
+
  function buildMembers() {
         var memNbr = members.length;
         var memhtml = "<ul>";
@@ -43,7 +43,7 @@ $(document).ready(function(){
                          memhtml += "<li class='individual' role='listitem'><h1><a href='" + urlsBase + "/individual?uri="
                      + members[memindex].uri + "'>"
                      + members[memindex].name + "</a></h1>"
-                     + "<span class='title'>Representative: <a href='"+ urlsBase + "/individual?uri=" 
+                     + "<span class='title'>Representative: <a href='"+ urlsBase + "/individual?uri="
                      + members[memindex].repURI + "'>"
                      + members[memindex].repName+"</a></span>"
                      + "<span class='title'><b>"+members[memindex].type+"</b></span></li>";
@@ -78,7 +78,7 @@ $(document).ready(function(){
         .domain([0, 0.4, 1])
         .range(["#000000", "#395d7f", "#62b6d7"]);
   var membersHeight = $('#members').height()-30;    
-        
+
   var layout = d3.layout.cloud()
   .size([558, membersHeight-22])
   .words(word_list)
@@ -111,7 +111,7 @@ $(document).ready(function(){
   .on("click", function (d){
           window.location = urlsBase+"/individual?uri="+d.uri;
       });
-  
+
 
   var vahtml = "<ul style='list-style:none'>"
           + "<li style='font-size:0.9em;text-align:right;padding: 6px 16px 0 0'><a href='"
@@ -120,11 +120,11 @@ $(document).ready(function(){
           + "view expertise and research index'>"
           + i18nStrings.viewAllString + "</a></li></ul>";
 
-  
+
   $("div#wordMap").append(vahtml);
 
   }
-    
+
   }
 
-}); 
+});

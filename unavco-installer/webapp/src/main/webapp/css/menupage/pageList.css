@@ -1,0 +1,7 @@
+/* $This file is distributed under the terms of the license in /doc/license.txt$ */
+
+.menuFlag {
+	width:67px;
+	height:18px;
+	background: url("../../images/checkMark.png") no-repeat left center;
+}
