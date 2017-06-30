@@ -24,7 +24,7 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                        {{/if}}
 
                        {{#if publicationYear}}
-                       <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Publication Year:</div><div class="col-lg-9 col-sm-9"> {{year publicationYear}}</div>
+                       <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Publication Year:</div><div class="col-lg-9 col-sm-9"> {{year publicationYear}}</div></div>
                        {{/if}}
 
                        {{#if citations}}

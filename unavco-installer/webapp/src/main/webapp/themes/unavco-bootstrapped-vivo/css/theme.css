@@ -14,9 +14,15 @@ Homepage colours
 =========================================*/
 /* The colours of the large icons beneath the search on the homepage */
 /* About our data section */
-body {
-  width: 100%;
+html {
   height: 100%;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  padding-bottom: 180px;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
@@ -274,6 +280,10 @@ These are helper classes to add margin gaps where needed
 // Beginning of footer styling //
 ***********************************/
 .footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
   padding: 35px 30px 36px;
   border-top: 1px solid #000000;
   background-color: #1b1b1b;
