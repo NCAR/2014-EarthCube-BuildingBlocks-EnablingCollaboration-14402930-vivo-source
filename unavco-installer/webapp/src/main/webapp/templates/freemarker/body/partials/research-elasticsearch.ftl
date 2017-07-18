@@ -42,7 +42,8 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                     {\'display\':\'Relevance\',\'field\':["_score","publicationYear"]},
                     {\'display\':\'Title\',\'field\':\'title.exact\'},
                     {\'display\':\'Date\',\'field\':\'publicationYear\'},
-                    {\'display\':\'Altmetric Score\',\'field\':\'amscore\'}
+                    {\'display\':\'Altmetric Score\',\'field\':\'amscore\'},
+                    {\'display\':\'Citations\',\'field\':\'timesCited\'}
                 ],
                 render_result_record: function(options, record)
                 {
@@ -51,7 +52,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
 					var vivoUrlRoot = "${url_base}";
 
                     var html = "<tr><td><div class=\'document\'>";
-				
+
 					          // title and link to vivo page
                     html += "<h3><a href=\\""+ vivoUrlRoot + record["uri"] + "\\" >" + record["title"] + "</a></h3><div class=\'doc_info\'>";
 
@@ -67,7 +68,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                         if (record["authors"].length != 0) {
                             html += "<dt>Authors:</dt><dd>";
                             for (var i = 0; i < record["authors"].length; i++) {
-								if(record["authors"][i]["uri"]){ 
+								if(record["authors"][i]["uri"]){
                                 html += "<a href=\\"" + vivoUrlRoot + record["authors"][i]["uri"] + "\\" >" + record["authors"][i]["name"] + "</a>"; }
 								else {
 									html += record["authors"][i]["name"]
@@ -79,13 +80,13 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                             html += "</dd>";
                         }
                     }
-					
+
                     // display publication venue
                     if (record["publishedIn"]) {
                         if (record["publishedIn"].length != 0) {
                             html += "<dt>Published In:</dt><dd>";
                             for (var i = 0; i < record["publishedIn"].length; i++) {
-								if(record["publishedIn"][i]["uri"]){ 
+								if(record["publishedIn"][i]["uri"]){
                                 html += "<a href=\\"" + vivoUrlRoot + record["publishedIn"][i]["uri"] + "\\" >" + record["publishedIn"][i]["name"] + "</a>"; }
 								else {
 									html += record["publishedIn"][i]["name"]
@@ -103,7 +104,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                         if (record["presentedAt"].length != 0) {
                             html += "<dt>Presented at:</dt><dd>";
                             for (var i = 0; i < record["presentedAt"].length; i++) {
-								if(record["presentedAt"][i]["uri"]){ 
+								if(record["presentedAt"][i]["uri"]){
                                 html += "<a href=\\"" + vivoUrlRoot + record["presentedAt"][i]["uri"] + "\\" >" + 										record["presentedAt"][i]["name"] + "</a>"; }
 								else {
 									html += record["presentedAt"][i]["name"]
@@ -114,12 +115,16 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                             }
                             html += "</dd>";
                         }
-                    }					
-                    
+                    }
+
                     // display publicationYear
                     if (record["publicationYear"]) {
 						          pubYear = new Date(record["publicationYear"]).getUTCFullYear();
                         html += "<dt>Publication Date:</dt><dd>" + pubYear + "</dd>";
+                    }
+                    
+                    if (record["timesCited"]) {
+                        html += "<dt>Citations:</dt><dd>" + record["timesCited"] + "</dd>";
                     }
 
                     if (record["subjectArea"]) {
@@ -148,7 +153,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                         }
                     }
 
-                  
+
 
                     html += "</div></div></div></td></tr>";
                     return html;
@@ -173,9 +178,9 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                           height:100%;
                           margin:0 auto 0 auto;
                       }
-                      
+
                       .facet-view-simple a {
-                          text-decoration: none     
+                          text-decoration: none
                       }
 
                       .facetview_freetext.span4 {
@@ -190,7 +195,7 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                       #wrapper-content {
                         // padding: 0px !important;
                         width: 970px !important;
-                        
+
                       }
 
                       input {
@@ -211,27 +216,27 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/facetview
                           box-shadow: none;
                           border: none;
                       }
-                      
+
                       .row {
                           background-color: #fff !important;
                           margin: 0 !important;
                       }
-                      
+
                       h3 a:link, h3 a:visited{
                         text-decoration: none !important;
                         color: #355374 !important;
                       }
-                      
+
                       .facet-panel {
                         border: 2px solid;
                         border-color: #f3f3f0;
                       }
-                      
+
                       ul#main-nav {
                       width: 970px !important;
-                      height: 48px !important;  
+                      height: 48px !important;
                       }
-                      
+
                       #unavco-branding {
                         height: 57px !important;
                       }

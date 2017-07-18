@@ -18,26 +18,26 @@ import java.util.regex.Pattern;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.hp.hpl.jena.ontology.FunctionalProperty;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.ModelMaker;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.ResIterator;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.ResourceFactory;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.shared.Lock;
-import com.hp.hpl.jena.util.ResourceUtils;
-import com.hp.hpl.jena.util.iterator.ClosableIterator;
-import com.hp.hpl.jena.vocabulary.OWL;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFS;
+import org.apache.jena.ontology.FunctionalProperty;
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.rdf.model.Literal;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.ModelMaker;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.ResIterator;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.ResourceFactory;
+import org.apache.jena.rdf.model.Statement;
+import org.apache.jena.rdf.model.StmtIterator;
+import org.apache.jena.shared.Lock;
+import org.apache.jena.util.ResourceUtils;
+import org.apache.jena.util.iterator.ClosableIterator;
+import org.apache.jena.vocabulary.OWL;
+import org.apache.jena.vocabulary.RDF;
+import org.apache.jena.vocabulary.RDFS;
 
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
 import edu.cornell.mannlib.vitro.webapp.dao.InsertException;
@@ -54,13 +54,13 @@ public class JenaIngestUtils {
      * @param inModel input Jena Model
      * @param namespaceEtc Namespace
      */
-    public Model renameBNodes(Model inModel, String namespaceEtc) {    
+    public Model renameBNodes(Model inModel, String namespaceEtc) {
         return renameBNodes(inModel, namespaceEtc, null);
     }
 
     /**
      * Returns a new copy of the input model with blank nodes renamed with namespaceEtc plus a random int.
-     * Will prevent URI collisions with supplied dedupModel 
+     * Will prevent URI collisions with supplied dedupModel
      * @param inModel input Jena Model
      * @param namespaceEtc Namespace
      */
@@ -71,7 +71,7 @@ public class JenaIngestUtils {
         if (dedupModel != null) {
             dedupUnionModel.addSubModel(dedupModel);
         }
-        // the dedupUnionModel is so we can guard against reusing a URI in an 
+        // the dedupUnionModel is so we can guard against reusing a URI in an
         // existing model, as well as in the course of running this process
         inModel.enterCriticalSection(Lock.READ);
         Set<String> doneSet = new HashSet<String>();
@@ -144,7 +144,7 @@ public class JenaIngestUtils {
         if (dedupModel != null) {
             dedupUnionModel.addSubModel(dedupModel);
         }
-        // the dedupUnionModel is so we can guard against reusing a URI in an 
+        // the dedupUnionModel is so we can guard against reusing a URI in an
         // existing model, as well as in the course of running this process
         inModel.enterCriticalSection(Lock.READ);
         Set<String> doneSet = new HashSet<String>();
@@ -170,7 +170,7 @@ public class JenaIngestUtils {
                             Resource outRes = stmt.getSubject();
                             if(stmt.getObject().isLiteral()){
                                 String value = ((Literal) stmt.getObject()).getLexicalForm();
-                                String suffix = (pattern.contains("$$$")) 
+                                String suffix = (pattern.contains("$$$"))
                                         ? pattern.replace("$$$", value)
                                                 : pattern + value;
                                         ResourceUtils.renameResource(outRes, namespaceEtc + suffix);
@@ -198,7 +198,7 @@ public class JenaIngestUtils {
             ClosableIterator cItr = model.listSubjects();
             while(cItr.hasNext()){
                 Resource res = (Resource) cItr.next();
-                if(res.isAnon() && !doneList.contains(res.getId())){    
+                if(res.isAnon() && !doneList.contains(res.getId())){
                     doneList.add(res.getId().toString());
                     StmtIterator stmtItr = model.listStatements(res, (Property)null, (RDFNode)null);
                     while(stmtItr.hasNext()){
@@ -206,14 +206,14 @@ public class JenaIngestUtils {
                         if(!stmt.getObject().isResource()){
                             if(propertyMap.containsKey(stmt.getPredicate().getURI())){
                                 LinkedList linkList = propertyMap.get(stmt.getPredicate().getURI());
-                                linkList.add(stmt.getObject().toString());        
+                                linkList.add(stmt.getObject().toString());
                             }
                             else{
                                 propertyMap.put(stmt.getPredicate().getURI(), new LinkedList());
                                 LinkedList linkList = propertyMap.get(stmt.getPredicate().getURI());
-                                linkList.add(stmt.getObject().toString());                        
-                            }                                    
-                        }                                
+                                linkList.add(stmt.getObject().toString());
+                            }
+                        }
                     }
                 }
             }
@@ -230,12 +230,12 @@ public class JenaIngestUtils {
                             if(!stmt.getObject().isResource()){
                                 if(propertyMap.containsKey(stmt.getPredicate().getURI())){
                                     LinkedList linkList = propertyMap.get(stmt.getPredicate().getURI());
-                                    linkList.add(stmt.getObject().toString());                    
+                                    linkList.add(stmt.getObject().toString());
                                 }
                                 else{
                                     propertyMap.put(stmt.getPredicate().getURI(), new LinkedList());
                                     LinkedList linkList = propertyMap.get(stmt.getPredicate().getURI());
-                                    linkList.add(stmt.getObject().toString());    
+                                    linkList.add(stmt.getObject().toString());
                                 }
                             }
                         }
@@ -276,7 +276,7 @@ public class JenaIngestUtils {
         return nextURI;
     }
 
-    public void processPropertyValueStrings(Model source, Model destination, Model additions, Model retractions, 
+    public void processPropertyValueStrings(Model source, Model destination, Model additions, Model retractions,
             String processorClass, String processorMethod, String originalPropertyURI, String newPropertyURI) {
         Model additionsModel = ModelFactory.createDefaultModel();
         Model retractionsModel = ModelFactory.createDefaultModel();
@@ -305,7 +305,7 @@ public class JenaIngestUtils {
                     Object[] args = {lex};
                     String newLex = null;
                     try {
-                        if (log.isDebugEnabled()) { 
+                        if (log.isDebugEnabled()) {
                             log.debug("invoking string processor method on ["+lex.substring(0,lex.length()>50 ? 50 : lex.length())+"...");
                         }
                         newLex = (String) meth.invoke(processor,args);
@@ -314,7 +314,7 @@ public class JenaIngestUtils {
                         return;
                     }
                     if (!newLex.equals(lex)) {
-                        retractionsModel.add(stmt);    
+                        retractionsModel.add(stmt);
                         Literal newLit = null;
                         if (lit.getLanguage()!=null && lit.getLanguage().length()>0) {
                             newLit = additionsModel.createLiteral(newLex,lit.getLanguage());
@@ -354,11 +354,11 @@ public class JenaIngestUtils {
             }
         } finally {
             source.leaveCriticalSection();
-        } 
+        }
     }
 
     /**
-     * Splits values for a given data property URI on a supplied regex and 
+     * Splits values for a given data property URI on a supplied regex and
      * asserts each value using newPropertyURI.  New statements returned in
      * a Jena Model.  Split values may be optionally trim()ed.
      * @param inModel Input Jena model
@@ -411,17 +411,17 @@ public class JenaIngestUtils {
             }
         } finally {
             inModel.leaveCriticalSection();
-        }    
+        }
         return outModel;
     }
 
     /**
-     * A simple resource smusher based on a supplied inverse-functional property.  
+     * A simple resource smusher based on a supplied inverse-functional property.
      * A new model containing only resources about the smushed statements is returned.
      * @param inModel Input Jena model
      * @param prop Property
      */
-    public Model smushResources(Model inModel, Property prop) { 
+    public Model smushResources(Model inModel, Property prop) {
         Model outModel = ModelFactory.createDefaultModel();
         outModel.add(inModel);
         inModel.enterCriticalSection(Lock.READ);
@@ -522,7 +522,7 @@ public class JenaIngestUtils {
             Statement origStmt = modelStmtIt.nextStatement();
             Resource newSubj = null;
             RDFNode newObj = null;
-            if (!origStmt.getSubject().isAnon()) { 
+            if (!origStmt.getSubject().isAnon()) {
                 String rewriteURI = rewriteURIUsing.get(origStmt.getSubject().getURI());
                 if (rewriteURI != null) {
                     newSubj = extractsModel.getResource(rewriteURI);
@@ -610,7 +610,7 @@ public class JenaIngestUtils {
 
         public Model getLeftoverModel() {
             return this.leftoverModel;
-        }    
+        }
     }
 
     /**
@@ -621,19 +621,19 @@ public class JenaIngestUtils {
      * @param tboxOntModel The model containing class and property data
      * @param usePrimaryLabelOnly If true, discard rdfs:labels from uri2.  Otherwise retain.
      */
-    public MergeResult doMerge(String uri1, String uri2, OntModel baseOntModel, 
+    public MergeResult doMerge(String uri1, String uri2, OntModel baseOntModel,
             OntModel tboxOntModel, boolean usePrimaryLabelOnly){
 
         boolean functionalPresent = false;
 
         Resource res1 = baseOntModel.getResource(uri1); // primary resource
-        Model res1Model = ModelFactory.createDefaultModel();        
+        Model res1Model = ModelFactory.createDefaultModel();
         Resource res2 = baseOntModel.getResource(uri2); // secondary resource
         Model res2Model = ModelFactory.createDefaultModel();
 
         // get statements of both the resources
         baseOntModel.enterCriticalSection(Lock.READ);
-        try {        
+        try {
             res1Model.add(
                     baseOntModel.listStatements(res1, (Property)null, (RDFNode)null));
             res2Model.add(
@@ -657,20 +657,20 @@ public class JenaIngestUtils {
 
         // Iterate through statements of secondary resource
         StmtIterator stmtItr2 = res2Model.listStatements(
-                res2, (Property) null, (RDFNode) null);            
+                res2, (Property) null, (RDFNode) null);
         while(stmtItr2.hasNext()){
-            Statement stmt = stmtItr2.nextStatement();            
+            Statement stmt = stmtItr2.nextStatement();
             if(isFunctional(stmt.getPredicate(), tboxOntModel)) {
-                // if the property is null or functional then dump the statement into 
-                // the leftover model, else add it to base, ont and inf models as a 
+                // if the property is null or functional then dump the statement into
+                // the leftover model, else add it to base, ont and inf models as a
                 // part of the primary resource.
                 leftoverModel.add(res2, stmt.getPredicate(), stmt.getObject());
                 functionalPresent = true;
             } else if (stmt.getPredicate().equals(RDFS.label) && usePrimaryLabelOnly) {
-                // if the checkbox is checked, use primary resource rdfs:labels only  
+                // if the checkbox is checked, use primary resource rdfs:labels only
                 // and dump secondary resource rdfs:labels into leftoverModel
                 leftoverModel.add(res2, stmt.getPredicate(), stmt.getObject());
-                functionalPresent = true;        
+                functionalPresent = true;
             } else {
                 baseOntModel.enterCriticalSection(Lock.WRITE);
                 try {
@@ -682,7 +682,7 @@ public class JenaIngestUtils {
             }
         }
 
-        // replace secondary resource with primary resource in all the statements 
+        // replace secondary resource with primary resource in all the statements
         // where secondary resource is present as an object.
         StmtIterator stmtItr3 = res2Model.listStatements(
                 (Resource) null, (Property) null, res2);
@@ -699,7 +699,7 @@ public class JenaIngestUtils {
             }
         }
 
-        // Remove all the statements of secondary resource 
+        // Remove all the statements of secondary resource
         baseOntModel.enterCriticalSection(Lock.WRITE);
         try {
             baseOntModel.remove(res2Model);
@@ -709,21 +709,21 @@ public class JenaIngestUtils {
 
         MergeResult result = new MergeResult();
         if (!leftoverModel.isEmpty()) {
-            result.setLeftoverModel(leftoverModel);   
+            result.setLeftoverModel(leftoverModel);
         }
 
         if (counter > 0 && functionalPresent) {
-            result.setResultText("merged " + counter + 
+            result.setResultText("merged " + counter +
                     " statements. Some statements could not be merged.");
         } else if(counter>0 && !functionalPresent) {
-            result.setResultText("merged " + counter + " statements.");    
+            result.setResultText("merged " + counter + " statements.");
         } else if (counter==0) {
             result.setResultText("No statements merged");
         }
         return result;
 
     }
-    
+
     private boolean isFunctional(Property property, OntModel tboxOntModel) {
         tboxOntModel.enterCriticalSection(Lock.READ);
         try {
@@ -735,13 +735,13 @@ public class JenaIngestUtils {
     }
 
     public void doPermanentURI(String oldModel, String newModel, String oldNamespace,
-            String newNamespace, ModelMaker maker, 
+            String newNamespace, ModelMaker maker,
             VitroRequest vreq) {
 
         if(newNamespace.isEmpty()){
             throw new RuntimeException("new namespace must be specified");
         }
-        
+
         WebappDaoFactory wdf = vreq.getUnfilteredWebappDaoFactory();
         Model m = maker.getModel(oldModel);
         Model saveModel = maker.getModel(newModel);
@@ -757,10 +757,10 @@ public class JenaIngestUtils {
             }
             rsItr = tempModel.listResourcesWithProperty((Property)null);
         } else{
-            rsItr = m.listResourcesWithProperty((Property)null); 
+            rsItr = m.listResourcesWithProperty((Property)null);
         }
 
-        String uri = null;  
+        String uri = null;
         while(rsItr.hasNext()){
             Resource res = rsItr.next();
             if(res.getNameSpace().equals(oldNamespace)){
@@ -772,7 +772,7 @@ public class JenaIngestUtils {
                     }
                 }while(!urlFound);
                 urlFound = false;
-                ResourceUtils.renameResource(res, uri);                    
+                ResourceUtils.renameResource(res, uri);
             }
 
         }
@@ -793,7 +793,7 @@ public class JenaIngestUtils {
                     if(oRes.getNameSpace().equals(newNamespace) && !statementDone){
                         saveModel.add(stmt);
                         statementDone = true;
-                    }    
+                    }
                 } catch(Exception e){
                     continue;
                 }
@@ -810,15 +810,15 @@ public class JenaIngestUtils {
         int min = 100000;
         int max = 999999;
 
-        while( uriIsGood == false && attempts < 30 ){            
-            uri = newNamespace + "n" + (random.nextInt(max-min) + min);            
+        while( uriIsGood == false && attempts < 30 ){
+            uri = newNamespace + "n" + (random.nextInt(max-min) + min);
             errMsg = wdf.checkURI(uri);
             if(  errMsg != null)
                 uri = null;
             else
-                uriIsGood = true;                
+                uriIsGood = true;
             attempts++;
-        }   
+        }
 
         return uri;
     }
