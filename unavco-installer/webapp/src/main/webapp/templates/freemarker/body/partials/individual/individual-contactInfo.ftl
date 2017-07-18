@@ -1,7 +1,7 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
 <#-- Contact info on individual profile page -->
-
+<#import "lib-external-properties.ftl" as clext>
 <#assign phone = propertyGroups.pullProperty("http://purl.obolibrary.org/obo/ARG_2000028","http://www.w3.org/2006/vcard/ns#Telephone")!>
 <#assign primaryEmail = propertyGroups.pullProperty("http://purl.obolibrary.org/obo/ARG_2000028","http://www.w3.org/2006/vcard/ns#Work")!>
 <#assign addlEmail = propertyGroups.pullProperty("http://purl.obolibrary.org/obo/ARG_2000028","http://www.w3.org/2006/vcard/ns#Email")!>
@@ -10,13 +10,39 @@
     <ul style="font-size:1em;padding-bottom:4px"><li><strong>${i18n().contact_info}</strong></li></ul>
 </#if>
 
-<#-- Primary Email -->    
+<#-- Primary Email -->
 <@emailLinks "primaryEmail" primaryEmail />
+<ul id ="external-primary-emails" class="individual-emails" role="list">
+<@clext.outputContactInfo externalURIInfo primaryEmail />
+	<#list externalURIInfo as externalURIInfoItem >
+	<#assign pURI = externalURIInfoItem.propertyURI />
+	<#assign pDomainURI = externalURIInfoItem.propertyDomainURI />
+	<#assign pRangeURI = externalURIInfoItem.propertyRangeURI />
 
-<#-- Additional Emails --> 
-<@emailLinks "email" addlEmail />   
-  
-<#-- Phone --> 
+
+	<#-- If no propertyURI, domain or range URI has been specified,  don't display anything, but we could also do the opposite, depends on how this needs to be-->
+	<#if pURI?has_content>
+		<#if pDomainURI?has_content && pRangeURI?has_content>
+			<#if (primaryEmail.domainUri)?? && primaryEmail.domainUri == pDomainURI &&
+			(primaryEmail.rangeUri)?? && primaryEmail.rangeUri == pRangeURI>
+
+			</#if>
+		<#else>
+			<#-- if no domain and range specified for external entity retrieval, get the info back -->
+
+		</#if>
+	</#if>
+	</#list>
+
+</ul>
+
+<#-- Additional Emails -->
+<@emailLinks "email" addlEmail />
+<ul id ="external-additional-emails" class="individual-emails" role="list">
+<@clext.outputContactInfo externalURIInfo addlEmail />
+</ul>
+
+<#-- Phone -->
 
 <#if phone?has_content> <#-- true when the property is in the list, even if not populated (when editing) -->
     <@p.addLinkWithLabel phone editable />
@@ -28,6 +54,8 @@
                     <@p.editingLinks "${phone.localName}" "${phone.name}" statement editable phone.rangeUri />
                 </li>
             </#list>
+
+            <@clext.outputContactInfo externalURIInfo phone />
         </ul>
     </#if>
 </#if>
@@ -39,7 +67,7 @@
     <#else>
         <#local listId = "additional-emails">
         <#local label = "${i18n().additional_emails_capitalized}">
-    </#if>     
+    </#if>
     <#if email?has_content> <#-- true when the property is in the list, even if not populated (when editing) -->
         <@p.addLinkWithLabel email editable label/>
         <#if email.statements?has_content> <#-- if there are any statements -->

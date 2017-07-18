@@ -960,6 +960,17 @@
     <url-pattern>/dataautocomplete</url-pattern>
   </servlet-mapping>
 
+  <!--  ===Adding this for external lookup, check later  -->
+   <servlet>
+   <servlet-name>ExternalLookupAutocompleteController</servlet-name>
+   <servlet-class>edu.cornell.mannlib.vitro.webapp.search.controller.ExternalLookupAutocompleteController</servlet-class>
+ </servlet>
+ <servlet-mapping>
+   <servlet-name>ExternalLookupAutocompleteController</servlet-name>
+   <url-pattern>/externalautocomplete</url-pattern>
+ </servlet-mapping>
+    <!--  ===End Adding this for external lookup, check later  -->
+
   <servlet>
     <servlet-name>ReorderController</servlet-name>
     <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ReorderController</servlet-class>
@@ -1100,6 +1111,15 @@
     <servlet-name>individual</servlet-name>
     <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.individual.IndividualController</servlet-class>
   </servlet>
+
+  <servlet>
+ <servlet-name>ExternalIndividualController</servlet-name>
+ <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.individual.ExternalIndividualController</servlet-class>
+</servlet>
+<servlet-mapping>
+ <servlet-name>ExternalIndividualController</servlet-name>
+ <url-pattern>/externalIndividualController</url-pattern>
+</servlet-mapping>
 
   <servlet>
     <servlet-name>authenticate</servlet-name>
@@ -1475,6 +1495,7 @@
     <url-pattern>/orcid/*</url-pattern>
   </servlet-mapping>
 
+
   <servlet>
     <display-name>TpfServlet</display-name>
     <servlet-name>TpfServlet</servlet-name>
@@ -1582,13 +1603,6 @@
  -->
   <!-- 	</error-page>
  -->
- <error-page>
- <error-code>404</error-code>
- <location>/templates/error/error.html</location>
- </error-page>
- <error-page>
- <error-code>503</error-code>
- <location>/templates/error/servererror.html</location>
- </error-page>
+
 
 </web-app>
