@@ -60,7 +60,7 @@ $(document).ready(function(){
 
 		function displayExternalLinkedIcons(externalURI, externalBaseURL, externalSourceLabel) {
 			if(externalURI != "" && externalBaseURL != "") {
-				var imageHTML = "<a  href='" + externalBaseURL + "/individual?uri=" + externalURI + "' title='see linked profile at " + externalSourceLabel + "'><img class='linkedprofile' src='" + baseUrl + "/images/cornellvivoicon2.png'></a>";
+				var imageHTML = "<a  href='" + externalBaseURL + "/individual?uri=" + externalURI + "' title='see linked profile at " + externalSourceLabel + "'><img class='linkedprofile' src='" + baseUrl + "/images/cornellvivoicon.png'></a>";
 				$("#externalProfileImages").append(imageHTML);
 			}
 		}
