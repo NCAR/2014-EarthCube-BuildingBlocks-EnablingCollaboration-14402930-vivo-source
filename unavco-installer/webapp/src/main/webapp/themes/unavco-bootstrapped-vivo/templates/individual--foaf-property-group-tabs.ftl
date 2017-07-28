@@ -103,6 +103,7 @@
 </div>
 <script>
 	var individualLocalName = "${individual.localName}";
+	var appBase = "${urls.base}";
 	var propertyGroupSize = "${propertyGroups.all?size}"
 	var theme_url = "${urls.theme}"
 </script>

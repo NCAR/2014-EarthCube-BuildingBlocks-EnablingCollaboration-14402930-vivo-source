@@ -3,6 +3,7 @@
 <#include "individual-setup.ftl">
 <#include "individual-lightboxscripts.ftl">
 <#import "lib-vivo-properties.ftl" as vp>
+<#import "lib-external-properties.ftl" as foafext>
 <#--Number of labels present-->
 <#if !labelCount??>
 	 <#assign labelCount = 0 >
@@ -27,6 +28,7 @@
 		</#if>
           -->
            <@p.label individual editable labelCount localesCount/>
+					 <#if foafext.hasExternalInfo()><span id='externalProfileImages'></span></#if>
 			<#if title?has_content> <#-- true when the property is in the list, even if not populated (when editing) -->
 				<#if (title.statements?size < 1) >
 					<@p.addLinkWithLabel title editable />

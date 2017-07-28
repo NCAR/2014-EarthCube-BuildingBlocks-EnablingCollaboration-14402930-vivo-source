@@ -119,3 +119,5 @@
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/css/individual/individual-property-groups.css" />')}
 ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/amplify/amplify.store.min.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.theme}/js/propertyGroupControls-bs.js"></script>')}
+<#--Adding script for getting external information -->
+${scripts.add('<script type="text/javascript" src="${urls.base}/js/individual/externalInfoDisplay.js"></script>')}

@@ -1,6 +1,8 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
 <#-- Template for property listing on individual profile page -->
+<#--ADDING this import here but may belong elsewhere, enable retrieval of external properties-->
+<#import "lib-external-properties.ftl" as extp>
 
 <#list group.properties as property>
 	<#assign rangeClass = "noRangeClass">
@@ -55,6 +57,8 @@
 					<#-- object property -->
 						<#else>
 						<@p.objectProperty property editable />
+						<#-- If this property has external content, display here-->
+						<@extp.externalObjectProperty rangeClass property editable /> 
 						</#if>
 					</ul>
 				</div>

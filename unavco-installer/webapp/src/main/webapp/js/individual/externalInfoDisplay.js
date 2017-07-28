@@ -10,24 +10,24 @@ $(document).ready(function(){
 			var externalInfo = externalURIHash[key];
 			var externalServiceURL = externalInfo["externalServiceURL"];
 			var externalURI =  externalInfo["externalURI"];
-			 
+
 			var externalBaseURL =  externalInfo["externalBaseURL"];
 			var externalSourceLabel =  externalInfo["sourceLabel"];
-			 
+
 			//Include icons for linked images on page
 			displayExternalLinkedIcons(externalURI, externalBaseURL, externalSourceLabel);
-			
+
 			var propertyList = externalInfo["properties"];
 			var plen = propertyList.length;
 			var p;
 			var data = {
-				"serviceURL": externalServiceURL, 
+				"serviceURL": externalServiceURL,
 				"properties": JSON.stringify(propertyList),
 				"propertiesLength": propertyList.length
 				};
-						 
+
 			var externalIndController = appBase + "/externalIndividualController";
-						 
+
 			$.getJSON(externalIndController, data, function(allResults) {
 				if(allResults != null && allResults != "") {
 					for(propertyKey in allResults) {
@@ -47,17 +47,17 @@ $(document).ready(function(){
 									contentItem.replaceWith("");
 									hideLoadingIndicator(externalURI, propertyURI, domainURI, rangeURI);
 								}
-							
+
 						}
 					}
 				}
 				//parseExternalContent(results, externalURI, externalBaseURL, externalSourceLabel, propertyURI, domainURI, rangeURI);
 			});
-			
+
 		 }
-			 
+
 		}
-	
+
 		function displayExternalLinkedIcons(externalURI, externalBaseURL, externalSourceLabel) {
 			if(externalURI != "" && externalBaseURL != "") {
 				var imageHTML = "<a  href='" + externalBaseURL + "/individual?uri=" + externalURI + "' title='see linked profile at " + externalSourceLabel + "'><img class='linkedprofile' src='" + baseUrl + "/images/cornellvivoicon2.png'></a>";
@@ -75,24 +75,24 @@ $(document).ready(function(){
 //			 //These should be empty strings and not null/undefined when values don't exist
 //			 if(externalServiceURL != null && externalServiceURL != "") {
 //				 //Call ajax to get the content
-//				 var data = {"serviceURL": externalServiceURL, 
-//						 "propertyURI": propertyURI, 
-//						 "domainURI":domainURI, 
+//				 var data = {"serviceURL": externalServiceURL,
+//						 "propertyURI": propertyURI,
+//						 "domainURI":domainURI,
 //						 "rangeURI":rangeURI};
 //				 //appBase is variable defined in individual-property-group-tabs
 //				 var externalIndController = appBase + "/externalIndividualController";
-//				 
+//
 //					 $.getJSON(externalIndController, data, function(results) {
 //					 parseExternalContent(results, externalURI, externalBaseURL, externalSourceLabel, propertyURI, domainURI, rangeURI);
 //					 });
-//				
+//
 //			 }
 //		 });
-		
-		
-		
 
-	
+
+
+
+
 	//Create a hash of information based on what external uris are indiciated within the page
 	function createExternalURIHash() {
 		var externalURIHash = {};
@@ -106,7 +106,7 @@ $(document).ready(function(){
 			 var externalSourceLabel = $(this).attr("sourceLabel");
 			 //These should be empty strings and not null/undefined when values don't exist
 			 if(externalURI != null && externalURI != "" && externalServiceURL != null && externalServiceURL != "") {
-				 
+
 				 var key = externalURI + "-" + externalServiceURL;
 				 var propertiesList = [];
 				 if(! (key in externalURIHash)) {
@@ -118,7 +118,7 @@ $(document).ready(function(){
 							 "properties": []
 					 };
 				 }
-				 
+
 				 var einfo = externalURIHash[key];
 				 propertiesList = einfo["properties"];
 				 propertiesList.push({
@@ -132,7 +132,7 @@ $(document).ready(function(){
 		});
 		return externalURIHash;
 	}
-	
+
 	//Hardcoding retrieval of publications but this should be based on
 	//the property, domain, and range info being set on the datagetter and set as attributes
 	//on the element
@@ -146,7 +146,7 @@ $(document).ready(function(){
 			if(subclassesArray.length > 0) {
 				for(s = 0; s < subclassesArray.length; s++) {
 					var subclass = subclassesArray[s];
-					
+
 					var statements = subclass.statements;
 					displayHTML += createDisplayHTML(statements, subclass, null, propertyURI, domainURI, rangeURI, externalURI, externalBaseURL, externalSourceLabel);
 				}
@@ -156,7 +156,7 @@ $(document).ready(function(){
 					var statements = results["statements"];
 					var displayName = results["name"].toLowerCase();
 					var displayHTML = createDisplayHTML(statements, null, displayName, propertyURI, domainURI, rangeURI, externalURI, externalBaseURL, externalSourceLabel);
-							
+
 			}
 		}
 		//$("ul[externalURI='" + externalURI + "']").append("<li>" + displayHTML + "</li>");
@@ -165,21 +165,21 @@ $(document).ready(function(){
 		showContentItem(displayHTML, contentItem);
 		hideLoadingIndicator(externalURI, propertyURI, domainURI, rangeURI);
 	}
-	
+
 	function getExternalContentItem(externalURI, propertyURI, domainURI, rangeURI) {
 		return $("li.external-property-list-item[externalURI='" + externalURI + "'][propertyURI='" + propertyURI + "'][domainURI='" + domainURI + "'][rangeURI='" + rangeURI + "']");
 	}
-	
+
 	function showContentItem(displayHTML, contentItem) {
 		contentItem.replaceWith(displayHTML);
 		contentItem.removeClass("hidden");
 	}
-	
+
 	function hideLoadingIndicator(externalURI, propertyURI, domainURI, rangeURI) {
 		var indicator = $("li.li-indicator[externalURI='" + externalURI + "'][propertyURI='" + propertyURI + "'][domainURI='" + domainURI + "'][rangeURI='" + rangeURI + "']");
 		indicator.addClass("hidden");
 	}
-	
+
 	function createDisplayHTML(statements, subclass, displayName, propertyURI, domainURI, rangeURI, externalURI, externalBaseURL, externalSourceLabel) {
 		//["http://vivoweb.org/ontology/core#relatedBy-http://xmlns.com/foaf/0.1/Person-http://vivoweb.org/ontology/core#Position"]
 
@@ -194,7 +194,7 @@ $(document).ready(function(){
 			return createEmailHTML(statements, subclass,externalURI, externalBaseURL, externalSourceLabel);
 		}
 	}
-	
+
 	function createPublicationsHTML(statements, subclass, externalURI, externalBaseURL, externalSourceLabel) {
 		var name = subclass.name;
 		var displayHTML = "";
@@ -204,7 +204,7 @@ $(document).ready(function(){
 				subclassDisplayName += externalSourceLabel ;
 			}
 			displayHTML += "<li class='subclass' role='listitem'><h3>" + subclassDisplayName + "</h3><ul class='subclass-property-list'>";
-			
+
 			var i;
 			for(i = 0; i < statements.length; i++) {
 				var statement = statements[i];
@@ -225,9 +225,9 @@ $(document).ready(function(){
 			displayHTML += "</ul></li>";
 		}
 		return displayHTML;
-		
+
 	}
-	
+
 	function createPositionsHTML(statements, displayName, externalURI, externalBaseURL, externalSourceLabel) {
 		var displayHTML = "";
 		var i;
@@ -235,32 +235,32 @@ $(document).ready(function(){
 			var statement = statements[i];
 			if("allData" in statement) {
 				var statementData = statement.allData;
-				
+
 				//if position
 				if(displayName == "positions") {
 					dataExists = true;
 					var positionTitle = statementData["positionTitle"];
-					displayHTML += "<li role='listitem'>" + positionTitle;
+					displayHTML += "<li class='list-group-item listitem' role='listitem'>" + positionTitle;
 					if("orgName" in statementData) {
 						displayHTML += ", " + statementData["orgName"];
 					}
 					if ("middleOrgName" in statementData) {
 						displayHTML += ", " + statementData["middleOrgName"];
 					}
-					
+
 					if ("outerOrgName" in statementData) {
 						displayHTML += ", " + statementData["outerOrgName"];
 					}
-					
+
 				}
 				//org, outerOrg, position, middleOrg are all URLs so those can be included if need be
 				displayHTML += "<span style='font-size:0.825em'>* " + externalSourceLabel + "</span></li>";
 			}
 		}
 		return displayHTML;
-		
+
 	}
-	
+
 	function createEmailHTML(statements, subclass,externalURI, externalBaseURL, externalSourceLabel) {
 		var displayHTML = "";
 		var i;
@@ -268,25 +268,23 @@ $(document).ready(function(){
 			var statement = statements[i];
 			if("allData" in statement) {
 				var statementData = statement.allData;
-				
-				
-					
-					
+
+
+
+
 					if("emailAddress" in statementData) {
-						
+
 						var emailAddress = statementData["emailAddress"];
 						displayHTML += "<li role'listitem'><a class='email' title='email' href='mailto:'" + emailAddress + "' itemprop='email'>" + emailAddress + "</a></li>" ;
 					}
-					
-				
+
+
 				//org, outerOrg, position, middleOrg are all URLs so those can be included if need be
 				displayHTML += "<span style='font-size:0.825em'>* " + externalSourceLabel + "</span></li>";
 			}
 		}
 		return displayHTML;
 	}
-	
- 
+
+
 });
-
-

@@ -1,6 +1,7 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
 <#-- List of positions for the individual -->
+<#import "lib-external-properties.ftl" as extp_pos>
 <#assign positions = propertyGroups.pullProperty("${core}relatedBy", "${core}Position")!>
 <#if positions?has_content> <#-- true when the property is in the list, even if not populated (when editing) -->
     <#assign localName = positions.localName>
@@ -16,5 +17,6 @@
    	</a>
     <ul id="individual-personInPosition" class="collapse in" role="list">
         <@p.objectProperty positions editable />
+        <@extp_pos.outputPositionInfo externalURIInfo positions />
     </ul>
 </#if>
