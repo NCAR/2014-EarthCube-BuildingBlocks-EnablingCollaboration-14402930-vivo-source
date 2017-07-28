@@ -199,11 +199,11 @@ $(document).ready(function(){
 		var name = subclass.name;
 		var displayHTML = "";
 		if(statements.length > 0) {
-			var subclassDisplayName = name.toLowerCase();
+			var subclassDisplayName = name;
 			if(externalSourceLabel) {
 				subclassDisplayName += externalSourceLabel ;
 			}
-			displayHTML += "<li class='subclass' role='listitem'><h3>" + subclassDisplayName + "</h3><ul class='subclass-property-list'>";
+			displayHTML += "<li class='list-group-item subclass' role='listitem'><h4>" + subclassDisplayName + "</h4><ul class='list-unstyled subclass-property-list'>";
 
 			var i;
 			for(i = 0; i < statements.length; i++) {
@@ -212,9 +212,10 @@ $(document).ready(function(){
 					var statementData = statement.allData;
 					//For publisher, hard coding right now
 					var pubName = statementData.infoResourceName;
+					var pubDate = statementData.dateTime.substring(0,4);
 					var infoResourceURI = statementData.infoResource;
 					var externalPubURL = externalBaseURL + "/individual?uri=" + infoResourceURI;
-					displayHTML += "<li role='listitem'><a title='resource name' href='" + externalPubURL + "'>" + pubName + "</a>";
+					displayHTML += "<li class='list-group-item listitem' role='listitem'><div class='row'><div class='col-md-1 col-sm-2 col-xs-12'><span class='listDateTime'>" + pubDate + "</span></div><div class='col-md-10 col-sm-8 col-xs-12 citation-data' style='word-break:break-word;'><a title='resource name' href='" + externalPubURL + "'>" + pubName + "</a></div>";
 					//if(externalSourceLabel) {
 					//	displayHTML += "<br/>" + externalSourceLabel ;
 					//}
