@@ -215,7 +215,7 @@ $(document).ready(function(){
 					var pubDate = statementData.dateTime.substring(0,4);
 					var infoResourceURI = statementData.infoResource;
 					var externalPubURL = externalBaseURL + "/individual?uri=" + infoResourceURI;
-					displayHTML += "<li class='list-group-item listitem' role='listitem'><div class='row'><div class='col-md-1 col-sm-2 col-xs-12'><span class='listDateTime'>" + pubDate + "</span></div><div class='col-md-10 col-sm-8 col-xs-12 citation-data' style='word-break:break-word;'><a title='resource name' href='" + externalPubURL + "'>" + pubName + "</a></div>";
+					displayHTML += "<li class='list-group-item listitem' role='listitem'><div class='row'><div class='col-md-1 col-sm-2 col-xs-12'><span class='listDateTime'>" + pubDate + "</span></div><div class='col-md-10 col-sm-8 col-xs-12 citation-data' style='word-break:break-word;'><a title='resource name' href='" + externalPubURL + "' target='_blank'>" + pubName + "</a></div>";
 					//if(externalSourceLabel) {
 					//	displayHTML += "<br/>" + externalSourceLabel ;
 					//}
