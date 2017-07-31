@@ -16,7 +16,7 @@
 <li role="listitem">
 
 
-<a class="amLink" href="${urls.base}/display/${resultRow["uri"]}" title="list of people with this research area">
+<a class="amLink" href="${urls.base}/individual?uri=${resultRow["uri"]}" title="list of people with this research area">
                     ${resultRow["conceptLabel"]}
 </a> </li>
 </#if>
@@ -33,7 +33,7 @@
 <li role="listitem">
 
 
-<a class="amLink" href="${urls.base}/display/${resultRow["uri"]}" title="list of people with this expertise">
+<a class="amLink" href="${urls.base}/individual?uri=${resultRow["uri"]}" title="list of people with this expertise">
                     ${resultRow["conceptLabel"]}
 </a> </li>
 </#if>
@@ -49,7 +49,7 @@
 <li class="amLink">
 
 
-<a class="amLink" href="${urls.base}/display/${resultRow["uri"]}" title="list of people that use this technique">
+<a class="amLink" href="${urls.base}/individual?uri=${resultRow["uri"]}" title="list of people that use this technique">
                     ${resultRow["conceptLabel"]}
 </a> </li>
 </#if>
@@ -65,7 +65,7 @@
 <li class="amLink">
 
 
-<a class="amLink" href="${urls.base}/display/${resultRow["uri"]}" title="list of people that use this software">
+<a class="amLink" href="${urls.base}/individual?uri=${resultRow["uri"]}" title="list of people that use this software">
                     ${resultRow["conceptLabel"]}
 </a> </li>
 </#if>
