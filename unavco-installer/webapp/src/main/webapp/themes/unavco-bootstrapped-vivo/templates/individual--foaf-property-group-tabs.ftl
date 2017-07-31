@@ -113,3 +113,5 @@ ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/amplify/a
 ${scripts.add('<script type="text/javascript" src="${urls.theme}/js/propertyGroupControls-bs.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.theme}/js/showcase.js""></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.theme}/js/readshare.js""></script>')}
+<#--Adding script for getting external information -->
+${scripts.add('<script type="text/javascript" src="${urls.base}/js/individual/externalInfoDisplay.js"></script>')}
