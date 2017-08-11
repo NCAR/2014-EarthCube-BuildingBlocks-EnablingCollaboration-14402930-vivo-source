@@ -33,7 +33,11 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                        {{/if}}
 
                        {{#if publicationYear}}
-                       <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Publication Year:</div><div class="col-lg-9 col-sm-9"> {{year publicationYear}}</div>
+                       <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Publication Year:</div><div class="col-lg-9 col-sm-9">{{year publicationYear}}</div></div>
+                       {{/if}}
+
+                       {{#if timesCited}}
+                       <div class="doc_info_list row"><div class="col-lg-3 col-sm-3 text-muted">Times Cited:</div><div class="col-lg-9 col-sm-9">{{timesCited}}</div></div>
                        {{/if}}
 
                        {{!-- BADGES --}}
@@ -135,13 +139,13 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                   {"field": "presentedAt.name.exact", "display": "Presented at Event", "controls": true},
                   // {"field": "authors.organization.name.exact", "display": "Author Organization"},
                   // {"field": "authors.researchArea.exact", "display": "Author Research Area", "controls": false},
-                 // {"field": "isDcoPublication", "display": "Only show contributions to the DCO"}
               ],
               search_sortby: [
                   {"display":"Relevance","field":["_score","publicationYear"]},
                   {"display":"Title","field":"title.exact"},
                   {"display":"Date","field":"publicationYear"},
-                  {"display":"Altmetric Score","field":"amscore"}
+                  {"display":"Altmetric Score","field":"amscore"},
+                  {"display":"Times Cited","field":"timesCited"}
               ],
                 render_result_record: function(options, record)
                   {
