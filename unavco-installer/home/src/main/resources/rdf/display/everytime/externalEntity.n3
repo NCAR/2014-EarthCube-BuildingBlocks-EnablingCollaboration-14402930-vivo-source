@@ -6,7 +6,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix core: <http://vivoweb.org/ontology/core#> .
 @prefix vivoweb: <http://vivoweb.org/ontology#> .
-@prefix afn:  <http://jena.hpl.hp.com/ARQ/function#> .
+@prefix afn:  <http://jena.apache.org/ARQ/function#> .
 
  
 ##n3 for external entities
@@ -32,7 +32,7 @@ display:getSameAsEntityPublications    a <java:edu.cornell.mannlib.vitro.webapp.
       PREFIX owl: <http://www.w3.org/2002/07/owl#>
       PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX core: <http://vivoweb.org/ontology/core#>
-      PREFIX afn:  <http://jena.hpl.hp.com/ARQ/function#>
+      PREFIX afn:  <http://jena.apache.org/ARQ/function#>
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX foaf: <http://xmlns.com/foaf/0.1/>
       PREFIX vcard:  <http://www.w3.org/2006/vcard/ns#>
@@ -57,7 +57,7 @@ display:getSameAsEntityPositions a <java:edu.cornell.mannlib.vitro.webapp.utils.
       PREFIX owl: <http://www.w3.org/2002/07/owl#>
       PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX core: <http://vivoweb.org/ontology/core#>
-      PREFIX afn:  <http://jena.hpl.hp.com/ARQ/function#>
+      PREFIX afn:  <http://jena.apache.org/ARQ/function#>
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX foaf: <http://xmlns.com/foaf/0.1/>
       PREFIX vcard:  <http://www.w3.org/2006/vcard/ns#>
@@ -82,7 +82,7 @@ display:getSameAsEntityPositions a <java:edu.cornell.mannlib.vitro.webapp.utils.
       PREFIX owl: <http://www.w3.org/2002/07/owl#>
       PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX core: <http://vivoweb.org/ontology/core#>
-      PREFIX afn:  <http://jena.hpl.hp.com/ARQ/function#>
+      PREFIX afn:  <http://jena.apache.org/ARQ/function#>
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX foaf: <http://xmlns.com/foaf/0.1/>
       PREFIX vcard:  <http://www.w3.org/2006/vcard/ns#>
@@ -106,7 +106,7 @@ display:getSameAsEntityPositions a <java:edu.cornell.mannlib.vitro.webapp.utils.
       PREFIX owl: <http://www.w3.org/2002/07/owl#>
       PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX core: <http://vivoweb.org/ontology/core#>
-      PREFIX afn:  <http://jena.hpl.hp.com/ARQ/function#>
+      PREFIX afn:  <http://jena.apache.org/ARQ/function#>
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX foaf: <http://xmlns.com/foaf/0.1/>
       PREFIX vcard:  <http://www.w3.org/2006/vcard/ns#>
@@ -130,7 +130,7 @@ display:getSameAsEntityPositions a <java:edu.cornell.mannlib.vitro.webapp.utils.
       PREFIX owl: <http://www.w3.org/2002/07/owl#>
       PREFIX rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX core: <http://vivoweb.org/ontology/core#>
-      PREFIX afn:  <http://jena.hpl.hp.com/ARQ/function#>
+      PREFIX afn:  <http://jena.apache.org/ARQ/function#>
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX foaf: <http://xmlns.com/foaf/0.1/>
       PREFIX vcard:  <http://www.w3.org/2006/vcard/ns#>
