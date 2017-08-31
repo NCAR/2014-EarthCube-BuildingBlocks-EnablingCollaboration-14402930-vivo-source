@@ -2,8 +2,8 @@
 This is a git repository template for working with and customizing [VIVO](http://vivoweb.org/).  It uses the [three tiered build approach](https://wiki.duraspace.org/display/VIVO/Building+VIVO+in+3+tiers) documented by the VIVO project.  The project source files (VIVO and Vitro) are tracked using [Git Submodules](http://git-scm.com/book/en/Git-Tools-Submodules).
 
 For a more detailed explanation of setting up the VIVO environment, consult the
-[VIVO version 1.8.1 installation
-instructions](https://wiki.duraspace.org/display/VIVO/Installing+VIVO+release+1.8.1).
+[VIVO version 1.9.x installation
+instructions](https://wiki.duraspace.org/x/RANDB).
 
 Building VIVO from this template will add UNAVCO-specific customizations. 
 Customizations include:
@@ -13,6 +13,9 @@ Customizations include:
 - Adjustments to statistics displayed on home page
 - Addition of a word cloud showing expertise and research areas
 - Addition of common nicknames to Solr's synonym file
+- Use of Elasticsearch and the Facetview2 library for browsing
+- Beta VIVO crosslinking with test Cornell University VIVO
+- Responsive Bootstrap theme
 - Support for UNAVCO's expanded ontology
 	- Display a map on a GPS station's page
 	- Display expertise on a Person's page
@@ -51,8 +54,40 @@ The VIVO project has moved to using Apache Maven. To build the project, follow t
 
 Before you start Tomcat, be sure to edit runtime.properties and applicationSetup.n3 (if necessary) in the vivo-dir directory you specified in custom-settings.xml.
 
+## EarthCollab Crosslinking Code
+UNAVCO is utilizing code that enables the lookup and display of external information on VIVO via the 'sameAs' property. If you are not interested in linking to another VIVO instance, you may skip this section.
 
-## UNAVCO-specific notes
+### Crosslinking Configuration
+1. Create a file called externalLookupServices.n3 in {vivo-dir}/rdf/abox/filegraph/externalLookupServices.n3
+```
+  # $This file is distributed under the terms of the license in /doc/license.txt$
+
+  @prefix owl: <http://www.w3.org/2002/07/owl#> .
+  @prefix display: <http://vitro.mannlib.cornell.edu/ontologies/display/1.1#> .
+  @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+  @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+  @prefix core: <http://vivoweb.org/ontology/core#> .
+  @prefix vivoweb: <http://vivoweb.org/ontology#> .
+  @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+  @prefix earthcollab: <http://vivo.earthcollab.edu/individual/> .
+
+
+  #External server information
+  earthcollab:testCornellSolrLookup a <java:edu.cornell.mannlib.vitro.webapp.search.externallookup.impl.SolrLookup>;
+  a <java:edu.cornell.mannlib.vitro.webapp.search.externallookup.ExternalLookupService>;
+  rdfs:label "External VIVO Lookup";
+  earthcollab:hasSolrAPIURL "http://vivo.university.edu/vivosolr/collection1/select?";
+  earthcollab:hasEndpointURL "http://vivo.university.edu/vivo";
+  earthcollab:hasEndpointLabel "External VIVO" .
+```
+  
+2. Go to http://{your.vivo}/propertyEdit?uri=http%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23sameAs  
+ Click edit property and ensure the custom entry form field is set to: edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.generators.AddExternalEntityGenerator
+  
+3. Restart Tomcat
+
+## Additional UNAVCO-specific notes
+
 UNAVCO uses an expanded ontology to capture geodesy-related concepts. The local ontology is included as earthcollab.n3. One extension is the 'Station' concept. Here is RDF for the station concept:
 
     
