@@ -7,13 +7,13 @@ $(document).ready(function(){
 
   function buildSmallMap() {
           
-      var satellite = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile\/{z}\/{y}\/{x}.png', {
+      var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile\/{z}\/{y}\/{x}.png', {
             boxZoom: false,
             doubleClickZoom: false,
             attribution: 'Tiles &copy; <a href="http://www.esri.com/">Esri</a>'
           }),
           
-          streets = L.tileLayer('http://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token={accessToken}', {
+          streets = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token={accessToken}', {
           	attribution: 'Tiles &copy; <a href="https://www.mapbox.com/map-feedback/">Mapbox</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
             boxZoom: false,
             doubleClickZoom: false,

@@ -5,8 +5,8 @@ ${headScripts.add('<script type="text/javascript" src="//cdnjs.cloudflare.com/aj
               '<script type="text/javascript" src="${urls.base}/js/facetview2/jquery.facetview2.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/js.cookie.js"></script>')}
 
-<#assign elasticsearch_base = "http://localhost:9200/unavco/" />
-<#assign url_base = "http://localhost:8081/vivo/individual?uri=" />
+<#assign elasticsearch_base = "${urls.base}:9200/unavco/" />
+<#assign url_base = "{$urls.base}/individual?uri=" />
 
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/facetview2/css/facetview.css" />',
                   '<link rel="stylesheet" href="${urls.base}/js/facetview2/css/browsers.css" />',
