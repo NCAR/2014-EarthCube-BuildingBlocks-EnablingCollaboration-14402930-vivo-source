@@ -1,0 +1,26 @@
+# $This file is distributed under the terms of the license in /doc/license.txt$
+ 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix auth: <http://vitro.mannlib.cornell.edu/ns/vitro/authorization#> .
+@prefix simplePermission: <java:edu.cornell.mannlib.vitro.webapp.auth.permissions.SimplePermission#> .
+@prefix displayByRole: <java:edu.cornell.mannlib.vitro.webapp.auth.permissions.DisplayByRolePermission#> .
+@prefix editByRole: <java:edu.cornell.mannlib.vitro.webapp.auth.permissions.EditByRolePermission#> .
+@prefix publishByRole: <java:edu.cornell.mannlib.vitro.webapp.auth.permissions.PublishByRolePermission#> .
+ 
+## Creating a new permission set for accessing the query api
+auth:QUERYER
+    a auth:PermissionSet ;
+    rdfs:label "Query API User" ;
+   
+    # ADMIN-only permissions
+   
+               
+    # Uncomment the following permission line to enable the SPARQL update API.
+    # Before enabling, be sure that the URL api/sparqlUpdate is secured by HTTPS,
+    # so passwords will not be sent in clear text.                     
+    auth:hasPermission simplePermission:UseSparqlQueryApi ;   
+    
+    # permissions for ANY user, even if they are not logged in.
+    auth:hasPermission simplePermission:QueryFullModel ;
+                auth:hasPermission simplePermission:PageViewablePublic
+    .
