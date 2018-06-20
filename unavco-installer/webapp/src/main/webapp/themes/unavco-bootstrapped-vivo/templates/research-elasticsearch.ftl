@@ -52,9 +52,9 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                        {{/if}}
 
                       {{#if publisher}}
-                          {{#expand publisher}}
-                           <img src="{{readcube name}}">
-                           {{/expand}}
+                          {{#expand_no_print publisher}}
+                             {{{readcube name}}}
+                          {{/expand_no_print}}
                       {{/if}}
 
                      </div>
@@ -84,7 +84,7 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
 
        Handlebars.registerHelper("readcube", function(publisher) {
            if (publisher.includes("PLoS") || publisher.includes("PeerJ") || publisher.includes("Nature") || publisher.includes("Wiley") || publisher.includes("Springer") ){
-              return "${urls.theme}/images/readcube.48d21efc.svg"
+              return "<img src=\'${urls.theme}/images/readcube.48d21efc.svg\'>";
            }
        });
 
@@ -96,6 +96,15 @@ ${headScripts.add('<script type="text/javascript">jQuery(function( $ ){$(".close
                if(i < j) {
                    out += "; ";
                }
+           }
+           return out;
+       });
+
+       Handlebars.registerHelper("expand_no_print", function(items, options) {
+           var out = "";
+           var j = items.length - 1;
+           for(var i = 0; i < items.length; i++) {
+               out += options.fn(items[i]);
            }
            return out;
        });
