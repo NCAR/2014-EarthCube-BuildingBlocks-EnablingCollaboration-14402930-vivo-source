@@ -30,7 +30,7 @@ $(document).ready(function(){
 
     // build a word cloud from the research area and expertise list using d3
     function buildWordMap() {
-      var fill = d3.scale.linear()
+      var fill = d3.scaleLinear()
           .domain([0, 0.4, 1])
           .range(["#000000", "#395d7f", "#62b6d7"]);
     var width = $('#wordMap').width();
