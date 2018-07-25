@@ -1,4 +1,4 @@
-<#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
+<#-- $This file is distributed under the terms of the license in LICENSE$ -->
 
 <#assign standardVisualizationURLRoot ="/visualization">
 <#assign shortVisualizationURLRoot ="/vis">
@@ -42,7 +42,7 @@ var visualizationDataRoot = "${dataVisualizationURLRoot}";
 
 // -->
 var i18nStringsCoPi = {
-    coInvestigatorString: '${i18n().co_inestigators_capitalized}',
+    coInvestigatorString: '${i18n().co_investigators_capitalized}',
     investigatorString: '${i18n().investigator_capitalized}',
     grantsWithString: '${i18n().grants_with}',
     grantsCapitalized: '${i18n().grant_s_capitalized}',
@@ -71,13 +71,13 @@ ${stylesheets.add('<link rel="stylesheet" type="text/css" href="${urls.base}/css
 <script language="JavaScript" type="text/javascript">
 
 $(document).ready(function(){
-        
+
     processProfileInformation("ego_label",
                               "ego_moniker",
                               "ego_profile_image",
                               jQuery.parseJSON(getWellFormedURLs("${egoURIParam}", "profile_info")));
-    
-    <#if (numOfCoInvestigations?? && numOfCoInvestigations <= 0) || (numOfInvestigators?? && numOfInvestigators <= 0) >  
+
+    <#if (numOfCoInvestigations?? && numOfCoInvestigations <= 0) || (numOfInvestigators?? && numOfInvestigators <= 0) >
             if ($('#ego_label').text().length > 0) {
                 setProfileName('no_coinvestigations_person', $('#ego_label').text());
             }
@@ -119,10 +119,9 @@ $(document).ready(function(){
         uris.push("${collaborator.collaboratorURI}");
     </#list>
 
-    var chord = d3.layout.chord()
-            .padding(0.05)
-            .sortSubgroups(d3.descending)
-            .matrix(matrix);
+    var chord = d3.chord()
+            .padAngle(0.05)
+            .sortSubgroups(d3.descending);
 
     var width  = 725;
     var height = 725;
@@ -130,17 +129,25 @@ $(document).ready(function(){
     var inner_radius = Math.min(width, height) * 0.37;
     var outer_radius = Math.min(width, height) * 0.39;
 
-    var fill = d3.scale.category10();
+    var fill = d3.scaleOrdinal()
+            .domain(d3.range(20))
+            .range(["#000000", "#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78",
+                "#2ca02c", "#98df8a", "#d62728", "#ff9896", "#9467bd",
+                "#c5b0d5", "#8c564b", "#c49c94", "#e377c2", "#f7b6d2",
+                "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf"
+            ]);
+    // #9edae5
 
     var svg = d3.select('#chord').append('svg')
             .attr('width', width+padding)
             .attr('height', height+padding)
-            .append('g').attr('transform', 'translate(' + (width+padding) / 2 + ',' + (height+padding) / 2 +')');
+            .append('g').attr('transform', 'translate(' + (width+padding) / 2 + ',' + (height+padding) / 2 +')')
+            .datum(chord(matrix));
 
-    svg.append('g').selectAll('path').data(chord.groups).enter()
-            .append('path').style('fill', function(val) { return val.index == 0 ? "#000000" : fill(val.index); })
-            .style('stroke', function(val) { return val.index == 0 ? "#000000" : fill(val.index); })
-            .attr('d', d3.svg.arc().innerRadius(inner_radius).outerRadius(outer_radius))
+    svg.append('g').selectAll('path').data(function(chords) { return chords.groups; }).enter()
+            .append('path').style('fill', function(val) { return fill(val.index); })
+            .style('stroke', function(val) { return fill(val.index); })
+            .attr('d', d3.arc().innerRadius(inner_radius).outerRadius(outer_radius))
             .on('click', chord_click())
             .on("mouseover", chord_hover(.05))
             .on("mouseout", chord_hover(.8));
@@ -157,7 +164,7 @@ $(document).ready(function(){
 
     var chord_ticks = svg.append('g')
             .selectAll('g')
-            .data(chord.groups)
+            .data(function (chords) { return chords.groups; })
             .enter().append('g')
             .selectAll('g')
             .data(group_ticks)
@@ -169,14 +176,14 @@ $(document).ready(function(){
     svg.append('g')
             .attr('class', 'chord')
             .selectAll('path')
-            .data(chord.chords)
+            .data(function (chords) { return chords; })
             .enter().append('path')
             .style('fill', function (d) { return fill(d.target.index); })
-            .attr('d', d3.svg.chord().radius(inner_radius))
+            .attr('d', d3.ribbon().radius(inner_radius))
             .style('opacity', .8);
 
     svg.append("g").selectAll(".arc")
-            .data(chord.groups)
+            .data(function (chords) { return chords.groups; })
             .enter().append("svg:text")
             .attr("dy", ".35em")
             .attr("style", function(d) { return d.index == 0 ? "font-size: .75em; font-weight: bold;" : "font-size: .70em;"; } )
@@ -249,15 +256,15 @@ $(document).ready(function(){
 
 <div id="body">
     <div  class="sub_headings"><h2><a href="${egoVivoProfileURL}" title="${i18n().investigator_name}"><span id="ego_label"></span></a><br />${i18n().co_investigator_network_capitalized} </h2></div>
-            
+
     <#if (numOfInvestigators?? && numOfInvestigators > 0) >
-        
-        <#if (numOfCoInvestigations?? && numOfCoInvestigations > 0) || (numOfInvestigators?? && numOfInvestigators > 0) > 
+
+        <#if (numOfCoInvestigations?? && numOfCoInvestigations > 0) || (numOfInvestigators?? && numOfInvestigators > 0) >
                 <div class = "graphml-file-link"><a href="${egoCoInvestigationNetworkDataFileURL}" title="${i18n().co_investigator}">(GraphML ${i18n().file_capitalized})</a></div>
         </#if>
-    
+
     </#if>
-    
+
     <div class = "toggle_visualization">
         <div id="coauthorship_link_container" class="collaboratorship-link-container">
         	<div class="collaboratorship-icon"><a href="${coauthorshipURL}" title="${i18n().co_author}"><img src="${coAuthorIcon}" alt="${i18n().co_author_icon}"/></a></div>
@@ -266,12 +273,12 @@ $(document).ready(function(){
             </div>
         </div>
     </div>
-        
+
     <div style="clear:both;"></div>
-    
-            
+
+
     <#if (numOfCoInvestigations?? && numOfCoInvestigations > 0) || (numOfInvestigators?? && numOfInvestigators > 0) >
-    
+
         <div id="bodyPannel">
             <div id="chord" style="float: right;"></div>
         </div>
@@ -291,8 +298,7 @@ $(document).ready(function(){
         <#if user.loggedIn >
             ${i18n().incomplete_grant_data_note2}
         <#else>
-<#-- data_note3 modified to include link to FAQ -->
-            ${i18n().incomplete_grant_data_note3(urls.base)}
+            ${i18n().incomplete_grant_data_note3}
         </#if>
         </div>
         <p></p>
@@ -302,19 +308,19 @@ $(document).ready(function(){
 
         <#-- Sparkline -->
         <div id="sparkline-container-full">
-            
+
             <#assign displayTable = false />
-            
+
             <#assign sparklineVO = egoGrantSparklineVO />
             <div id="grant-count-sparkline-include"><#include "personGrantSparklineContent.ftl"></div>
-    
+
             <#assign sparklineVO = uniqueCoInvestigatorsSparklineVO />
             <div id="coinvestigator-count-sparkline-include"><#include "coInvestigationSparklineContent.ftl"></div>
-        </div>  
-    
+        </div>
+
 
         <div class="vis_stats_full">
-        
+
         <div class="sub_headings" id="table_heading"><h3>${i18n().tables_capitalized}</h3></div>
             <p style="float:left;font-size:.9em">${i18n().grant_info_for_all_years}&nbsp;<img class="filterInfoIcon" width="16px" height="16px" id="imageIconThree" src="${urls.images}/iconInfo.png" alt="${i18n().info_icon}" title="${i18n().grant_sparkline_note}" /></p>
 
@@ -329,17 +335,17 @@ $(document).ready(function(){
                 <#assign tableActivityColumnName = "${i18n().grants_capitalized}" />
                 <#assign tableContent = egoGrantSparklineVO.yearToActivityCount />
                 <#assign fileDownloadLink = egoGrantSparklineVO.downloadDataLink />
-                
+
                 <#include "yearToActivityCountTable.ftl">
 
                 </p>
-                
+
             </div>
-            
+
             <#if (numOfCoInvestigations?? && numOfCoInvestigations > 0) >
-        
+
                 <div class="vis-tables">
-                
+
                     <p id="coinve_table_container" class="datatable">
                         <#assign tableID = "coinvestigations_table" />
                         <#assign tableCaption = "${i18n().co_investigator_s_capitalized} " />
@@ -351,14 +357,14 @@ $(document).ready(function(){
                         <#include "collaboratorToActivityCountTable.ftl">
                     </p>
                 </div>
-            
+
             </#if>
-            
+
             <div style="clear:both"></div>
-        
+
         </div>
-        
+
     </#if>
-    
+
 </div>
 <div id="chord-info-div" style="display: none;"></div>
