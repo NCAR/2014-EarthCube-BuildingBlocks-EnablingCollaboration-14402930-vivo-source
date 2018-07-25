@@ -12,7 +12,7 @@
 <#assign individualProductExtension>
     <#-- Include for any class specific template additions -->
     ${classSpecificExtension!}
-    ${departmentalGrantsExtension!} 
+    ${departmentalGrantsExtension!}
     <!--PREINDIVIDUAL OVERVIEW.FTL-->
     <#include "individual-vocabularyService.ftl">
     <#include "individual-webpage.ftl">
@@ -24,9 +24,9 @@
 </#assign>
 
 <#if individual.conceptSubclass() >
-    <#assign overview = propertyGroups.pullProperty("http://www.w3.org/2004/02/skos/core#broader")!> 
-    <#assign overview = propertyGroups.pullProperty("http://www.w3.org/2004/02/skos/core#narrower")!> 
-    <#assign overview = propertyGroups.pullProperty("http://www.w3.org/2004/02/skos/core#related")!> 
+    <#assign overview = propertyGroups.pullProperty("http://www.w3.org/2004/02/skos/core#broader")!>
+    <#assign overview = propertyGroups.pullProperty("http://www.w3.org/2004/02/skos/core#narrower")!>
+    <#assign overview = propertyGroups.pullProperty("http://www.w3.org/2004/02/skos/core#related")!>
 </#if>
 
 <#include "individual-vitro.ftl">
@@ -42,5 +42,5 @@ var i18nStrings = {
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/css/individual/individual-vivo.css" />')}
 
 ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/jquery_plugins/jquery.truncator.js"></script>')}
-${scripts.add('<script type="text/javascript" src="${urls.base}/js/individual/individualUtils.js"></script>')}
-${scripts.add('<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>')}
+${scripts.add('<script async type="text/javascript" src="${urls.base}/js/individual/individualUtils.js"></script>')}
+${scripts.add('<script async type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>')}

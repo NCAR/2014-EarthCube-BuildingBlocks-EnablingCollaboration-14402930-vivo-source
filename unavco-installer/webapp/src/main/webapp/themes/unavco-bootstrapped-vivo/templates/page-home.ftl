@@ -7,7 +7,7 @@
 <html lang="en">
 	<head>
 		<#include "head.ftl">
-		<script type="text/javascript" src="${urls.theme}/js/homePageUtils.js?version=x"></script>
+		<script async type="text/javascript" src="${urls.theme}/js/homePageUtils.js?version=x"></script>
 		<script type="text/javascript" src="${urls.base}/js/d3.min.js"></script>
 		<script type="text/javascript" src="${urls.base}/js/visualization/d3.layout.cloud.js"></script>
 	</head>
